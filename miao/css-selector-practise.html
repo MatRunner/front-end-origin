@@ -41,15 +41,15 @@
     a[href^="http"]:visited {
       color: orange;
     }
-    a[href^="mailto" i][href*="@"]{
+    a[href^="mailto:" i]{
       color: blue;
     }
 
-    a[href^="tel" i] {
+    a[href^="tel:" i] {
       color: yellow;
     }
 
-    a[href$="pdf" i] {
+    a[href$=".pdf" i] {
       font-size: 30px;
     }
 
@@ -243,16 +243,7 @@
     .prime ul li:first-of-type{
       color:blue;
     }
-    .prime ul li:nth-of-type(2n+4){
-      color:red;
-    }
-    .prime ul li:nth-of-type(3n+6){
-      color:red;
-    }
-    .prime ul li:nth-of-type(5n+10){
-      color:red;
-    }
-    .prime ul li:nth-of-type(7n+14){
+    .prime ul li:nth-of-type(2n+4),.prime ul li:nth-of-type(3n+9),.prime ul li:nth-of-type(5n+25),.prime ul li:nth-of-type(7n+49){
       color:red;
     }
 
