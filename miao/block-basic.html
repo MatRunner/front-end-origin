@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body>p{
+      background-color: burlywood;
+      padding-left:calc(50% - 250px);
+      padding-right:calc(50% - 250px);
+    }
+    div{
+      width: 500px;
+      height: 300px;
+      margin: auto;
+      border:3px solid black;
+    }
+    div p:first-child{
+     height:3em;
+     overflow: auto;
+     font-size: 24px;
+    }
+    div p:nth-of-type(2){
+      height: 5em;
+      background-color: cadetblue;
+      margin-left: 40%;
+      margin-right: 40%;
+    }
+    div p:nth-of-type(2):hover{
+      margin: auto;
+    }
+    div p:last-child{
+      font-size: 24px;
+      height: 3em;
+      overflow: auto;
+    }
+    section{
+      box-sizing: border-box;
+      width: 100px;
+      margin: auto;
+      margin-top: 5em;
+      border-bottom:50px solid darkgoldenrod;
+      border-left:50px solid transparent;
+      border-right:50px solid transparent;
+      border-top:50px solid transparent;
+    }
+    section.a{
+      border-bottom:50px solid transparent;
+      border-left:50px solid transparent;
+      border-right:50px solid transparent;
+      border-top:30px solid plum;
+    }
+    
+  </style>
+</head>
+<body>
+  <p>aaaaaaaaaaaaaaaaa</p>
+  <div><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati illo recusandae reiciendis porro voluptas cum nemo numquam dolores alias! Expedita velit est id aliquid distinctio animi voluptatem iste deleniti repudiandae?</p>
+  <p></p>
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur ad molestias vel amet vero maxime, similique minima, fugit unde sint quisquam quaerat repudiandae eveniet veritatis nostrum atque! Ipsum, temporibus possimus!</p></div>
+  <section></section>
+  <section class="a"></section>
+</body>
+</html>

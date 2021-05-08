@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body>p:first-child{
+      background-color: black;
+      color: white;
+      padding-left:calc(50% - 300px);
+      padding-right:calc(50% - 300px);
+    }
+    div.b{
+      width: 600px;
+      min-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    div.c{
+      background-color: lightcoral;
+      text-align: center;
+      line-height: auto;
+    }
+    div.d{
+      width: 600px;
+      margin:auto;
+    }
+    div>p{
+      width: 180px;
+      height: 40px;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      box-sizing: border-box;
+      border: 3px solid black;
+      text-align: center;
+      line-height: 34px;
+      background-color: burlywood;
+    }
+    div>p:hover{
+      background-color: cornflowerblue;
+    }
+    div>p:nth-of-type(n+5){
+      margin-left:210px;
+    }
+    div>p:nth-of-type(n+9){
+      margin-left: 420px;
+    }
+    div>p:nth-of-type(5){
+      margin-top: -220px;
+    }
+    div>p:nth-of-type(9){
+      margin-top: -220px;
+    }
+    section>p{
+      border-bottom: 3px dotted black;
+      margin-bottom: -3px;
+    }
+    section{
+      overflow: hidden;
+      width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <p>Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!</p>
+
+  <div class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, error architecto doloremque dolores perspiciatis veritatis reprehenderit, consequatur tempore eaque illum earum debitis. Placeat incidunt, distinctio cum in velit non vel!</div>
+
+<div class="d"><p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p>
+<p>京东</p></div>
+
+
+  <section>
+  <p class="a">link</p>
+  <p class="a">link</p>
+  <p class="a">link</p>
+  <p class="a">link</p>
+  <p class="a">link</p>
+</section>
+  <div class="c">&copy;版权所有<br>本页所有布局均使用块元素</div>
+</body>
+</html>
