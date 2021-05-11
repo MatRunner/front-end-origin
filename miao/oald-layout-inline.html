@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oald layout inline</title>
+  <style>
+    html{
+      width: 100%;
+      height: 100%;
+    }
+    body{
+      margin:0 0;
+      width: 100%;
+      height: 100%;
+      min-width: 602px;
+      overflow: auto;
+    }
+    *{
+      background-color:rgb(0,0,0,0.08);
+      font-size: 0;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+    span{
+      display: inline-block;
+      border:1px solid;
+      height: 100%;
+    }
+    .a{
+      width: 200px;
+    }
+    .b{
+      width:calc(100% - 600px);
+    }
+    .c{
+      width: 200px;
+    }
+    .d{
+      width: 200px;
+    }
+    em{
+      display: inline-block;
+      border: 1px solid;
+      width: 100%;
+    }
+    .b em:first-child{
+      height: 100px;
+    }
+    .b em:last-child{
+      overflow: auto;
+      font-size: 24px;
+      height: calc(100% - 100px);
+    }
+  </style>
+</head>
+<body>
+  <span class="a"></span>
+  <span class="b"><em></em><em>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, necessitatibus? Adipisci explicabo tempora nemo at expedita, necessitatibus laudantium similique voluptatum aperiam numquam est quam reiciendis porro voluptas. Aliquam, error saepe!
+  Similique unde repellat minima eveniet, voluptatibus libero? Eligendi animi, est perferendis doloremque suscipit fuga officia. Odit fuga quibusdam aperiam quisquam iure maiores vitae ea quia sapiente, voluptatibus quam at eum.
+  Delectus ex rerum mollitia molestias voluptas voluptatum, quas amet illo ullam? Eum laudantium accusamus voluptatibus facilis repellendus ducimus quisquam! Vero, rem! Culpa inventore laboriosam omnis sit minima, dolorum est magni?
+  Modi ad enim recusandae reprehenderit officiis quasi repudiandae velit dicta rerum, minima, eligendi nesciunt consequuntur aut commodi ullam ex animi error? Recusandae veritatis nesciunt culpa, ipsum quod quis voluptas architecto!
+  Ratione temporibus at enim consequatur eos, voluptatum dolor totam amet voluptatibus aliquid? Reiciendis ab tenetur cumque ipsam, doloremque eum commodi mollitia nemo officia modi, autem repellendus accusamus eius vitae. Molestias.
+  Odio, ipsa est quas explicabo beatae aliquid fugiat ullam adipisci similique molestias id esse odit accusamus ut, magnam aliquam ea dicta aspernatur aperiam. Autem veritatis nobis non facere ducimus. Repudiandae.
+  Dignissimos maxime sit similique officiis odio eum. Dignissimos facere odit nesciunt saepe magnam excepturi eaque vero dolores dolor corrupti tenetur voluptatum, similique, porro, ut natus recusandae ad ea delectus error.
+  Quaerat iusto autem, reprehenderit facere possimus deserunt! At quasi fugit, tenetur pariatur vel dolor praesentium nobis ipsam voluptates doloribus ipsum atque adipisci soluta odio repudiandae autem cupiditate maiores aspernatur iusto!
+  Quaerat a adipisci enim aliquid? Pariatur quibusdam praesentium fugiat dolores repellat officiis nesciunt dolore earum corrupti, cumque quidem officia quasi. Dolorum maxime explicabo vel earum culpa dignissimos aperiam enim non.
+  Minus inventore velit eligendi enim dolorem quo sed aspernatur voluptatum, aliquid ab tempore laboriosam impedit ipsam reprehenderit facere! Magnam consequuntur recusandae minima, ad earum esse nihil eaque nobis velit autem.</em></span>
+  <span class="c"></span>
+  <span class="d"></span>
+</body>
+</html>

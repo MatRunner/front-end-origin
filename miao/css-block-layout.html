@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>块布局，行内块</title>
   <style>
     body>p:first-child{
       background-color: black;
@@ -54,14 +54,34 @@
     div>p:nth-of-type(9){
       margin-top: -220px;
     }
-    section>p{
+    section.a>p{
       border-bottom: 3px dotted black;
       margin-bottom: -3px;
     }
-    section{
+    section.a{
       overflow: hidden;
       width: 600px;
       margin: auto;
+    }
+    section.inline-block{
+      width: 600px;
+      margin: auto;
+      font-size: 0;
+    }
+    section.inline-block>div{
+      display: inline-block;
+      box-sizing: border-box;
+      width: 180px;
+      height: 40px;
+      border: 3px solid black;
+      text-align: center;
+      font:bold 24px sans-serif;
+      background-color:peru;
+      margin-right: 30px;
+      margin-bottom:15px;
+    }
+    section.inline-block>div:nth-of-type(3n+3){
+      margin-right: 0;
     }
   </style>
 </head>
@@ -70,7 +90,7 @@
 
   <div class="b">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, error architecto doloremque dolores perspiciatis veritatis reprehenderit, consequatur tempore eaque illum earum debitis. Placeat incidunt, distinctio cum in velit non vel!</div>
 
-<div class="d"><p>京东</p>
+<div class="d"><p>边距偏移</p>
 <p>京东</p>
 <p>京东</p>
 <p>京东</p>
@@ -83,8 +103,21 @@
 <p>京东</p>
 <p>京东</p></div>
 
+<section class="inline-block"><div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div>
+<div>inline-block</div></section>
 
-  <section>
+
+  <section class="a">
   <p class="a">link</p>
   <p class="a">link</p>
   <p class="a">link</p>
