@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>twitter-heart</title>
+  <style>
+    div{
+      display: inline-block;
+      background-image: url(web_heart_animation.png);
+      background-repeat: no-repeat;
+      width:100px;
+      height:100px;
+      border: 1px solid black;
+    }
+    section:hover div{
+      background-position: 100%;
+      transition: 1s steps(28);
+    }
+    section{
+      display: inline-block;
+      border: 2px dotted red;
+    }
+  </style>
+
+</head>
+<body>
+  <section>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</section>
+</body>
+</html>

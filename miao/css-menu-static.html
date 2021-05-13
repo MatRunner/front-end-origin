@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-menu</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin:0;
+    }
+    div{
+      position: relative;
+    }
+    header{
+      font-size:0px;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
+    }
+    ol{
+      padding: 0;
+    }
+    li{
+      position: absolute;
+      display: inline-block;
+      list-style-type: none;
+      width:60px;
+      background-color: rgb(60,60,60);
+      color:white;
+      font:bold 20px sans-serif;
+      margin:0;
+      text-align: center;
+      
+    }
+    li.select{
+      left:120px;
+    }
+    li.edit{
+      left:60px;
+    }
+    li.view{
+      left:180px;
+    }
+    li:hover{
+      background-color: #505050;
+    }
+    li.file>section{
+      background-color: rgb(37,37,38);
+      width:240px;
+      height:0;
+    }
+    li.file>section>span{
+      color:white;
+      display: block;
+      height: 0;
+    }
+    li.file:focus>section>span{
+      height: 25px;
+      background-color:rgb(37,37,38);
+    }
+    li.file>section>span:hover{
+      background-color:#007ACC;
+    }
+    span.a>section{
+      position: absolute;
+      background-color: rgb(37,37,38);
+      width:240px;
+      left:240px;
+      top:25px;
+    }
+    span.a>section>span{
+      height:0;
+      display: block;
+    }
+    span.a:hover>section>span{
+      height:25px;
+    }
+  .a>section>span:hover{
+    background-color: #007acc;
+  }
+  </style>
+</head>
+<body>
+  <div>
+    <header><ol><li tabindex="-1" class="file">文件<section><span class="a">1
+<section><span>a</span><span>b</span><span>c</span><span>d</span></section></span>
+      <span>2</span><span>3</span><span>4</span></section></li>
+    <li tabindex="-1" class="edit">编辑</li>
+    <li tabindex="-1" class="select">选择</li>
+    <li tabindex="-1" class="view">查看</li></ol></header>
+  </div>
+</body>
+</html>
