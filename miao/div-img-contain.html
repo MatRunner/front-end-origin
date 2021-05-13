@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>div-img-contain</title>
+  <style>
+    div{
+      display: inline-block;
+      width:300px;
+      height: 300px;
+      border: 1px solid;
+      position: relative;
+    }
+   img{
+     xborder:3px red solid;
+     position: absolute;
+   }
+   .a img{
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      margin: auto;
+   }
+   .b img{
+     max-width: 100%;
+     max-height: 100%;
+     top:0;
+     bottom:0;
+     margin: auto;
+   }
+    .c img{
+      left:0;
+      right:0;
+      margin: auto;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"><img src="https://tse2-mm.cn.bing.net/th/id/OIP.qXURmfpWd5ty35KNFIgIfQHaHa?w=146&h=150&c=7&o=5&dpr=1.5&pid=1.7" alt="1"></div>
+  <div class="b"><img src="https://tse2-mm.cn.bing.net/th/id/OIP.xudWtEfvtbX1LdFuErT5PwHaDR?w=343&h=154&c=7&o=5&dpr=1.5&pid=1.7" alt="2"></div>
+  <div class="c"><img src="https://tse3-mm.cn.bing.net/th/id/OIP.3BYt4EKs4Ee1bqAiu65jwAHaMm?w=191&h=326&c=7&o=5&dpr=1.5&pid=1.7" alt="3"></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</body>
+</html>
