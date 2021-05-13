@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>div-img-contain</title>
   <style>
+  
     div{
       display: inline-block;
       width:300px;
       height: 300px;
-      border: 1px solid;
+      border: 1px solid black;
       position: relative;
     }
    img{
-     xborder:3px red solid;
      position: absolute;
    }
    .a img{
@@ -37,16 +37,52 @@
       margin: auto;
       max-height: 100%;
     }
+    .d img{
+      object-fit:contain;
+      width:300px;
+      width:300px;
+      top:0;
+      bottom: 0;
+      margin: auto;
+      border: blue 3px solid;
+      box-sizing: border-box;
+    }
+    .e{
+      background-image: url(https://tse3-mm.cn.bing.net/th/id/OIP.VXteFrfxQw0MoRBOI1OLLgHaLI?w=198&h=298&c=7&o=5&dpr=1.5&pid=1.7);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .f{
+      background-image: url(https://tse1-mm.cn.bing.net/th/id/OIP.esVgGN4-0-M9m9WBefxHkAAAAA?w=146&h=150&c=7&o=5&dpr=1.5&pid=1.7);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .g{
+      background-image: url(https://tse2-mm.cn.bing.net/th/id/OIP._Ftwd6B44-h1xk7hgPs7QwHaHa?w=190&h=190&c=7&o=5&dpr=1.5&pid=1.7);
+      background-repeat: no-repeat;
+      background-position: 100%;
+      background-size: 150%;
+    }
+    .h{
+      font-size: 28px;
+      font-weight: 900;
+      overflow: auto;
+      background-image: linear-gradient(rgb(200,200,100),rgb(200,100,100),rgb(200,50,100));
+      background-color: rgb(0,0,0);
+      -webkit-background-clip: text;
+      color:transparent;
+    }
   </style>
 </head>
 <body>
   <div class="a"><img src="https://tse2-mm.cn.bing.net/th/id/OIP.qXURmfpWd5ty35KNFIgIfQHaHa?w=146&h=150&c=7&o=5&dpr=1.5&pid=1.7" alt="1"></div>
   <div class="b"><img src="https://tse2-mm.cn.bing.net/th/id/OIP.xudWtEfvtbX1LdFuErT5PwHaDR?w=343&h=154&c=7&o=5&dpr=1.5&pid=1.7" alt="2"></div>
   <div class="c"><img src="https://tse3-mm.cn.bing.net/th/id/OIP.3BYt4EKs4Ee1bqAiu65jwAHaMm?w=191&h=326&c=7&o=5&dpr=1.5&pid=1.7" alt="3"></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div class="d"><img src="https://tse3-mm.cn.bing.net/th/id/OIP.3xV_w0RW34JKLeU6jMBKCAHaD5?w=298&h=180&c=7&o=5&dpr=1.5&pid=1.7" alt="4"></div>
+  <div class="e"></div>
+  <div class="f"></div>
+  <div class="g"></div>
+  <div class="h">tationem maiores neque incidunt! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, quam?</div>
 </body>
 </html>
