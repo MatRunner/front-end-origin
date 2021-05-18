@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oald-layout-float</title>
+  <style>
+    html,body,div{
+      height:100%;
+      width: 100%;
+      margin: 0;
+    }
+    *{
+      box-sizing: border-box;
+    }
+    aside{
+      width:200px;
+      height: 100%;
+      border:1px solid;
+      float: left;
+    }
+    main{
+      height: 100%;
+      border:1px solid;
+      width: calc(100% - 600px);
+      float: left;
+    }
+    span{
+      display: block;
+      border:1px solid;
+    }
+    span:first-child{
+      height: 100px;
+    }
+    span:last-child{
+      height: calc(100% - 100px);
+    }
+  
+  </style>
+</head>
+<body>
+  <div>
+    <aside></aside>
+    <main><span></span><span></span></main>
+    <aside></aside>
+    <aside></aside>
+  </div>
+</body>
+</html>

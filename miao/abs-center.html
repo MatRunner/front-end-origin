@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>abs-center</title>
+  <style>
+    body{
+      border:1px solid blue;
+    }
+    div{
+      display: inline-block;
+      border:1px solid black;
+      height: 300px;
+      width: 300px;
+    }
+    /* position */
+    div:first-child{
+      position: relative;
+    }
+    div:first-child span{
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      border:1px solid red;
+      position: absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom: 0;
+      margin: auto;
+    }
+    /* table */
+    /* 从结果上看，即使table设置为fixed，只有一个单元格下，还是会占满整个table，cell内的文本会绝对居中 */
+    div:nth-child(2){
+      display: inline-table;
+      text-align: center;
+      table-layout: fixed;
+      vertical-align: top;
+    }
+    div:nth-child(2) span{
+      display: table-cell;
+      border:1px solid red;
+      height: 50px;
+      width: 50px;
+      vertical-align: middle;
+    }
+    /* inline */
+    div:nth-child(3){
+      text-align: center;
+      vertical-align: top;
+    }
+    div:nth-child(3) span{
+      line-height: 300px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div><span>position</span></div>
+  <div><span>table</span></div>
+  <div><span>inline</span></div>
+</body>
+</html>
