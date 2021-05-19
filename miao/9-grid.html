@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>9-grid</title>
   <style>
+    /* 1. 可以使用伪元素hover遮挡显示红框，注意要用pointer-events穿透元素
+        2.利用边框样式的优先级，但是本质上并没有完成还原作业
+        3. 只设置左边的边框，避免了优先级问题，没有边框就不会遮挡
+        4. 设置行和列的框，是我写的方法 
+     */
     table{
       width: 300px;
       height: 300px;

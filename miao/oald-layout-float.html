@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>oald-layout-float</title>
   <style>
+    /* 浮动的做法，结合左浮动和右浮动，使中间区域bfc自动占满 */
     html,body,div{
       height:100%;
       width: 100%;
@@ -18,13 +19,20 @@
       width:200px;
       height: 100%;
       border:1px solid;
+    }
+    .a{
       float: left;
+    }
+    .b{
+      float: right;
+    }
+    .c{
+      float: right;
     }
     main{
       height: 100%;
       border:1px solid;
-      width: calc(100% - 600px);
-      float: left;
+      overflow: hidden;
     }
     span{
       display: block;
@@ -41,10 +49,11 @@
 </head>
 <body>
   <div>
-    <aside></aside>
+    <aside class="a"></aside>
+    
+    <aside class="b"></aside>
+    <aside class="c"></aside>
     <main><span></span><span></span></main>
-    <aside></aside>
-    <aside></aside>
   </div>
 </body>
 </html>
