@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    html, body{
+      height: 100%;
+      margin: 0;
+    }
+    div{
+      min-height: 100%;
+      position: relative;
+      border:1px solid black;
+    }
+    footer{
+      position: absolute;
+      bottom:0;
+      border:5px double red;
+      font: bold 30px sans-serif;
+    }
+    p{
+      border:5px dotted green;
+      height: 100px;
+      display: none;
+    }
+    input{
+      display: none;
+    }
+    label{
+      border: 2px groove purple;
+      font: bold 30px sans-serif;
+    }
+    input:checked ~ p{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <footer>这里是页脚</footer>
+    <input type="checkbox" id="check">
+    <label for="check">点击给页面增加内容</label>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+</body>
+</html>
