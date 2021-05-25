@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>radio-slider</title>
+  <style>
+    input{
+      display: none;
+    }
+    img{
+      height: 100%;
+      width:100%;
+    }
+    div{
+      width:300px;
+      height:300px;
+      border:2px double red;
+      position: relative;
+      overflow: hidden;
+    }
+    label{
+      position: absolute;
+      box-sizing: border-box;
+      width:300px;
+      height:300px;
+      left:100%;
+      transition: 1s;
+    }
+    input:nth-of-type(1):checked ~ label:nth-of-type(2),
+    input:nth-of-type(2):checked ~ label:nth-of-type(3),
+    input:nth-of-type(3):checked ~ label:nth-of-type(4),
+    input:nth-of-type(4):checked ~ label:nth-of-type(1) {
+      left:0;
+      z-index: 6;
+    }
+    p{
+      font:bold 30px sans-serif;
+      border:2px solid goldenrod;
+      width:300px;
+    }
+  </style>
+</head>
+<body>
+  <p>请点击图片</p>
+  <div>
+  <input type="radio" value="" id="a" name="slider" ><input type="radio" value="" id="b" name="slider"><input type="radio" value="" id="c" name="slider"><input type="radio" value="" id="d" name="slider" checked>
+  <label for="a"><img src="https://i.linkeddb.com/upload/7631/8a89/f6c8528922e31d112913c86a.png" alt=""></label><label for="b"><img src="https://n.sinaimg.cn/tech/transform/399/w550h649/20181229/Y_em-hqwsysz0113528.png" alt=""></label><label for="c"><img src="https://n.sinaimg.cn/tech/crawl/106/w550h356/20190122/HRf8-hryfqhk5100626.jpg" alt=""></label><label for="d"><img src="https://th.bing.com/th/id/R07f034a49bc944aad12b3ca4480fd389?rik=i%2bvl7MgTflVFmg&riu=http%3a%2f%2fwww.guangyuanol.cn%2fuploads%2f200807%2f13-200PG211223N.jpg&ehk=mSMssmIhtKt3ukPSmr0CRRe8FJv2u0xeSX3lCYHY71s%3d&risl=&pid=ImgRaw" alt=""></label>
+  </div>
+</body>
+</html>
