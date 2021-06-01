@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iconfont</title>
+  <link rel="stylesheet" href="./miFont.css">
+  <style>
+    /*
+    fontawesome网站上的评分星级的做法：1.文本内容rtl，因为选择器只能选中后续的元素。2.替换span内的::before的content，所以只需要有五个span即可
+    我的做法：利用scaleX（-100%）镜像反转实现看似选择前面元素的效果。但是我考虑的是用遮挡效果，所以写了5×2个span，综合看来直接改span代码量少些，不过前提是知道图标编号啊，知道才能改content！ 
+     */
+    section {
+      width: 400px;
+      height: 200px;
+      margin: auto;
+      border: 2px solid gray;
+      position: relative;
+    }
+
+    div {
+      position: absolute;
+      transform: scaleX(-100%);
+    }
+
+    span {
+      font-size: 50px;
+    }
+
+    div:nth-of-type(2) span {
+      opacity: 0;
+    }
+
+    div:nth-of-type(2) span:hover,
+    div:nth-of-type(2) span:hover~span {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div><span class="iconfont-face-sad"></span><span class="iconfont-face-sad"></span><span
+        class="iconfont-face-sad"></span><span class="iconfont-face-sad"></span><span class="iconfont-face-sad"></span>
+    </div>
+    <div><span class="iconfont-face-laugh"></span><span class="iconfont-face-laugh"></span><span
+        class="iconfont-face-laugh"></span><span class="iconfont-face-laugh"></span><span
+        class="iconfont-face-laugh"></span></div>
+  </section>
+</body>
+
+</html>

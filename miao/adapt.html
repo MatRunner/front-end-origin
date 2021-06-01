@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      height: 100px;
+    }
+    /*显然的，处于临界值时，后面覆盖前面
+    可以只限制一边的条件，通过覆盖顺序自动完成另一边的限制*/
+    @media (max-width: 500px){
+      div{
+        background-color: red;
+      }
+    }
+    @media (min-width: 500px) and (max-width: 800px){
+      div{
+        background-color: green;
+      }
+    }
+    @media (min-width: 800px) and (max-width: 1200px){
+      div{
+        background-color: yellow;
+      }
+    }
+    @media (min-width: 1200px){
+      div{
+        background-color: purple;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
