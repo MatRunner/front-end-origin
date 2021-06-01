@@ -1,7 +1,6 @@
 @font-face {
   font-family: miFont;
   src: url(./miFont.woff) format("woff");
- ;
 }
 [class^="iconfont"], [class^=" iconfont"]{
   font-family: miFont;
