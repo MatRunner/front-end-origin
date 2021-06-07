@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cube</title>
+  <style type="text/less">
+    section {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      margin: auto;
+      transform-style: preserve-3d;
+      transition: 40s;
+      
+      &:hover{
+        transform:rotateX(360deg) rotateY(1080deg);
+      }
+
+      div {
+        margin: auto;
+        left:0;
+        bottom:0;
+        right:0;
+        top:0;
+        width: 300px;
+        height: 300px;
+        border: 1px solid gray;
+        position:absolute;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      div:nth-child(1){
+        transform:translateZ(150px);
+        background-image: url(https://img.zcool.cn/community/014adb56e68d6a6ac7255885b32496.jpg@1280w_1l_2o_100sh.jpg);
+       
+      }
+      div:nth-child(2){
+        transform: rotateX(180deg) translateZ(150px);
+        background-image: url(https://tse2-mm.cn.bing.net/th/id/OIP.U7meA8yHv2D4ktwaAEFhqAHaIH?pid=ImgDet&rs=1);
+    
+      }
+      div:nth-child(3){
+        transform: rotateY(90deg) translateZ(150px);
+        background-image: url(https://up.enterdesk.com/edpic/f0/91/72/f09172274ccb7c8ebae119a866ced329.jpg);
+      }
+      div:nth-child(4){
+        transform: rotateY(-90deg) translateZ(150px);
+        background-image: url(https://tse1-mm.cn.bing.net/th/id/OIP.U7meA8yHv2D4ktwaAEFhqAHaIH?pid=ImgDet&rs=1);
+      }
+      div:nth-child(5){
+        transform: rotateX(90deg) translateZ(150px);
+        background-image: url(https://th.bing.com/th/id/R0bccb67f41500ec603c0f71a07b2f5e4?rik=rJXsx1I7mB8m8Q&riu=http%3a%2f%2fimg.yao51.com%2fjiankangtuku%2ffhpebiz.jpeg&ehk=TxFPFD0t1jF83Sd5bpSs5ItbcJb2FrcPu43AD1S2knc%3d&risl=&pid=ImgRaw);
+      }
+      div:nth-child(6){
+        transform: rotateX(-90deg) translateZ(150px);
+        background-image: url(https://tse2-mm.cn.bing.net/th/id/OIP.O9q9342qkagBnIcVxquK6QHaHa?pid=ImgDet&rs=1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </section>
+</body>
+<script src="less.min.js"></script>
+
+</html>

@@ -3,7 +3,7 @@
   src: url(./miFont.woff) format("woff");
 }
 [class^="iconfont"], [class^=" iconfont"]{
-  font-family: miFont;
+  font-family: miFont !important;
 }
 .iconfont-arrow-left:before {
   content:"\E626";

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smile</title>
+  <style type="text/less">
+    @keyframes rot{
+    from{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rot2 {
+    from{
+      transform: rotate(0deg) translateX(160px);
+    }
+    to{
+      transform: rotate(360deg) translateX(160px) rotate(-360deg);
+    }
+  }
+  @keyframes rot3 {
+    from{
+      left:0;
+    }
+    to{
+      left:400px;
+    }
+  }
+  @keyframes rot4 {
+    from{
+      top:0;
+    }
+    to{
+      top:400px;
+    }
+    
+  }
+    section{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    border:1px solid;
+    position: relative;
+    float: left;
+  }
+  section:first-child{
+    div{
+      height:80px;
+      width:100%;
+      position: absolute;
+      top:0;
+      bottom:0;
+      margin:auto;
+      transform-origin:50% 50%;
+      animation: rot 5s linear 0s infinite;
+      
+      span{
+        display: inline-block;
+        width:80px;
+        height: 80px;
+        background-image: url(https://tse2-mm.cn.bing.net/th/id/OIP.WQO1jk0IN0Ud9b1boSrTMgAAAA?pid=ImgDet&rs=1);
+        background-size: 100% 100%;
+        animation:rot 5s linear 0s infinite reverse;
+        
+        &:last-child{
+          position: absolute;
+          right:0;
+        }
+      }
+    }
+  }
+  section:nth-child(2){
+    div{
+      position: absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin:auto;
+      width:80px;
+      height:80px;
+      background-image: url(https://bkimg.cdn.bcebos.com/pic/aec379310a55b31928f59cbc4ea98226cefc17ee?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U5Mg==,g_7,xp_5,yp_5/format,f_auto);
+      background-size: 100% 100%;
+      animation: rot2 5s linear 0s infinite;
+    }
+  }
+  section:nth-child(3){
+    div{
+      width:80px;
+      height:80px;
+      position: absolute;
+      background-image: url(https://th.bing.com/th/id/R8721dbbce8687e602750899872f52e03?rik=WU1u08UIDKw8Vg&riu=http%3a%2f%2fpic13.photophoto.cn%2f20091008%2f0021033887928338_b.jpg&ehk=Dq%2fY52nFX%2fMOZf%2fjoB5akpJDm%2fCgHdyzhPRy7m9L4cA%3d&risl=&pid=ImgRaw);
+      background-size: 100% 100%;
+      animation: rot3 2.5s cubic-bezier(.36,0,.64,1) infinite alternate, rot4 2.5s cubic-bezier(.36,0,.64,1) -1.25s infinite alternate;
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div><span></span><span></span></div>
+  </section>
+  <section>
+    <div></div>
+  </section>
+  <section>
+    <div></div>
+  </section>
+</body>
+<script src="less.min.js"></script>
+
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Home</title>
+  <link rel="stylesheet" href="../MiSource/Mi-home.less" type="text/less">
+  <link rel="stylesheet" href="./miFont.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <!-- 这部分是第一栏标题，灰底，占全宽 -->
+      <section class="head">
+        <div class="head1">
+          <div class="left">
+            <a href="#">小米商城</a><span>|</span><a href="#">MIUI</a><span>|</span><a href="#">IoT</a><span>|</span><a
+              href="#">云服务</a><span>|</span><a href="#">天星数科</a><span>|</span><a href="#">有品</a><span>|</span><a
+              href="#">小爱开放平台</a><span>|</span><a href="#">企业团购</a><span>|</span><a href="#">资质证照</a><span>|</span><a
+              href="#">协议规则</a><span>|</span><a href="https://www.mi.com/appdownload" class="app-download">下载app<div
+                class="app-img"><img
+                  src="..\MiSource.library\images\KPIEF73RZLHSU.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (124).png"
+                  alt=""><span>小米商城APP</span></div></a><span>|</span><a href="#">智能生活</a><span>|</span><a
+              href="#">Select Locaton</a>
+          </div>
+          <div class="right"><a href="#">登录</a><span>|</span><a href="#">注册</a><span>|</span><a href="#">消息通知</a><a
+              href="#" class="cart"><span class="cart-menu"><span>购物车中还没有商品，赶紧选购吧！</span></span><span
+                class="iconfont iconfont-cart">购物车
+                (0)</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 这部分是第二栏导航栏，看起来就三个主要部分，图标logo，下拉菜单和搜索框 -->
+      <section class="head2">
+        <div class="center">
+
+          <a href="https://www.mi.com/" class="mi-logo"><img
+              src="..\MiSource.library\images\KPIEF72MQ85G9.info\logo-mi2.png" alt=""></a>
+
+          <!-- 本部分重新补充下拉菜单，注意hover颜色变化细节 -->
+          <!-- 一个父元素被hover时，一个子元素展开，这个子元素里包含着更多子元素，这些子元素可以被前面的一些元素控制z-index -->
+          <!-- 要实现这样的结构，div1>div2实现了第一个条件，其他的包裹类型也可以；div2>ul>li*6 -->
+          <!--
+             功能解构：
+              1. 一个元素被hover，其子元素展开，这个子元素是bfc的。
+              2. hover该子元素时，同时hover到了z-index控制，所以下方的元素是菜单栏标题的子元素。
+              3. hover菜单字体变色，移走颜色小时，证明该菜单字体不是控制z-index和出现行为的元素，只是放在那个位置。
+
+              所以结构上使用的是ul>li*n>(ul>li*n)
+          -->
+
+          <ul class="outer">
+            <li><a href="#">小米手机</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF7DS9AE6L.info\小米MIX FOLD.png" alt="">
+                      <div class="title">小米MIX FOLD</div>
+                      <p class="price">999元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7DCPWWOT.info\小米11 Ultra.png" alt="">
+                      <div class="title">小米11 Ultra</div>
+                      <p class="price">599元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7D8Y0D1G.info\小米11 Pro.png" alt="">
+                      <div class="title">小米11 Pro</div>
+                      <p class="price">499元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7D4I26H9.info\小米11 青春版.png" alt="">
+                      <div class="title">小米11青春版</div>
+                      <p class="price">229元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CZLXB9X.info\小米10S.png" alt="">
+                      <div class="title">小米10s</div>
+                      <p class="price">329元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CW9JO93.info\小米11.png" alt="">
+                      <div class="title">小米11</div>
+                      <p class="price">399元起</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Redmi 红米</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF7CF8HL0M.info\Note 10 Pro.png" alt="">
+                      <div class="title">Note 10 Pro</div>
+                      <p class="price">169元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CFU5PQF.info\Note 10 5G.png" alt="">
+                      <div class="title">Note 10 5G</div>
+                      <p class="price">109元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CFCRWSH.info\K40 游戏增强版.png" alt="">
+                      <div class="title">K40 游戏增强版</div>
+                      <p class="price">199元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CFLC5U4.info\K40 Pro 系列.png" alt="">
+                      <div class="title">K40 Pro 系列</div>
+                      <p class="price">279元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7CERFYXA.info\Redmi K40.png" alt="">
+                      <div class="title">Redmi K40</div>
+                      <p class="price">199元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7BQ1WAKB.info\Redmi Note 9 系列.png" alt="">
+                      <div class="title">Redmi Note 9 系列</div>
+                      <p class="price">99元起</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">电视</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF7BQ1CYUU.info\Redmi MAX 86” 超大屏电视.png" alt="">
+                      <div class="title">Redmi MAX 86" 超大屏电视</div>
+                      <p class="price">999元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7BQGZ64P.info\小米电视大师 82英寸至尊纪念版.png" alt="">
+                      <div class="title">小米电视大师 82英寸至尊纪念版</div>
+                      <p class="price">4999元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7BI8CJ1M.info\小米电视大师 82英寸.png" alt="">
+                      <div class="title">小米电视大师 82英寸</div>
+                      <p class="price">1199元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7BGYRVQS.info\小米透明电视.jpg" alt="">
+                      <div class="title">小米透明电视</div>
+                      <p class="price">4999元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7B9HT2FG.info\小米电视 大师 65英寸OLED.png" alt="">
+                      <div class="title">小米电视 大师65英寸OLED</div>
+                      <p class="price">999元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7B3U2JDW.info\Redmi 智能电视 MAX 98.jpg" alt="">
+                      <div class="title">Redmi 智能电视 MAX 98"</div>
+                      <p class="price">1999元</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">笔记本</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF7B2CYRRH.info\Redmibook Pro 14 锐龙版.png" alt="">
+                      <div class="title">RedmiBook Pro 14 锐龙版</div>
+                      <p class="price">449元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7AU40T5Z.info\Redmibook Pro 15 锐龙版.png" alt="">
+                      <div class="title">Redmibook Pro 15 锐龙版</div>
+                      <p class="price">499元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7ALQLZTI.info\小米笔记本 Pro 15 锐龙版.png" alt="">
+                      <div class="title">小米笔记本 Pro 15 锐龙版</div>
+                      <p class="price">679元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7AI7IDEH.info\小米笔记本Pro 15.png" alt="">
+                      <div class="title">小米笔记本Pro 15</div>
+                      <p class="price">649元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7AAEU076.info\RedmiBook Pro 14.png" alt="">
+                      <div class="title">RedmiBook Pro 14</div>
+                      <p class="price">469元起</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7A928VUZ.info\小米笔记本Pro 14.png" alt="">
+                      <div class="title">小米笔记本Pro 14</div>
+                      <p class="price">529元起</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">家电</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF7A9FAEWC.info\米家风冷对开门冰箱 483L.jpg" alt="">
+                      <div class="title">米家风冷对开门冰箱 483L</div>
+                      <p class="price">249元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7A2UCRKJ.info\米家扫拖机器人1T.png" alt="">
+                      <div class="title">米家扫拖机器人1T</div>
+                      <p class="price">229元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF7A29JZNW.info\米家互联网洗烘一体机10kg.png" alt="">
+                      <div class="title">米家互联网洗烘一体机10kg</div>
+                      <p class="price">179元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF79DI9PEQ.info\小米净水器S1 800G.png" alt="">
+                      <div class="title">小米净水器S1 800G</div>
+                      <p class="price">209元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF79CLS1KS.info\米家空气净化器3nbsp; 高效除菌.png" alt="">
+                      <div class="title">米家空气净化器3 高效除菌</div>
+                      <p class="price">89元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF798MJ1IX.info\米家两门冰箱 160L.jpg" alt="">
+                      <div class="title">米家两门冰箱 160L</div>
+                      <p class="price">84元</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">路由器</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF796MMTGI.info\小米路由器AX6000.png" alt="">
+                      <div class="title">小米路由器AX6000</div>
+                      <p class="price">59元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF79530BVB.info\Redmi路由器 AX6.png" alt="">
+                      <div class="title">Redmi路由器 AX6</div>
+                      <p class="price">32元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF78QVXTRB.info\小米路由器AX9000.png" alt="">
+                      <div class="title">小米路由器AX9000</div>
+                      <p class="price">99元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF78Q2RBKQ.info\小米路由器 AX1800.png" alt="">
+                      <div class="title">小米路由器 AX1800</div>
+                      <p class="price">32元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF78E6AFY1.info\小米AIoT路由器AX3600.png" alt="">
+                      <div class="title">小米AIoT路由器AX3600</div>
+                      <p class="price">49元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF78EYQQ0D.info\Redmi路由器AC2100.png" alt="">
+                      <div class="title">Redmi路由器AC2100</div>
+                      <p class="price">16元</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">智能硬件</a>
+              <ul class="inner">
+                <li>
+                  <ul class="img-container">
+                    <li><img src="..\MiSource.library\images\KPIEF78CLGMOD.info\小米全自动智能门锁.png" alt="">
+                      <div class="title">小米全自动智能门锁</div>
+                      <p class="price">179元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF783QRO8S.info\Redmi小爱触屏音箱Pro8.png" alt="">
+                      <div class="title">Redmi小爱触屏音箱Pro8</div>
+                      <p class="price">49元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF781S83YE.info\小米小爱触屏音箱.jpg" alt="">
+                      <div class="title">小米小爱触屏音箱</div>
+                      <p class="price">24元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF77RMP87I.info\Redmi小爱音箱 Play.png" alt="">
+                      <div class="title">Redmi小爱音箱 Play</div>
+                      <p class="price">49元</p>
+                    </li>
+                    <li><img src="..\MiSource.library\images\KPIEF77QZM6QV.info\查看全部智能硬件.png" alt="">
+                      <div class="title">查看全部</br>智能硬件</div>
+                      <p class="price"></p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <a href="#">服务</a>
+          <a href="#">社区</a>
+
+          <!-- 这部分是搜索框 -->
+          <form action="https://www.mi.com/search?">
+            <input type="text" name="keyword" list="select-list" id="keyword">
+            <input type="submit" value="&#xe616">
+
+            <datalist id="select-list">
+              <option value="扫拖机器人">
+              <option value="小米手机">
+              <option value="小米11">
+              <option value="空调">
+              <option value="耳机">
+            </datalist>
+          </form>
+
+        </div>
+      </section>
+    </header>
+
+    <!-- 第二部分 -->
+    <!-- 
+      功能解构：左侧一个菜单，菜单内的子元素是列式排布的；背景一个轮播图，轮播图有左右切换按钮和选择切换按钮；菜单透明的，可以看见背景
+      然后下方四张小图
+      可以考虑用一个整体的container包裹起来
+     -->
+
+    <!-- 先做背景的轮播图 -->
+    <!-- 图片是渐变出现的，看起来是透明度，但是每张图又是可以点击的 -->
+    <main class="main-first">
+      <div class="background-slider">
+        <input type="radio" name="slider-contral" id="img-1st" checked><input type="radio" name="slider-contral"
+          id="img-2ed"><input type="radio" name="slider-contral" id="img-3rd"><input type="radio" name="slider-contral"
+          id="img-4th">
+        <ul>
+          <li><a href="https://www.mi.com/a/h/20500.html?sign=62f774af8de13d55d1b7516e10a3a5df"><img
+                src="..\MiSource.library\images\KPIEF77M5A2IW.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (113).jpg"
+                alt=""></a><label class="iconfont iconfont-arrow-left-big-thin" for="img-4th" name="left"></label><label
+              class="iconfont iconfont-arrow-right-big-thin" for="img-2ed" name=right></label></li>
+          <li><a href="https://www.mi.com/buy?product_id=10000296"><img
+                src="..\MiSource.library\images\KPIEF77HYXZLO.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (114).jpg"
+                alt=""></a><label class="iconfont iconfont-arrow-left-big-thin" for="img-1st" name="left"></label><label
+              class="iconfont iconfont-arrow-right-big-thin" for="img-3rd" name=right></label></li>
+          <li><a href="https://www.mi.com/mixfold"><img
+                src="..\MiSource.library\images\KPIEF77CJSBOM.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (115).jpg"
+                alt=""></a><label class="iconfont iconfont-arrow-left-big-thin" for="img-2ed" name="left"></label><label
+              class="iconfont iconfont-arrow-right-big-thin" for="img-4th" name=right></label></li>
+          <li><a href="https://www.mi.com/a/h/13951.html"><img
+                src="..\MiSource.library\images\KPIEF77QKXT5Q.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (112).jpg"
+                alt=""></a><label class="iconfont iconfont-arrow-left-big-thin" for="img-3rd" name="left"></label><label
+              class="iconfont iconfont-arrow-right-big-thin" for="img-1st" name=right></label></li>
+        </ul>
+
+        <!-- 还有四个固定切换顺序的按钮 -->
+        <label for="img-1st" name="shift"></label><label for="img-2ed" name="shift"></label><label for="img-3rd"
+          name="shift"></label><label for="img-4th" name="shift"></label>
+      </div>
+
+      <!-- 左侧的菜单 -->
+      <!-- 
+        功能结构：1.左侧显见菜单，背景透明，hover变色且出现右侧内容，伪元素箭头
+                  2. 右侧，列式布局内容，背景白，z-index遮挡。 
+                  结构上来说，ul>li>ul>li
+      -->
+      <div class="option-left">
+        <ul class="outer">
+          <li><a href="#">手机 电话卡</a>
+            <ul class="inner">
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                  alt=""><span class="title">小米MIX FOLD</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                  alt=""><span class="title">小米11 Ultra</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                  alt=""><span class="title">小米11 Pro</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                  alt=""><span class="title">小米11 青春</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                  alt=""><span class="title">小米10S</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                  alt=""><span class="title">小米11</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                  alt=""><span class="title">小米10</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                  alt=""><span class="title">黑鲨4 Pro</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                  alt=""><span class="title">黑鲨4</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                  alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                  alt=""><span class="title">小米云服务</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                  alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                  alt=""><span class="title">Note 10 Pro</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                  alt=""><span class="title">Note 10 5G</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                  alt=""><span class="title">K40 游戏增强版</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RYSSM79.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (16).png"
+                  alt=""><span class="title">K40 Pro 系列</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RUKLNWE.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (17).png"
+                  alt=""><span class="title">Redmi K40</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RSBNW12.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (18).png"
+                  alt=""><span class="title">Redmi 10X 5G</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RPO16U3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (19).png"
+                  alt=""><span class="title">Redmi Note 9 Pro</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RNFWYS6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (20).png"
+                  alt=""><span class="title">Redmi Note 9 5G</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7RKS1DTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (21).png"
+                  alt=""><span class="title">Redmi Note 9 4G</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7R6J8YTY.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (22).png"
+                  alt=""><span class="title">Redmi Note 8 Pro</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7R5SMO9B.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (23).png"
+                  alt=""><span class="title">手机上门维修</span></li>
+              <li><img
+                  src="..\MiSource.library\images\KPIEF7R5G7W39.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (24).png"
+                  alt=""><span class="title">Redmi 9</span></li>
+            </ul>
+          </li>
+          <li><a href="#">电视 盒子</a></li>
+          <li><a href="#">笔记本 显示器</a></li>
+          <li><a href="#">家电 插线板</a></li>
+          <li><a href="#">出行 穿戴</a></li>
+          <li><a href="#">智能 路由器</a></li>
+          <li><a href="#">电源 配件</a></li>
+          <li><a href="#">健康 儿童</a></li>
+          <li><a href="#">耳机 音箱</a></li>
+          <li><a href="#">生活 箱包</a></li>
+        </ul>
+      </div>
+    </main>
+
+  </div>
+</body>
+<script src="less.min.js"></script>
+
+</html>
