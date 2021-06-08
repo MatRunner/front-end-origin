@@ -22,12 +22,12 @@
     var a = +prompt();
     var b = +prompt();
     var c = +prompt();
-    console.log(((a + b) - (a + b) / c % 1) / c);
+    console.log(((a + b) / c - (a + b) / c % 1));
   </script>
   <script id="ch0103/04" xtype="none">
     var a = +prompt();
     var b = +prompt();
-    console.log((a - a / b % 1) / b);
+    console.log((a / b - a / b % 1));
     console.log(a % b);
   </script>
   <script id="ch0103/05" xtype="none">
@@ -78,21 +78,21 @@
   <script id="ch0103/13" xtype="none">
     var n = +prompt();
     var a = n % 10;
-    var c = n % 100;
+    var c = (n - n % 100) / 100;
     var b = (n - a) / 10 % 10;
     console.log("" + a + b + c);
   </script>
   <script id="ch0103/14" xtype="none">
     var h = +prompt();
     var r = +prompt();
-    var V = r * r / 10 / 10 * Math.PI * h / 10;
+    var V = r * r / 10 / 10 * 3.14159 * h / 10;
     console.log((20 / V - 20 / V % 1) / V + 1);
   </script>
   <script id="ch0103/15" xtype="none">
     var n = prompt();
     var x = prompt();
     var y = prompt();
-    console.log(n - ((y / x - y / x % 1) / x + 1));
+    console.log(n - ((y / x - y / x % 1) + 1));
   </script>
   <script id="ch0103/16" xtype="none">
     var Xa = +prompt();
