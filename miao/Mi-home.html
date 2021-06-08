@@ -340,95 +340,752 @@
                   2. 右侧，列式布局内容，背景白，z-index遮挡。 
                   结构上来说，ul>li>ul>li
       -->
+      <!-- 比较坑的点：flex布局中，column下宽度无法被撑开，因此给边框加阴影无法正常实现，因此需要分为四组，每组 -->
       <div class="option-left">
         <ul class="outer">
           <li><a href="#">手机 电话卡</a>
             <ul class="inner">
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
-                  alt=""><span class="title">小米MIX FOLD</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
-                  alt=""><span class="title">小米11 Ultra</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
-                  alt=""><span class="title">小米11 Pro</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
-                  alt=""><span class="title">小米11 青春</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
-                  alt=""><span class="title">小米10S</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
-                  alt=""><span class="title">小米11</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
-                  alt=""><span class="title">小米10</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
-                  alt=""><span class="title">黑鲨4 Pro</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
-                  alt=""><span class="title">黑鲨4</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
-                  alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
-                  alt=""><span class="title">小米云服务</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
-                  alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
-                  alt=""><span class="title">Note 10 Pro</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
-                  alt=""><span class="title">Note 10 5G</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
-                  alt=""><span class="title">K40 游戏增强版</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RYSSM79.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (16).png"
-                  alt=""><span class="title">K40 Pro 系列</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RUKLNWE.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (17).png"
-                  alt=""><span class="title">Redmi K40</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RSBNW12.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (18).png"
-                  alt=""><span class="title">Redmi 10X 5G</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RPO16U3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (19).png"
-                  alt=""><span class="title">Redmi Note 9 Pro</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RNFWYS6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (20).png"
-                  alt=""><span class="title">Redmi Note 9 5G</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7RKS1DTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (21).png"
-                  alt=""><span class="title">Redmi Note 9 4G</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7R6J8YTY.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (22).png"
-                  alt=""><span class="title">Redmi Note 8 Pro</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7R5SMO9B.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (23).png"
-                  alt=""><span class="title">手机上门维修</span></li>
-              <li><img
-                  src="..\MiSource.library\images\KPIEF7R5G7W39.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (24).png"
-                  alt=""><span class="title">Redmi 9</span></li>
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RYSSM79.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (16).png"
+                      alt=""><span class="title">K40 Pro 系列</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RUKLNWE.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (17).png"
+                      alt=""><span class="title">Redmi K40</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RSBNW12.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (18).png"
+                      alt=""><span class="title">Redmi 10X 5G</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-4th">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RPO16U3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (19).png"
+                      alt=""><span class="title">Redmi Note 9 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RNFWYS6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (20).png"
+                      alt=""><span class="title">Redmi Note 9 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RKS1DTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (21).png"
+                      alt=""><span class="title">Redmi Note 9 4G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R6J8YTY.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (22).png"
+                      alt=""><span class="title">Redmi Note 8 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R5SMO9B.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (23).png"
+                      alt=""><span class="title">手机上门维修</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R5G7W39.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (24).png"
+                      alt=""><span class="title">Redmi 9</span></li>
+                </ul>
+              </li>
             </ul>
           </li>
-          <li><a href="#">电视 盒子</a></li>
-          <li><a href="#">笔记本 显示器</a></li>
-          <li><a href="#">家电 插线板</a></li>
-          <li><a href="#">出行 穿戴</a></li>
-          <li><a href="#">智能 路由器</a></li>
-          <li><a href="#">电源 配件</a></li>
-          <li><a href="#">健康 儿童</a></li>
-          <li><a href="#">耳机 音箱</a></li>
-          <li><a href="#">生活 箱包</a></li>
+          <li><a href="#">电视 盒子</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R5FXE9W.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (25).png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R4SWIKV.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (26).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QUH9ZT1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (27).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QL4XW5G.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (28).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QK3IS82.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (29).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QK2J6TA.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (30).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QJR0JDK.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (31).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7QC6QLGY.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (32).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7Q42YBCC.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (33).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7Q3J4AOX.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (34).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7Q1BYFIA.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (35).png"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PYZYDEH.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (36).png"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PX72MLB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (37).jpg"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PMNRHI1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (38).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PM809EO.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (39).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PKBH481.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (40).jpg"
+                      alt=""><span class="title">K40 Pro 系列</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PFSQXMI.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (41).png"
+                      alt=""><span class="title">Redmi K40</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7PCG3AED.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (42).jpg"
+                      alt=""><span class="title">Redmi 10X 5G</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-4th">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7P52V3KC.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (43).png"
+                      alt=""><span class="title">Redmi Note 9 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7P4EIIM4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (44).png"
+                      alt=""><span class="title">Redmi Note 9 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7P07E8KW.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (45).png"
+                      alt=""><span class="title">Redmi Note 9 4G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7OYWZ38Q.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (46).jpg"
+                      alt=""><span class="title">Redmi Note 8 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7OYFG1Y5.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (47).png"
+                      alt=""><span class="title">手机上门维修</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7OROW42Z.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (48).png"
+                      alt=""><span class="title">Redmi 9</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">笔记本 显示器</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">家电 插线板</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RYSSM79.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (16).png"
+                      alt=""><span class="title">K40 Pro 系列</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RUKLNWE.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (17).png"
+                      alt=""><span class="title">Redmi K40</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RSBNW12.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (18).png"
+                      alt=""><span class="title">Redmi 10X 5G</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-4th">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RPO16U3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (19).png"
+                      alt=""><span class="title">Redmi Note 9 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RNFWYS6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (20).png"
+                      alt=""><span class="title">Redmi Note 9 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RKS1DTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (21).png"
+                      alt=""><span class="title">Redmi Note 9 4G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R6J8YTY.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (22).png"
+                      alt=""><span class="title">Redmi Note 8 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R5SMO9B.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (23).png"
+                      alt=""><span class="title">手机上门维修</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7R5G7W39.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (24).png"
+                      alt=""><span class="title">Redmi 9</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">出行 穿戴</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">智能 路由器</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                </ul>
+            </ul>
+          </li>
+          <li><a href="#">电源 配件</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">健康 儿童</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">耳机 音箱</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S3Y27HB.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (15).png"
+                      alt=""><span class="title">K40 游戏增强版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RYSSM79.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (16).png"
+                      alt=""><span class="title">K40 Pro 系列</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7RUKLNWE.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (17).png"
+                      alt=""><span class="title">Redmi K40</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">生活 箱包</a>
+            <ul class="inner">
+              <li>
+                <ul class="col-1st">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TCX7H8O.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.png"
+                      alt=""><span class="title">小米MIX FOLD</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7TB3890N.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (2).png"
+                      alt=""><span class="title">小米11 Ultra</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T1WOYM6.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (3).png"
+                      alt=""><span class="title">小米11 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0CBZP0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (4).png"
+                      alt=""><span class="title">小米11 青春</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T0AOLL1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (5).png"
+                      alt=""><span class="title">小米10S</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7T07EK3K.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (6).png"
+                      alt=""><span class="title">小米11</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-2ed">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SZ5FWV0.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (7).png"
+                      alt=""><span class="title">小米10</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SQNVPSR.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (8).png"
+                      alt=""><span class="title">黑鲨4 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SJMSBK4.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (9).png"
+                      alt=""><span class="title">黑鲨4</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SFGMJZ1.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (10).png"
+                      alt=""><span class="title">Redmi K30S 至尊纪念版</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SDZYZC3.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (11).jpg"
+                      alt=""><span class="title">小米云服务</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC2FGTJ.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (12).jpg"
+                      alt=""><span class="title">Redmi K30 至尊纪念版</span></li>
+                </ul>
+              </li>
+              <li>
+                <ul class="col-3rd">
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7SC3L02A.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (13).png"
+                      alt=""><span class="title">Note 10 Pro</span></li>
+                  <li><img
+                      src="..\MiSource.library\images\KPIEF7S4HYCIF.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (14).png"
+                      alt=""><span class="title">Note 10 5G</span></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
+      <!-- 底部四张图，左一有hover变色功能，右三只是个有链接的图片 -->
+      <!-- 左一图是一个元素，右三是一个块 -->
+      <div class="main-bottom">
+        <div class="left">
+          <ul>
+            <li><span class="iconfont iconfont-clock">小米秒杀</span></li>
+            <li><span class="iconfont iconfont-location">企业团购</span></li>
+            <li><span class="iconfont iconfont-fcode">F码通道</span></li>
+            <li><span class="iconfont iconfont-simcard">米粉卡</span></li>
+            <li><span class="iconfont iconfont-circle-phone">以旧换新</span></li>
+            <li><span class="iconfont iconfont-phone">话费白送</span></li>
+          </ul>
+        </div>
+        <div class="right">
+          <img
+            src="..\MiSource.library\images\KPIEF76F4GQMH.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (116).jpg"
+            alt="">
+          <img
+            src="..\MiSource.library\images\KPIEF76F1FKFM.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (117).jpg"
+            alt="">
+          <img
+            src="..\MiSource.library\images\KPIEF76FJK7SX.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站 (118).png"
+            alt="">
+        </div>
+      </div>
+    </main>
+
+    <!-- 这部分背景为灰色，但是主要部分居中，因此需要在外面套一个大块，这个块里包含小米秒杀，手机，家电，智能等后面的部分 -->
+    <main class="main-second">
+
+      <!-- 先写小米秒杀部分，这部分一个标题栏，主体部分一个秒杀倒计时，右边一个滑块图，下面一行长图 -->
+      <section class="first" name="miaosha">
+        <h2 class="title">小米秒杀</h2>
+        <div>
+          <div class="left">
+            <div class="iconfont iconfont-alarm">14:00 场</div>
+            <div>其实这是一个徒有其表的秒杀</div>
+            <div><span>00</span>:<span>00</span>:<span>00</span></div>
+          </div>
+          <div class="right">
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div class="img"><img src="..\MiSource.library\images\KPIEF756KTOUS.info\test.jpg" alt=""></div>
+      </section>
     </main>
 
   </div>

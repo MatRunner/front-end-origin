@@ -4,7 +4,7 @@
 body{
   margin:0;
   font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
-  color:rgb(51,51,51);
+  color:#333;
 }
 html,body,div.container,header,section.head2{
   width:100%;
@@ -339,6 +339,7 @@ main.main-first{
   min-width: 1226px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom:16px;
 
 // 背景轮播图样式
 // 轮播图是渐变出现的，但是又可以被点击，这得把透明和z-index结合起来做动画吧！
@@ -473,54 +474,199 @@ div.option-left{
       color:white;
       font-size: 14px;
       line-height: 42px;
+      a{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      a::after{
+        position: absolute;
+        right: 0;
+        font-family: miFont;
+        content:"\e623";
+        font-weight: small;
+        margin-right:20px;
+        color:#eee;
+      }
+
+      &:hover{
+        background-color: rgb(255,103,0);
+      }
+
+      &:hover>ul.inner{
+        display: flex;
+      }
 
       // inner的ul中是弹出菜单内容的样式，里面每一个li都放了图
       ul.inner{
-        width:max-content;
         padding: 0;
         margin: 0;
-        display: flex;
-        flex-flow: column wrap;
+        display: none;
         position: absolute;
         top:0;
         left:234px;
         height: 460px;
-        li{
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgb(176,176,176);
+        >li{
           width: 265px;
-          height: 76px;
-          display: flex;
-          padding: 18px 20px;
+          height: 460px;
           position: relative;
-
-          &:hover>span{
-            color:rgb(255,103,0);
-          }
-
-          span{
-            color: rgb(51,51,51);
-            transition: color .3s;
-          }
-          img{
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            margin-right: 12px;
-          }
-          &:nth-of-type(6n+1)::after{
-            content:" ";
-            display: block;
-            position: absolute;
-            width:100%;
+          >ul{
+            width: 265px;
             height: 460px;
-            background-color: #fff;
-            top:0;
-            left:0;
-            z-index: -1;
+            display: flex;
+            flex-flow: column wrap;
+            >li{
+              display: flex;
+              align-items: center;
+              width:265px;
+              height: 76px;
+              padding: 18px 20px;
+              &:hover>span{
+                color:rgb(255,103,0);
+              }
+    
+              span{
+                color: rgb(51,51,51);
+                transition: color .3s;
+              }
+              img{
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
+                margin-right: 12px;
+              }
+
+            }
           }
         }
       }
     }
   }
 }
+// 下面是底部的一行图片
+div.main-bottom{
+  width: 1226px;
+  display: flex;
+  margin-top: 14px;
 
+  div.left{
+    width: 234px;
+    height: 170px;
+    flex-grow: 1;
+    >ul{
+      display: flex;
+      flex-wrap: wrap;
+      margin:0 14px 0 0;
+      height: 170px;
+      background-color: rgb(95,87,80);
+      >li{
+        width: 76px;
+        height: 82px;
+        display: flex;
+        justify-content: center;
+        color:#ddd;
+        font-size: 12px;
+        position: relative;
+        align-items: flex-end;
+        cursor: pointer;
+
+        &:hover > span{
+          color:#fff;
+        }
+
+        &::before{
+          content:" ";
+          display: block;
+          border:.5px solid rgb(105,97,90);
+          height: 60px;
+          position: absolute;
+          left:2px;
+          top:10px;
+        }
+        &::after{
+          content:" ";
+          display: block;
+          border:.5px solid rgb(105,97,90);
+          width:60px;
+          position: absolute;
+          top:2px;
+          left:10px;
+        }
+
+        >span{
+          width: max-content;
+          margin-bottom:20px;
+          transition: color .3s;
+          &::before{
+            width:max-content;
+            position: absolute;
+            top:10px;
+            left:0;
+            right:0;
+            margin:auto;
+            font-size:25px;
+          }
+
+        }
+      }
+    }
+  }
+  div.right{
+    height: 170px;
+    width: 978px;
+    display: flex;
+    justify-content: space-between;
+    
+    img{
+      height: 100%;
+      object-fit: contain;
+    }
+
+  }
+}
+}
+// 下面是第二部分，包括秒杀及以后的图--------------------------------------------------------------------------------
+main.main-second{
+  background-color: rgb(245,245,245);
+  display:flex;
+  justify-content: center;
+  min-width: 1226px;
+
+  section.first{
+    width: 1226px;
+    >h2.title{
+      font-size: 22px;
+      font-weight: 200;
+      font-family: Microsoft YaHei Light;
+    }
+    >h2+div{
+      display: flex;
+      width:1226px;
+
+      >div.left{
+        width: 234px;
+        height: 340px;
+        background-color: rgb(241,237,237);
+        border-top:1px solid rgb(229,57,53);
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        padding-top: 39px;
+        
+        div:first-child{
+          font-size: 21px;
+          color:rgb(229,57,52);
+          line-height: 39.5px;
+        }
+      }
+      >div.right{
+        flex-grow: 1;
+        height: 340px;
+      }
+    }
+
+  }
 }

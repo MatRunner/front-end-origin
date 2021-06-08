@@ -7,12 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    console.log(3 * 3 / 2 % 5)
-    console.log(typeof 234)
-    console.log(3 / 3)
-    console.log(typeof NaN)
-    alert("hello!")
+    x = 2021
+    console.log(y = (x % 2 == 1)) // 写出表达式，当x是奇数时，y为真，否则为假
+    console.log(y = (x % 2 == 0))// 写出表达式，当x是偶数时，y为真，否则为假
+    console.log(y = ((x - x % 100) / 100 + 1))// 写出表达式，让y表示当前是x世纪
+    console.log(y = (x % 100 == 0 ? x / 400 == 0 : x % 4 == 0))// 写出表达式，当x是闰年时，y为真，否则为假
+    // 写出表达式，当x是素数时（此时x为100以内的数），y为真，否则为假
+    console.log(y = (x == 2 || x == 3 || x == 5 || x == 7 || x == 11 || x == 13 || x == 17 || x == 19 || x == 23 || x == 29 || x == 31 || x == 37 || x == 41 || x == 43 || x == 47 || x == 53 || x == 59 || x == 61 || x == 67 || x == 71 || x == 73 || x == 79 || x == 83 || x == 89 || x == 97))
+    console.log(y = x * x * x * x * x)//x的五次方
+    console.log(y = (x > 50 && x < 100))//50到100以内
+    console.log(y = (x > 200 ? x % 3 == 0 && x % 7 != 0 : false))//x是否大于200且为3的倍数但不是7的倍数。
   </script>
+
+  <script>
+    var a = 3, b = 9, c = 5;
+    var delta = b * b - 4 * a * c;
+    var x1 = (-b + Math.sqrt(delta)) / 2 / a;
+    var x2 = (-b - Math.sqrt(delta)) / 2 / a;
+    console.log(x1, x2);
+  </script>
+
+  <script>
+    var a = 3, b = 9, c = 5, d = 1, e = 11, f = 233;
+    var s1 = d / a;
+    var y = (s1 - f) / (b * s1 - e);
+    var x = (c - b * y) / a;
+    console.log(x, y);
+  </script>
+
 </head>
 
 <body>
