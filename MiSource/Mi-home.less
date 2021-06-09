@@ -17,6 +17,7 @@ a{
 ul{
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 // 导航栏第一行------------------------------------------------------------------------------------------------
 header section.head {
@@ -655,16 +656,95 @@ main.main-second{
         flex-flow: column;
         align-items: center;
         padding-top: 39px;
+        margin-right:14px;
         
         div:first-child{
           font-size: 21px;
           color:rgb(229,57,52);
+          position: relative;
           line-height: 39.5px;
+          &::before{
+            position: absolute;
+            font-size: 100px;
+            top:70px;
+            left:-10px;
+          }
+        }
+
+        div:nth-child(2){
+          font-size: 15px;
+          color:#666;
+          margin-top: 110px;
+        }
+        div:last-child{
+          font-size:24px;
+          line-height: 46px;
+          display: flex;
+          margin-top:20px;
+          span{
+            text-align: center;
+            display: inline-block;
+            height:46px;
+            width:46px;
+            background-color: rgb(96,87,81);
+            margin:0 5px;
+            
+            font-weight: 400;
+            color:#eee;
+          }
         }
       }
       >div.right{
-        flex-grow: 1;
+        width:978px;
         height: 340px;
+        overflow: hidden;
+        position: relative;
+        input[name="sliding-contral"]{
+          display: none;
+        }
+        label{
+          position: absolute;
+          width: 36px;
+          height: 24px;
+          border:1px solid #aaa;
+        }
+        >ul{
+          display: flex;
+          height: 100%;
+          width:max-content;
+          >li{
+            display: flex;
+            align-items: center;
+            flex-flow:column;
+            width: 234px;
+            height: 340px;
+            background-color: #fff;
+            margin-right:14px;
+            padding-top: 39px;
+
+            >img{
+              width:150px;
+              object-fit: contain;
+            }
+            >div.title{
+              margin-top: 10px;
+              text-align: center;
+              font-size:14px;
+              p{
+                color:#aaa;
+              }
+            }
+            >p.price{
+              span:first-child{
+                color:rgb(255,103,0);
+              }
+              span:last-child{
+                color:#aaa;
+                text-decoration: line-through;
+              }
+            }
+          }
+        }
       }
     }
 

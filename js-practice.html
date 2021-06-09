@@ -22,9 +22,18 @@
   <script>
     var a = 3, b = 9, c = 5;
     var delta = b * b - 4 * a * c;
-    var x1 = (-b + Math.sqrt(delta)) / 2 / a;
-    var x2 = (-b - Math.sqrt(delta)) / 2 / a;
-    console.log(x1, x2);
+    if (delta > 0) {
+      var x1 = (-b + Math.sqrt(delta)) / 2 / a;
+      var x2 = (-b - Math.sqrt(delta)) / 2 / a;
+      console.log(x1, x2);
+    } else if (delta == 0) {
+      var x1 = (-b + Math.sqrt(delta)) / 2 / a;
+      console.log(x1);
+    } else {
+      var x1 = (-b + Math.sqrt(-delta)) / 2 / a;
+      var x2 = (-b - Math.sqrt(-delta)) / 2 / a;
+      console.log(x1 + "i", x2 + "i");
+    }
   </script>
 
   <script>
@@ -33,6 +42,13 @@
     var y = (s1 - f) / (b * s1 - e);
     var x = (c - b * y) / a;
     console.log(x, y);
+  </script>
+
+  <script>
+    var a = 1
+    var b = 0
+    var c = 0
+    console.log()
   </script>
 
 </head>
