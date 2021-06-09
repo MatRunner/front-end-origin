@@ -126,6 +126,252 @@
     var n = +prompt();
     console.log(Math.pow(2, n));
   </script>
+
+
+
+  <!-- ================================================================================================= -->
+  <script id="ch104/01">
+    var N = +prompt();
+    if (N > 0) {
+      console.log('positive')
+    } else if (N == 0) {
+      console.log('zero')
+    } else {
+      console.log('negative')
+    }
+  </script>
+  <script id="ch104/02">
+    var n = +prompt();
+    if (n < 0) {
+      n = -n;
+    }
+    console.log(n.toFixed(2))
+  </script>
+  <script id="ch104/03">
+    var n = +prompt();
+    if (n % 2 === 1) {
+      console.log('odd');
+    } else {
+      console.log('even');
+    }
+  </script>
+  <script id="ch104/04">
+    var a = +prompt();
+    if (a % 2 === 1) {
+      console.log('YES');
+    } else {
+      console.log('NO');
+    }
+  </script>
+  <script id="ch104/05">
+    var a = +prompt();
+    var b = +prompt();
+    if (a > b) {
+      console.log('>')
+    } else if (a === b) {
+      console.log('=')
+    } else {
+      console.log('<')
+    }
+  </script>
+  <script id="ch104/06">
+    var a = +prompt();
+    if (a >= 10 && a <= 99) {
+      console.log('1')
+    } else {
+      console.log('0')
+    }
+  </script>
+  <script id="ch104/07">
+    var a = +prompt();
+    var b = +prompt();
+    if (a >= 10 || b >= 20) {
+      console.log('1')
+    } else {
+      console.log('0')
+    }
+  </script>
+  <script id="ch104/08">
+    var n = +prompt();
+    if (n % 3 === 0 && n % 5 === 0) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
+  </script>
+  <script id="ch104/09">
+    var n = +prompt();
+    var str = null;
+    if (n % 3 === 0) {
+      str = str + '3 ';
+    }
+    if (n % 5 === 0) {
+      str += '5 '
+    }
+    if (n % 7 === 0) {
+      str += '7'
+    }
+    if (str == null) {
+      console.log('n')
+    } else {
+      console.log(str)
+    }
+  </script>
+  <script id="ch104/10">
+    var a = +prompt();
+    var b = +prompt();
+    if ((a < 60 && b > 60) || (a > 60 && b < 60)) {
+      console.log('1')
+    } else {
+      console('0')
+    }
+  </script>
+  <script id="ch104/11">
+    var date = +prompt();
+    if (date === 1 || date === 3 || date === 5) {
+      console.log('NO')
+    } else {
+      console.log('YES')
+    }
+  </script>
+  <script id="ch104/12">
+    var d = +prompt();
+    var walk = d / 1.2;
+    var bike = d / 3 + 50;
+    if (walk > bike) {
+      console.log('Walk')
+    } else if (wale === bike) {
+      console.log('All')
+    } else {
+      console.log('Bike')
+    }
+  </script>
+  <script id="ch104/13">
+    var N = +prompt();
+    var y;
+    if (N >= 0 && N < 5) {
+      y = -N + 2.5;
+    }
+    if (N >= 5 && N < 10) {
+      y = 2 - 1.5 * (N - 3) * (N - 3)
+    }
+    if (N >= 10 & N < 20) {
+      y = N / 2 - 1.5;
+    }
+    console.log(y.toFixed(3))
+  </script>
+  <script id="ch104/14">
+    var weight = +prompt();
+    var type = prompt();
+    var price = 0;
+    if (type == 'y') {
+      price += 5;
+    }
+    if (weight <= 1000) {
+      price += 8;
+    } else {
+      price += Math.floor((weight - 1000) / 500) * 4;
+    }
+    console.log(price)
+  </script>
+  <script id="ch104/15">
+    var a = +prompt();
+    var b = +prompt();
+    var c = +prompt();
+    var max = 0;
+    if (a > b) {
+      max = a;
+    } else {
+      max = b;
+    }
+    if (max < c) {
+      max = c
+    }
+    console.log(c)
+  </script>
+  <script id="ch104/16">
+    var a = +prompt();
+    var b = +prompt();
+    var c = +prompt();
+    if (a + b > c && a + c > b && b + c > a) {
+      console.log('yes')
+    } else {
+      console.log('no')
+    }
+
+  </script>
+  <script id="ch104/17">
+    var a = +prompt();
+    if (a % 100 === 0 ? a % 400 === 0 : a % 4 === 0) {
+      console.log('Y')
+    } else {
+      console.log('N')
+    }
+  </script>
+  <script id="ch104/18">
+    var x = +prompt();
+    var y = +prompt();
+    if (x >= -1 && x <= 1 && y >= -1 && y <= -1) {
+      console.log('yes')
+    } else {
+      console.log('no')
+    }
+  </script>
+  <script id="ch104/19">
+    var a = +prompt()
+    var b = +prompt()
+    var operator = prompt()
+    var result = 0
+    if (operator === '+') {
+      result = a + b
+    } else if (operator === '-') {
+      result = a - b
+    } else if (operator === '*') {
+      result = a * b
+    } else if (operator === "/") {
+      if (b === 0) {
+        console.log('Divided by zero!')
+      } else {
+        result = a / b
+      }
+    } else {
+      console.log('Invalid operator!')
+    }
+    if (!(b === 0 && operator === '/')) {
+      console.log(result)
+    }
+  </script>
+  <script id="ch104/20">
+    var a = +prompt();
+    var b = +prompt();
+    var c = +prompt();
+    var x1
+    var x2
+    var delta = b * b - 4 * a * c
+    if (delta === 0) {
+      x1 = -b / 2 / a
+      console.log('x1=x2=%f', x1.toFixed(5))
+    } else if (delta > 0) {
+      x1 = (-b + Math.sqrt(delta)) / 2 / a
+      x2 = (-b - Math.sqrt(delta)) / 2 / a
+      console.log('x1=%f;x2=%f', x1.toFixed(5), x2.toFixed(5))
+    } else {
+      x1 = (-b / 2 / a).toFixed(5) + '+' + (Math.sqrt(4 * a * c - b * b) / 2 / a).toFixed(5) + 'i'
+      x2 = (-b / 2 / a).toFixed(5) + '-' + (Math.sqrt(4 * a * c - b * b) / 2 / a).toFixed(5) + 'i'
+      console.log('x1=%s;x2=%s', x1, x2)
+    }
+  </script>
+  <script id="ch104/21">
+    var n = +prompt()
+    var x = +prompt()
+    var y = +prompt()
+    var badApple = Math.floor(y / x)
+    if (n > badApple) {
+      console.log(n - badApple)
+    } else {
+      console.log(0)
+    }
+  </script>
 </head>
 
 <body>
