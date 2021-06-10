@@ -154,7 +154,7 @@
     }
   </script>
   <script id="ch0104/04">
-    var a = +prompt();
+    var a = +prompt().charCodeAt();
     if (a % 2 === 1) {
       console.log('YES');
     } else {
@@ -199,7 +199,7 @@
   </script>
   <script id="ch0104/09">
     var n = +prompt();
-    var str = null;
+    var str = '';
     if (n % 3 === 0) {
       str = str + '3 ';
     }
@@ -209,7 +209,7 @@
     if (n % 7 === 0) {
       str += '7'
     }
-    if (str == null) {
+    if (str.length == 0) {
       console.log('n')
     } else {
       console.log(str)
@@ -237,11 +237,11 @@
     var walk = d / 1.2;
     var bike = d / 3 + 50;
     if (walk > bike) {
-      console.log('Walk')
+      console.log('Bike')
     } else if (wale === bike) {
       console.log('All')
     } else {
-      console.log('Bike')
+      console.log('Walk')
     }
   </script>
   <script id="ch0104/13">
@@ -261,14 +261,12 @@
   <script id="ch0104/14">
     var weight = +prompt();
     var type = prompt();
-    var price = 0;
+    var price = 8;
     if (type == 'y') {
       price += 5;
     }
-    if (weight <= 1000) {
-      price += 8;
-    } else {
-      price += Math.floor((weight - 1000) / 500) * 4;
+    if (weight > 1000) {
+      price += Math.ceil((weight - 1000) / 500) * 4;
     }
     console.log(price)
   </script>
@@ -309,7 +307,7 @@
   <script id="ch0104/18">
     var x = +prompt();
     var y = +prompt();
-    if (x >= -1 && x <= 1 && y >= -1 && y <= -1) {
+    if (x >= -1 && x <= 1 && y >= -1 && y <= 1) {
       console.log('yes')
     } else {
       console.log('no')
@@ -363,7 +361,7 @@
     var n = +prompt()
     var x = +prompt()
     var y = +prompt()
-    var badApple = Math.floor(y / x)
+    var badApple = Math.ceil(y / x)
     if (n > badApple) {
       console.log(n - badApple)
     } else {
