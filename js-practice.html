@@ -50,7 +50,19 @@
     var c = 0
     console.log()
   </script>
-
+  <script>
+    var number = Math.floor(100 * Math.random());
+    var guessNum = +prompt();
+    while (guessNum !== number) {
+      if (guessNum > number) {
+        alert('猜大了！')
+      } else {
+        alert('猜小了！')
+      }
+      guessNum = +prompt();
+    }
+    alert('You win!')
+  </script>
 </head>
 
 <body>

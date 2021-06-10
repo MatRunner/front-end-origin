@@ -368,6 +368,306 @@
       console.log(0)
     }
   </script>
+
+  <!-- ============================================================================= -->
+  <script id="ch0105/01">
+  var n=+prompt();
+  var sum=0;
+  var age=0;
+  for(var i=0;i<n;i++){
+    age=+prompt();
+    sum+=age;
+  }
+  console.log((sum/n).toFixed(2))
+  </script>
+  <script id="ch0105/02">
+  var sum=0;
+  var balance=0;
+  for(var i=0;i<12;i++){
+    balance=+prompt();
+    sum+=balance;
+  }
+  console.log('$'+(sum/12).toFixed(2))
+  </script>
+  <script id="ch0105/03">
+  var n=+prompt();
+  var data=0;
+  var sum=0;
+  for(var i=0;i<n;i++){
+    data=+prompt();
+    sum+=data;
+  }
+  console.log((sum/n).toFixed(4))
+  </script>
+  <script id="ch0105/04">
+  var n=+prompt();
+  var data=0;
+  var sum=0;
+  var average=0;
+  for(var i=0;i<n;i++){
+    data=+prompt();
+    sum+=data;
+  }
+  average=sum/n;
+  console.log(sum.toFixed(5),average.toFixed(5))
+</script>
+  <script id="ch0105/05">
+  var n=+prompt();
+  var max=0;
+  var value;
+  for(var i=0;i<n;i++){
+    value=+prompt();
+    if(max<value){
+      max=value;
+    }
+  }
+  console.log(max)
+  </script>
+  <script id="ch0105/06">
+  var n=+prompt();
+  var max=+prompt();
+  var min=max;
+  var value;
+  for(var i=0;i<n-1;i++){
+    value=+prompt();
+    if(max<value){
+      max=value;
+    }
+    if(min>value){
+      min=value;
+    }
+  }
+  console.log(max-min)
+  </script>
+  <script id="ch0105/07">
+  var n=+prompt()
+  var gold=0
+  var silver=0
+  var copper=0
+  for(var i=0;i<n;i++){
+    for(var j=0;j<3;j++){
+      gold+=+prompt()
+      silver+=+prompt()
+      copper+=+prompt()
+    }
+  }
+  console.log(gold+' '+silver+' '+copper+' '+(gold+silver+copper))
+  </script>
+  <script id="ch0105/08">
+  var n=+prompt()
+  var sum=(n-2)*180
+  for(var i=0;i<n-1;i++){
+    sum-=+prompt()
+  }
+  console.log(sum)
+  </script>
+  <script id="ch0105/09">
+  var m=+prompt()
+  var n=+prompt()
+  var sum=0
+  for(m;m<=n;m+=2){
+    if(m%2===0){
+      m++
+    }
+    sum+=m
+  }
+  console.log(sum)
+  </script>
+  <script id="ch0105/10">
+  var m=+prompt()
+  var n=+prompt()
+  var sum=0
+  for(m;m<=n;m+=17){
+    if(m%17!==0){
+      m+=m%17
+    }
+    sum+=m
+  }
+  console.log(sum)
+  </script>
+  <script id="ch0105/11">
+  var k=+prompt()
+  var counter1=0
+  var counter5=0
+  var counter10=0
+  var value
+  for(var i=0;i<k;i++){
+    value=+prompt()
+    if(value===1){
+      counter1++
+    }
+    if(value===5){
+      counter5++
+    }
+    if(value===10){
+      counter10++
+    }
+  }
+  console.log(counter1)
+  console.log(counter5)
+  console.log(counter10)
+  </script>
+  <script id="ch0105/12">
+  var N=+prompt()
+  var m=+prompt()
+  var value
+  var counter=0
+  for(var i=0;i<N;i++){
+    value=+prompt();
+    if(value===m){
+      counter++
+    }
+  }
+  console.log(counter)
+  </script>
+  <script id="ch0105/13">
+  var a=+prompt()
+  var n=+prompt()
+  var result=1
+  for(var i=0;i<n;i++){
+    result*=a
+  }
+  console.log(result)
+  </script>
+  <script id="ch0105/14">
+  var x=+prompt()
+  var n=+prompt()
+  for(var i=0;i<n;i++){
+    x*=1+0.001
+  }
+  console.log(x.toFixed4)
+
+  </script>
+  <script id="ch0105/15">
+  var R=+prompt()
+  var M=+prompt()
+  var Y=+prompt()
+  for(var i=0;i<Y;i++){
+    M*=1+R/100
+  }
+  console.log(Math.trunc(M))
+  </script>
+  <script id="ch0105/16">
+  var N=+prompt()
+  var K=+prompt()
+  var savings=N
+  var price=200
+  for(var i=1; i<=20&&savings<Math.ceil(price);i++){
+    savings=i*N
+    price=200*Math.pow((1+K/100),i-1)
+  }
+  if(savings<price){
+    console.log('Impossible')
+  }else{
+    console.log(i-1)
+  }
+  </script>
+  <script id="ch0105/17">
+  var k=+prompt()
+  var n1=1,n2=1
+  if(k<2){
+    console.log(1)
+  }else{
+  for(var i=0;i<k-2;i++){
+    n3=n1+n2
+    n1=n2
+    n2=n3
+  }}
+  console.log(n3)
+  </script>
+  <script id="ch0105/18">
+    var n=+prompt()
+    var a1=+prompt(),a2=+prompt()
+    var x1=a2/a1*100
+    for(var i=1;i<n;i++){
+      var b1=+prompt()
+      var b2=+prompt()
+      var x2=b2/b1*100
+      if(x2-x1>5){
+        console.log('better')
+      }else if(x1-x2>5){
+        console.log('worse')
+      }else{
+        console.log('same')
+      }
+    }
+  </script>
+  <script id="ch0105/19">
+  var n=+prompt()
+  var timeTotal=0
+  for(var i=0;i<n;i++){
+    var x=+prompt()
+    var y=+prompt()
+    var num=+prompt()
+    var time=Math.sqrt(x*x+y*y)/50*2+1.5*num
+    timeTotal+=time
+  }
+  console.log(Math.ceil(timeTotal))
+  </script>
+  <script id="ch0105/20">
+  var h=+prompt()
+  var distance=h
+  for(var i=1;i<10;i++){
+    h/=2
+    distance+=h*2
+  }
+  console.log(distance,h/2)
+  </script>
+  <script id="ch0105/21">
+    var N=Number(prompt());
+    while(N!==1){
+      if(N%2===1){
+        console.log(N+'*3+1='+(N*3+1))
+        N=N*3+1
+      }else{
+        console.log(N+'/2='+(N/2))
+        N/=2
+      }
+    }
+    console.log('End')
+  </script>
+  <script id="ch0105/22">
+  var moneyInHand=0
+  var moneyStore=0
+  var i=0
+  for(i;i<12&&moneyInHand>=0;i++){
+    var budget=+prompt()
+    var surplus=300-budget
+    moneyInHand+=surplus
+    moneyStore+=Math.floor(moneyInHand/100)*100
+    moneyInHand=moneyInHand%100
+  }
+  if(moneyInHand<0){
+    console.log(-i)
+  }else{
+    console.log(moneyStore*1.2+moneyInHand)
+  }
+  </script>
+  <script id="ch0105/23">
+  
+  </script>
+  <script id="ch0105/24"></script>
+  <script id="ch0105/25"></script>
+  <script id="ch0105/26"></script>
+  <script id="ch0105/27"></script>
+  <script id="ch0105/28"></script>
+  <script id="ch0105/29"></script>
+  <script id="ch0105/30"></script>
+  <script id="ch0105/31"></script>
+  <script id="ch0105/32"></script>
+  <script id="ch0105/33"></script>
+  <script id="ch0105/34"></script>
+  <script id="ch0105/35"></script>
+  <script id="ch0105/36"></script>
+  <script id="ch0105/37"></script>
+  <script id="ch0105/38"></script>
+  <script id="ch0105/39"></script>
+  <script id="ch0105/40"></script>
+  <script id="ch0105/41"></script>
+  <script id="ch0105/42"></script>
+  <script id="ch0105/43"></script>
+  <script id="ch0105/44"></script>
+  <script id="ch0105/45"></script>  
 </head>
 
 <body>
