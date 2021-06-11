@@ -837,21 +837,131 @@
   <script id="ch0105/38">
   var n=+prompt()
   var c=+prompt()
-  var str=''+c*(n-1)
-  for(var i=n-1;i>=0;i--){
+  var str=''+c*n
+  for(var i=n-1;i>0;i--){
     c=+prompt()
-    str+=' '+c*(i-1)
+    str+=' '+c*i
   }
-  console.log(str)
+  if(n===0){
+    console.log('0')
+  }else{
+    c=+prompt()
+    console.log(str)
+  }
 
   </script>
-  <script id="ch0105/39"></script>
-  <script id="ch0105/40"></script>
-  <script id="ch0105/41"></script>
-  <script id="ch0105/42"></script>
-  <script id="ch0105/43"></script>
-  <script id="ch0105/44"></script>
-  <script id="ch0105/45"></script>  
+  <script id="ch0105/39">
+  var n=+prompt()
+  var sum=0
+  for(var i=1;i<=n;i++){
+    if(i%7!==0&&i%10!==7&&(i-i%10)/10!==7){
+      sum+=i*i
+    }
+  }
+  console.log(sum)
+  </script>
+  <script id="ch0105/40">
+  var n=+prompt()
+  var counter=0
+  for(var i=1;i<=n;i++){
+    var j=i
+    while(j>0){
+      if(j%10===1){
+        counter++
+      }
+      j=(j-j%10)/10
+    }
+  }
+  console.log(counter)
+  </script>
+  <script id="ch0105/41">
+  var l=+prompt()
+  var r=+prompt()
+  var counter=0
+  for(var i=l;i<=r;i++){
+    var j=i
+    while(j>0){
+      if(j%10===2){
+        counter++
+      }
+      j=(j-j%10)/10
+    }
+  }
+  console.log(counter)
+  </script>
+  <script id="ch0105/42">
+  var h=+prompt()
+  var w=+prompt()
+  var mark=prompt()
+  var style=+prompt()
+  // 直接把两种行样式做出来
+  var row1=''
+  var row2=mark
+  for(var i=0;i<w;i++){
+    row1+=mark
+  }
+  for(var i=0;i<w-2;i++){
+    row2+=' '
+  }
+  row2+=mark
+
+  if(style===1){
+    for(var i=0;i<h;i++){
+      console.log(row1)
+    }
+  }
+  if(style===0){
+    console.log(row1)
+    for(var i=0;i<h-2;i++){
+      console.log(row2)
+    }
+    console.log(row1)
+  }
+  </script>
+  <script id="ch0105/43">
+  var n=+prompt()
+  for(var i=2;i<Math.sqrt(n);i++){
+    if(n%i===0){
+      break
+    }
+  }
+  console.log(n/i)
+  </script>
+  <script id="ch0105/44">
+  var n=+prompt()
+  var counter=0
+  for(var i=2;;i++){
+    var flag=true
+    for(var j=2;j<=i/2;j++){
+      if(i%j===0){
+        flag=false
+        break
+      }
+    }
+    if(flag==true){
+      counter++
+    }
+    if(counter===n){
+      console.log(i)
+      break
+    }
+  }
+  </script>
+  <script id="ch0105/45">
+  var n=+prompt()
+  var sumMoney=0
+  var sumDay=0
+  for(var i=1;;i++){
+    sumDay+=i
+    sumMoney+=i*i
+    if(sumDay>=n){
+      break
+    }
+  }
+  var dif=sumDay-n
+  sumMoney-=dif*i
+  console.log(sumMoney)
+  </script>  
 </head>
 
 <body>
