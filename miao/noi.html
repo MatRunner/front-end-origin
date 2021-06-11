@@ -409,7 +409,7 @@
     sum+=data;
   }
   average=sum/n;
-  console.log(sum.toFixed(5),average.toFixed(5))
+  console.log(sum,average.toFixed(5))
 </script>
   <script id="ch0105/05">
   var n=+prompt();
@@ -444,12 +444,10 @@
   var gold=0
   var silver=0
   var copper=0
-  for(var i=0;i<n;i++){
-    for(var j=0;j<3;j++){
+  for(var i=0;i<n;i++){  
       gold+=+prompt()
       silver+=+prompt()
       copper+=+prompt()
-    }
   }
   console.log(gold+' '+silver+' '+copper+' '+(gold+silver+copper))
   </script>
@@ -479,7 +477,7 @@
   var sum=0
   for(m;m<=n;m+=17){
     if(m%17!==0){
-      m+=m%17
+      m+=17-m%17
     }
     sum+=m
   }
@@ -535,7 +533,7 @@
   for(var i=0;i<n;i++){
     x*=1+0.001
   }
-  console.log(x.toFixed4)
+  console.log(x.toFixed(4))
 
   </script>
   <script id="ch0105/15">
@@ -611,7 +609,8 @@
     h/=2
     distance+=h*2
   }
-  console.log(distance,h/2)
+  console.log(distance)
+  console.log(h/2)
   </script>
   <script id="ch0105/21">
     var N=Number(prompt());
@@ -837,16 +836,20 @@
   <script id="ch0105/38">
   var n=+prompt()
   var c=+prompt()
+  var flag=false
   var str=''+c*n
-  for(var i=n-1;i>0;i--){
+  if(c*n!==0){flag=true}
+  for(var i=n-1;i>=0;i--){
     c=+prompt()
     str+=' '+c*i
+    if(c*i!==0){
+      flag=true
+    }
   }
-  if(n===0){
-    console.log('0')
-  }else{
-    c=+prompt()
+  if(flag){
     console.log(str)
+  }else{
+    console.log('0')
   }
 
   </script>
