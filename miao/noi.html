@@ -644,23 +644,207 @@
   }
   </script>
   <script id="ch0105/23">
-  
+  var m=+prompt()
+  var n=+prompt()
+  var num=0
+  for(var i=0;i<n;i++){
+    var amount=+prompt()
+    if(m>=amount){
+      m-=amount
+    }else{
+      num++
+    }
+  }
+  console.log(num)
   </script>
-  <script id="ch0105/24"></script>
-  <script id="ch0105/25"></script>
-  <script id="ch0105/26"></script>
-  <script id="ch0105/27"></script>
-  <script id="ch0105/28"></script>
-  <script id="ch0105/29"></script>
-  <script id="ch0105/30"></script>
-  <script id="ch0105/31"></script>
-  <script id="ch0105/32"></script>
-  <script id="ch0105/33"></script>
-  <script id="ch0105/34"></script>
-  <script id="ch0105/35"></script>
-  <script id="ch0105/36"></script>
-  <script id="ch0105/37"></script>
-  <script id="ch0105/38"></script>
+  <script id="ch0105/24">
+  var n=+prompt()
+  var max=0
+  var time=0
+  for(var i=0;i<n;i++){
+    var shrink=+prompt()
+    var relax=+prompt()
+    if(shrink>=90&&shrink<=140&&relax>=60&&relax<=90){
+      time++
+    }else{
+      time=0
+    }
+    if(max<time){
+      max=time
+    }
+  }
+  console.log(max)
+  </script>
+  <script id="ch0105/25">
+  var dec=82
+  var sep,nov
+  do{
+    sep=Number(dec.toString(7))
+    nov=Number(dec.toString(9))
+    if(sep%10===(nov-nov%100)/100&&(sep-sep%10)/10%10===(nov-nov%10)/10%10&&(sep-sep%100)/100===nov%10){
+      console.log(dec)
+      console.log(sep)
+      console.log(nov)
+    }
+    dec++
+  }while(dec<=342)
+
+  </script>
+  <script id="ch0105/26">
+  var n=+prompt()
+  var counter=0
+  for(var i=0;i<n;i++){
+    var num=+prompt()
+    var a=num%10
+    var b=(num-a)/10%10
+    var c=(num-num%100)/100%10
+    var d=(num-num%1000)/1000
+    if(a-d-c-b>0){
+      counter++
+    }
+  }
+  console.log(counter)
+  </script>
+  <script id="ch0105/27">
+  var k=+prompt()
+  var sn=0
+  var n=0
+  while(sn<=k){
+    n++
+    sn+=1/n
+  }
+  console.log(n)
+  </script>
+  <script id="ch0105/28">
+  var n=+prompt()
+  var str=''+n%10
+  n=(n-n%10)/10
+  while(n>0){
+    str+=' '+n%10
+    n=(n-n%10)/10
+  }
+  console.log(str)
+  </script>
+  <script id="ch0105/29">
+  var n=+prompt()
+  var newNum=0
+  while(n!==0){
+    newNum=newNum*10+n%10
+    n=(n-n%10)/10
+  }
+  console.log(newNum)
+  </script>
+  <script id="ch0105/30">
+  var m=+prompt()
+  var k=+prompt()
+  var counter=0
+  while(m>0){
+    if(m%10===3){
+      counter++
+    }
+    m=(m-m%10)/10
+  }
+  if(counter===3&&m%19===0){
+    console.log('YES')
+  }else{
+    console.log('NO')
+  }
+  </script>
+  <script id="ch0105/31">
+  var n=+prompt()
+  var m=+prompt()
+  var str='1'
+  for(var i=2;i<=n;i++){
+    var flag=-1
+    for(var j=2;j<=m;j++){
+      if(i%j===0){
+        flag=-flag
+      }
+    }
+    if(flag===-1){
+      str+=','+i
+    }
+  }
+  console.log(str)
+  </script>
+  <script id="ch0105/32">
+  var n=+prompt()
+  var p1=1,q1=2
+  var sum=q1/p1
+  var q2,p2
+  for(var i=1;i<n;i++){
+    q2=q1+p1
+    p2=q1
+    sum+=q2/p2
+    q1=q2
+    p1=q2
+  }
+  console.log(sum.toFixed(4))
+  </script>
+  <script id="ch0105/33">
+  var n=+prompt()
+  var i=1
+  var sum=0
+  for(var j=1;j<=n;j++){
+    sum+=i/j
+    i=-i
+  }
+  console.log(sum.toFixed(4))
+  </script>
+  <script id="ch0105/34">
+  var n=+prompt()
+  var sum=0
+  for(var i=1;i<=n;i++){
+    var sumIn=1
+    for(var j=i;j>0;j--){
+      sumIn*=j
+    }
+    sum+=sumIn
+  }
+  console.log(sum)
+  </script>
+  <script id="ch0105/35">
+  var n=+prompt()
+  var e=1
+  for(var i=1;i<=n;i++){
+    var sum=1
+    for(var j=i;j>0;j--){
+      sum*=j
+    }
+    e+=1/sum
+  }
+  console.log(e.toFixed(10))
+  </script>
+  <script id="ch0105/36">
+  var x=+prompt()
+  var n=+prompt()
+  var sum=0
+  for(var i=0;i<=n;i++){
+    sum+=Math.pow(x,i)
+  }
+  console.log(sum.toFixed(2))
+  </script>
+  <script id="ch0105/37">
+  var m=+prompt()
+  var n=+prompt()
+  var x=+prompt()
+  while(x>=Math.ceil(m/n)){
+    x-=Math.ceil(m/n)
+    n+=Math.floor(m/n)
+  }
+  console.log(n)
+  </script>
+  <script id="ch0105/38">
+  var n=+prompt()
+  var c=+prompt()
+  var str=''+c*(n-1)
+  for(var i=n-1;i>=0;i--){
+    c=+prompt()
+    str+=' '+c*(i-1)
+  }
+  console.log(str)
+
+  </script>
   <script id="ch0105/39"></script>
   <script id="ch0105/40"></script>
   <script id="ch0105/41"></script>
