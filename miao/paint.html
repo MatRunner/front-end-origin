@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="2000" height="2000"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated' //放大时的插帧方式：不插帧，直接放大像素
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    x = Math.round(x)
+    y = Math.round(y)
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * YOUR TASK
+      * 在 坐标 (42, 42) 画出一个点
+      * 画一条实线
+      * 画一条一个实点一个空点的虚线
+      * 画一条两个实点两个空点的虚线
+      * 画一条三个实点两个空点的虚线
+      * 画一条45度的斜线
+      * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
+      * 画一条跨越画布左上角和右下角的对角线
+      * 画一个空心矩形
+      * 画一个实心矩形
+      * 画两个个空心的圆，居中：
+        * 一个半径为50像素
+        * 一个半径为200像素
+      * 画一个实心的圆，半径至少为100像素
+      * 画一个【大小合适】的sin(x)的图像
+
+      * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+        如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变幻后的色彩空间某一面
+        可以考虑如下几种矩阵：
+           2 0
+           0 2
+           ------
+           1  0.27
+           0  1
+           ------
+           0.5    0.87
+           -0.87  0.5
+
+   */
+</script>
+<script>
+  // 不可更改上面的代码
+  // 你的代码写在这里
+  // YOUR CODE GOES BELOW
+// 一个点
+dot(42,42)
+// 一条实线
+for(var i=10;i<=100;i++){
+  dot(10,i,'red')
+}
+// 一点实一点虚
+for(var i=110;i<=210;i+=2){
+    dot(10,i,'blue')
+  
+}
+// 俩实点俩空点
+for(var i=220;i<=320;i+=2){
+  dot(10,i,'pink')
+  i++
+  dot(10,i,'pink')
+  i++
+}
+// 三实两空
+for(var i=330;i<=430;i+=6){
+  for(var j=0;j<3;j++){
+    dot(10,i+j,'green')
+  }
+}
+// 45du斜线
+for(var i=0;i<100;i++){
+  dot(10+i,440+i,'#9A31EB')
+}
+// 30du斜线
+for(var i=0;i<100;i++){
+  dot(60+i/2,540-i,'#F56133')
+}
+// 对角线
+for(var i=1;i<=500;i++){
+  dot(i,i,'#EBE452')
+}
+// 空心矩形
+for(var i=0;i<50;i++){
+  for(var j=0;j<100;j++){
+    if(i===0||i===49||j===0||j===99){
+      dot(20+i,80+j,'#682AF5')
+    }
+  }
+}
+// 实心矩形
+for(var i=0;i<50;i++){
+  for(var j=0;j<100;j++){
+    
+      dot(20+i,200+j,'#682AF5')
+  }
+}
+// 圆环，50 100px，居中
+for(var i=0;i<50;i++){
+  dot(250+i,250+Math.sqrt(50*50-i*i),'#318CEB')
+  dot(250-i,250+Math.sqrt(50*50-i*i),'#318CEB')
+  dot(250+i,250-Math.sqrt(50*50-i*i),'#318CEB')
+  dot(250-i,250-Math.sqrt(50*50-i*i),'#318CEB')
+}
+for(var i=0;i<100;i++){
+  dot(250+i,250+Math.sqrt(100*100-i*i),'#682AF5')
+  dot(250-i,250+Math.sqrt(100*100-i*i),'#682AF5')
+  dot(250+i,250-Math.sqrt(100*100-i*i),'#682AF5')
+  dot(250-i,250-Math.sqrt(100*100-i*i),'#682AF5')
+}
+// 实心圆，半径100
+for(var i=0;i<100;i++){
+  for(var j=0;j<=Math.sqrt(100*100-i*i);j++){
+    dot(398+i,100+j,'#7EEB87')
+    dot(398+i,100-j,'#7EEB87')
+    dot(398-i,100+j,'#7EEB87')
+    dot(398-i,100-j,'#7EEB87')
+  }
+}
+// 画正弦，想不出来不用Math的方法
+for(var i=0;i<50;i+=0.1){
+  dot(20+i,400+50*Math.sin(2*Math.PI*i/50),'#19A9F8')
+}
+// rgb色彩空间
+for(var i=0;i<=255;i++){
+  for(var j=0;j<=255;j++){
+    dot(500+i,10+j,'rgb('+i+',155,'+j+')')
+  }
+}
+// 矩阵变换
+for(var i=0;i<=255;i++){
+  for(var j=0;j<=255;j++){
+    dot((500+i)*2,(10+j)*2,'rgb('+i+',155,'+j+')')
+  }
+}
+for(var i=0;i<=255;i++){
+  for(var j=0;j<=255;j++){
+    dot((500+i),(190+j)+0.27*(500+i),'rgb('+i+',155,'+j+')')
+  }
+}
+for(var i=0;i<=255;i++){
+  for(var j=0;j<=255;j++){
+    dot((500+i)*.5-.87*(10+j),(10+j)*.5*j+.87*(500+i),'rgb('+i+',155,'+j+')')
+  }
+}
+</script>
+</html>
