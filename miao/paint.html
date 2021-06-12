@@ -112,20 +112,15 @@ for(var i=0;i<50;i++){
       dot(20+i,200+j,'#682AF5')
   }
 }
-// 圆环，50 100px，居中
-for(var i=0;i<50;i++){
-  dot(250+i,250+Math.sqrt(50*50-i*i),'#318CEB')
-  dot(250-i,250+Math.sqrt(50*50-i*i),'#318CEB')
-  dot(250+i,250-Math.sqrt(50*50-i*i),'#318CEB')
-  dot(250-i,250-Math.sqrt(50*50-i*i),'#318CEB')
+// 圆环，50 200px，居中
+for(var i=0;i<360;i++){
+  dot(250+50*Math.sin(i*Math.PI/180),250+50*Math.cos(i*Math.PI/180),'#318CEB')
 }
-for(var i=0;i<100;i++){
-  dot(250+i,250+Math.sqrt(100*100-i*i),'#682AF5')
-  dot(250-i,250+Math.sqrt(100*100-i*i),'#682AF5')
-  dot(250+i,250-Math.sqrt(100*100-i*i),'#682AF5')
-  dot(250-i,250-Math.sqrt(100*100-i*i),'#682AF5')
+for(var i=0;i<360;i++){
+  dot(250+100*Math.sin(i*Math.PI/180),250+100*Math.cos(i*Math.PI/180),'#682AF5')
 }
 // 实心圆，半径100
+// 这个算法下出的是打满点的圆
 for(var i=0;i<100;i++){
   for(var j=0;j<=Math.sqrt(100*100-i*i);j++){
     dot(398+i,100+j,'#7EEB87')
@@ -134,11 +129,39 @@ for(var i=0;i<100;i++){
     dot(398-i,100-j,'#7EEB87')
   }
 }
-// 画正弦，想不出来不用Math的方法
-for(var i=0;i<50;i+=0.1){
+/*
+不同的算法出图不一样，这种算法一圈一圈打出一个圆，有白色间隙
+for(var i=0;i<100;i++){
+  for(var j=0;j<360;j++){
+    dot(398+i*Math.sin(j*Math.PI/180),100+i*Math.cos(j*Math.PI/180),'#7EEB87')
+  }
+}
+*/
+// 画正弦，想不出来不用Math的方法==========================================================================================
+for(var i=0;i<50;i+=1){
   dot(20+i,400+50*Math.sin(2*Math.PI*i/50),'#19A9F8')
 }
-// rgb色彩空间
+/*一个折磨自己的方法，曲线积分，实现正弦曲线每个点间距相同
+*/
+// 三角函数，弧长是周期的1.91/2/pi倍
+var dl,dx,dy,A,w,T
+// 暂定振幅A为50,周期100
+A=250
+T=500
+w=2*Math.PI/T
+var alpha=1.91/(Math.PI/2)
+// 设置微分三角形的斜边为dl，一个正弦的线长积分后，分为360份，每份为一个dl
+dl=T*alpha/360
+// 设置正弦曲线的每个点的坐标为(x,y)
+var x=0,y=0
+for(var i=1;i<=360;i++){
+  dot(500+x,1000+y,'black')
+  dx=dl/Math.sqrt(Math.pow(Math.cos(w*x),2)+1)
+  dy=Math.cos(w*x)*dx
+  x+=dx
+  y+=dy
+}
+// rgb色彩空间===================================================================================================
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
     dot(500+i,10+j,'rgb('+i+',155,'+j+')')
