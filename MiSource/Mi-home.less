@@ -335,9 +335,13 @@ header section.head2{
 }
 
 // 以下部分为main的第一部分，三个板块，背景轮播图，列式布局菜单，和底部的几张图----------------------------------------------------------
+main.main-first-before{
+  display: flex;
+  justify-content: center;
+}
 main.main-first{
   display: flex;
-  min-width: 1226px;
+  width: 1226px;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom:16px;
@@ -630,11 +634,17 @@ div.main-bottom{
 }
 }
 // 下面是第二部分，包括秒杀及以后的图--------------------------------------------------------------------------------
-main.main-second{
+main.main-second-before{
+  min-width:1226px;
+  display: flex;
+  justify-content: center;
   background-color: rgb(245,245,245);
+}
+main.main-second{
   display:flex;
   justify-content: center;
-  min-width: 1226px;
+  flex-wrap: wrap;
+  width: 1226px;
 
   section.first{
     width: 1226px;
@@ -697,21 +707,70 @@ main.main-second{
       >div.right{
         width:978px;
         height: 340px;
-        overflow: hidden;
         position: relative;
         input[name="sliding-contral"]{
           display: none;
         }
+        // input的控制行为
+        input:nth-of-type(1):checked~ul>li:first-child{
+          margin-left:0;
+        }
+        input:nth-of-type(2):checked~ul>li:first-child{
+          margin-left:-978px;
+        }
+        input:nth-of-type(3):checked~ul>li:first-child{
+          margin-left:-1467px;
+        }
+
+        input:nth-of-type(1):checked~label:nth-of-type(1),input:nth-of-type(1):checked~label:nth-of-type(1)+div,
+        input:nth-of-type(2):checked~label:nth-of-type(2),
+        input:nth-of-type(2):checked~label:nth-of-type(3),
+        input:nth-of-type(3):checked~label:nth-of-type(4),input:nth-of-type(3):checked~label:nth-of-type(4)+div{
+          display: flex;
+        }
         label{
+          justify-content: center;
+          color: #666;
+          display: none;
           position: absolute;
+          right:0;
+          top:-30px;
           width: 36px;
           height: 24px;
+          padding: 3px 5px;
           border:1px solid #aaa;
+          transition: color .3s;
+          &:nth-of-type(2),&:nth-of-type(4){
+            right:36px;
+          }
+          &:hover{
+            color:rgb(255,103,0);
+          }
+          &:nth-of-type(2),&:nth-of-type(4){
+            border-right:none;
+          }
+        }
+        label+div{
+          justify-content: center;
+          display: none;
+          color:#aaa;
+          position: absolute;
+          right:0;
+          top:-30px;
+          width: 36px;
+          height: 24px;
+          padding: 3px 5px;
+          border:1px solid #aaa;
+          &.after-sliding-contral-first{
+            right:36px;
+            border-right:none;
+          }
         }
         >ul{
           display: flex;
           height: 100%;
-          width:max-content;
+          width:978px;
+          overflow: hidden;
           >li{
             display: flex;
             align-items: center;
@@ -721,6 +780,10 @@ main.main-second{
             background-color: #fff;
             margin-right:14px;
             padding-top: 39px;
+            flex-shrink: 0;
+            &:first-child{
+              transition: margin .5s;
+            }
 
             >img{
               width:150px;
@@ -747,6 +810,113 @@ main.main-second{
         }
       }
     }
+    // 最下面一栏的图片
+    div.img{
+      margin: 22px 0;
 
+      img{
+        width:1226px;
+        height: 120px;
+      }
+    } 
+  }
+  section.second{
+    width: 1226px;
+    h2.title{
+      font-size: 22px;
+      font-weight: 200;
+      font-family: Microsoft YaHei Light;
+      >span{
+        float: right;
+        line-height: 16px;
+        font-size: 16px;
+        color:rgb(66,66,66);
+        transition: .3s;
+        cursor: pointer;
+        &:hover{
+          color:rgb(255,103,0);
+          >span{
+            background-color: rgb(255,103,0);
+          }
+        }
+        >span{
+          display: inline-block;
+          width: 18px;
+          height: 20px;
+          background-color: rgb(176,176,176);
+          border-radius: 20px;
+          margin-left:8px;
+          padding: 4px;
+          transition: .3s;
+          &::before{
+            color:#eee;
+          }
+        }
+      }
+    }
+    div.container{
+
+
+      >div.left{
+        width: 234px;
+        height: 614px;
+        float:left;
+        cursor: pointer;
+        transition: .3s;
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        img{
+          width: 234px;
+          object-fit: contain;
+        }
+      }
+      >div.left~div{
+        width: 234px;
+        height: 300px;
+        padding: 20px 0;
+        margin:0 0 14px 14px;
+        float:left;
+        background-color: #fff;
+        display: flex;
+        flex-flow:column;
+        align-items: center;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        img{
+          width: 160px;
+          height: 160px;
+          object-fit: contain;
+        }
+        div.title{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 21px;
+        }
+        p.detail{
+          font-family: Microsoft YaHei,sans-serif;
+          font-size: 12px;
+          line-height: 18px;
+          color:rgb(176,176,176);
+
+        }
+        div.price{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 21px;
+          color: rgb(255,103,0);
+        }
+      }
+    }
+    img{
+      width: 1226px;
+      object-fit: contain;
+    }
   }
 }

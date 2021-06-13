@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>小米商城</title>
+  <link rel="favicon" href="./favicon.ico">
   <link rel="stylesheet" href="../../MiSource/Mi-home.less" type="text/less">
   <link rel="stylesheet" href="../miFont.css">
 </head>
@@ -305,6 +306,7 @@
 
     <!-- 先做背景的轮播图 -->
     <!-- 图片是渐变出现的，看起来是透明度，但是每张图又是可以点击的 -->
+    <main class="main-first-before">
     <main class="main-first">
       <div class="background-slider">
         <input type="radio" name="slider-contral" id="img-1st" checked><input type="radio" name="slider-contral"
@@ -1057,8 +1059,10 @@
         </div>
       </div>
     </main>
+    </main>
 
     <!-- 这部分背景为灰色，但是主要部分居中，因此需要在外面套一个大块，这个块里包含小米秒杀，手机，家电，智能等后面的部分 -->
+    <main class="main-second-before">
     <main class="main-second">
 
       <!-- 先写小米秒杀部分，这部分一个标题栏，主体部分一个秒杀倒计时，右边一个滑块图，下面一行长图 -->
@@ -1073,11 +1077,11 @@
           <!-- 右边的滑块图，注意视口是固定的，滑块是ul，点击按钮会让滑块左右滑动 -->
           <!-- 似乎要用四个label来控制滑动行为 -->
           <div class="right">
-            <label for="sliding-contral-2"></label>
-            <label for="sliding-contral-1"></label><label for="sliding-contral-3"></label>
-            <label for="sliding-contral-2"></label>
-            <input type="radio" name="sliding-contral" id="sliding-contral-1"><input type="radio" name="sliding-contral"
+            <input type="radio" name="sliding-contral" id="sliding-contral-1" checked><input type="radio" name="sliding-contral"
               id="sliding-contral-2"><input type="radio" name="sliding-contral" id="sliding-contral-3">
+            <label for="sliding-contral-2"><span class="iconfont iconfont-arrow-right-big"></span></label><div class="after-sliding-contral-first"><span class="iconfont iconfont-arrow-left-big"></span></div>
+            <label for="sliding-contral-1"><span class="iconfont iconfont-arrow-left-big"></span></label><label for="sliding-contral-3"><span class="iconfont iconfont-arrow-right-big"></span></label>
+            <label for="sliding-contral-2"><span class="iconfont iconfont-arrow-left-big"></span></label><div class="after-sliding-contral-last"><span class="iconfont iconfont-arrow-right-big"></span></div>
             <ul>
               <li><img src="..\..\MiSource.library\images\KPNYH9LWZPB0J.info\小米净水器500G增强版 白色.png" alt="">
                 <div class="title">小米净水器500G增强版 白色<p>RO反渗透，大流量直出纯净水</p>
@@ -1125,7 +1129,30 @@
         </div>
         <div class="img"><img src="..\..\MiSource.library\images\KPIEF756KTOUS.info\test.jpg" alt=""></div>
       </section>
+
+      <!-- 然后是手机板块的列表图 -->
+      <!-- 首先是单独列出来的title一行，然后是主体部分的列表图，看样子用浮动能很快做出来，每个小块hover时有凸起效果 -->
+      <section class="second" name="shouji">
+        <h2 class="title">手机 <span>查看更多<span class="iconfont iconfont-arrow-right-big"></span></span></h2>
+        <div class="container">
+          <div class="left"><img src="..\..\MiSource.library\images\KPV4TIZGY8L6Z.info\小米商城 - 小米11 Ultra、Redmi K40 Pro、MIX FOLD，小米电视官方网站.jpg" alt=""><div class="title"></div><p class="detail"></p><div class="price"></div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TROM84YIZ.info\Note 10 Pro.jpg" alt=""><div class="title">Note 10 Pro</div><p class="detail">天玑1100年度旗舰芯，VC液冷散热</p><div class="price">1699元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TT0NYQOF7.info\Note 10 5G.jpg" alt=""><div class="title">Note 10 5G</div><p class="detail">5G小金刚，旗舰长续航</p><div class="price">1099元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TU5MVBIWC.info\小米MIX FOLD.png" alt=""><div class="title">小米MIX FOLD</div><p class="detail">折叠大屏｜自研芯片</p><div class="price">999元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TVC0VN0EV.info\小米11 Ultra.png" alt=""><div class="title">小米11 Ultra</div><p class="detail">1/1.12''GN2｜2K四微曲屏</p><div class="price">599元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TWKBF9RI9.info\小米11 Pro.jpg" alt=""><div class="title">小米11 Pro</div><p class="detail">1/1.12''GN2｜骁龙888</p><div class="price">229元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TXGBWN865.info\小米11 青春版.png" alt=""><div class="title">小米11 青春版</div><p class="detail">小米11 青春版 轻薄</p><div class="price">199元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TYCBEUOPR.info\K40 游戏增强版.png" alt=""><div class="title">K40 游戏增强版</div><p class="detail">轻薄电竞设计</p><div class="price">33元起</div></div>
+          <div><img src="..\..\MiSource.library\images\KPV4TZ6TGV97M.info\黑鲨4 Pro.png" alt=""><div class="title">黑鲨4 Pro</div><p class="detail">黑鲨4 Pro</p><div class="price">2元起</div></div>
+        </div>
+        <img src="..\..\MiSource.library\images\KPV60RZSLTA1Y.info\test.jpg" alt="">
+      </section>
+      <!-- 本部分及以后的hover实现菜单切换，无法实现鼠标移走后保留hover效果 -->
+      <section class="third" name="jiadian">
+        <h2 class="title">家电<span></span></h2>
+      </section>
     </main>
+  </main>
 
   </div>
 </body>
