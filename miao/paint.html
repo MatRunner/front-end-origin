@@ -168,19 +168,27 @@ for(var i=0;i<=255;i++){
   }
 }
 // 矩阵变换
+// 缩放2倍
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
     dot((500+i)*2,(10+j)*2,'rgb('+i+',155,'+j+')')
   }
 }
+// 沿y错切
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
     dot((500+i),(190+j)+0.27*(500+i),'rgb('+i+',155,'+j+')')
   }
 }
+// 这个不知道啥变换
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
     dot((500+i)*.5-.87*(10+j),(10+j)*.5*j+.87*(500+i),'rgb('+i+',155,'+j+')')
+  }
+}
+for(var i=0;i<=255;i++){
+  for(var j=0;j<=255;j++){
+    dot(500+i/Math.sqrt(2)-j/Math.sqrt(2),600+i/Math.sqrt(2)+j/Math.sqrt(2),'rgb('+i+',155,'+j+')')
   }
 }
 </script>
