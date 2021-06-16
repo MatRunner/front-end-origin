@@ -25,7 +25,20 @@
     console.log(isNarc(a))
   </script>
   <script id="narcissistics">
-    function isNarcs(n){
+   function isNarc(n){
+      var sum=0
+      var m=n
+      while(m>0){
+        sum+=(m%10)*(m%10)*(m%10)
+        m=(m-m%10)/10
+      }
+      if(sum===n){
+        return true
+      }else{
+        return false
+      }
+    }
+   function isNarcs(n){
       var str='0'
       for(var i=1;i<=n;i++){
         if(isNarc(i)){
@@ -94,6 +107,22 @@
       }
       return str
     }
+    function comp(n){
+      var sum=1
+      if(n<2){return false}
+      var lim=Math.sqrt(n)
+      for(var i=2;i<=lim;i++){
+        if(n%i===0){
+          sum+=i
+          sum+=n/i
+        }
+      }
+      if(sum===n){
+        return true
+      }else{
+        return false
+      }
+    }
     console.log(comps(1000))
   </script>
 
@@ -155,7 +184,7 @@
       for(var j=0;j<10;j++){
         i=.5*(i+x/i)
       }
-      return i.toFixed(2)
+      return i.toFixed(6)
     }
     var a=+prompt()
     console.log(sqrt(a))
