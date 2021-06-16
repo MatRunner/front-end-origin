@@ -6,6 +6,169 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>noi</title>
+
+  <script id="narcissistic">
+    function isNarc(n){
+      var sum=0
+      var m=n
+      while(m>0){
+        sum+=(m%10)*(m%10)*(m%10)
+        m=(m-m%10)/10
+      }
+      if(sum===n){
+        return true
+      }else{
+        return false
+      }
+    }
+    var a=+prompt()
+    console.log(isNarc(a))
+  </script>
+  <script id="narcissistics">
+    function isNarcs(n){
+      var str='0'
+      for(var i=1;i<=n;i++){
+        if(isNarc(i)){
+          str+=' '+i
+        }
+      }
+      return str
+    }
+    console.log(isNarcs(10000))
+  </script>
+  <script id="palindrom">
+    function pali(n){
+      var reverse=0
+      var m=n
+      while(m>0){
+        reverse=reverse*10+m%10
+        m=(m-m%10)/10
+      }
+      if(n===reverse){
+        return true
+      }else{
+        return false
+      }
+    }
+    var a=+prompt()
+    console.log(pali(a))
+
+  </script>
+
+  <script id="weekday">
+
+
+  </script>
+
+  <script id="complete-number">
+
+    function comp(n){
+      var sum=1
+      if(n<2){return false}
+      var lim=Math.sqrt(n)
+      for(var i=2;i<=lim;i++){
+        if(n%i===0){
+          sum+=i
+          sum+=n/i
+        }
+      }
+      if(sum===n){
+        return true
+      }else{
+        return false
+      }
+    }
+    
+    var a=+prompt()
+    console.log(comp(a))
+  </script>
+
+
+  <script id="complete-numbers">
+    var str=''
+    function comps(n){
+      for(var i=1;i<=n;i++){
+        if(comp(i)){
+          str+=i+' '
+        }
+      }
+      return str
+    }
+    console.log(comps(1000))
+  </script>
+
+  <script id="prime">
+    function prime(n){
+      if(n<2){return false}
+      var lim=Math.sqrt(n)
+      for(var i=2;i<=lim;i++){
+        if(n%i===0){
+          return false
+        }
+      }
+      return true
+    }
+
+    var a=+prompt()
+    console.log(prime(a))
+  </script>
+
+  <script id="primes">
+    function primes(n){
+      var str=''
+      for(i=1;i<=n;i++){
+        if(prime(i)){
+          str+=i+' '
+        }
+      }
+      return str
+    }
+    console.log(primes(1000))
+  </script>
+
+  <script id="lcf&lcm">
+    function GCD(n,m){
+      let l
+      while(m>0){
+        l=n%m
+        n=m
+        m=l
+      }
+      return n
+    }
+    function LCM(n,m){
+      return n*m/GCD(n,m)
+    }
+    var a=+prompt()
+    var b=+prompt()
+    console.log(GCD(a,b),LCM(a,b))
+  </script>
+
+  <script id="sqrt">
+    // 牛顿迭代法
+    function sqrt(x){
+      for(var i=1;;i++){
+        if(i*i>x){
+          break
+        }
+      }
+      for(var j=0;j<10;j++){
+        i=.5*(i+x/i)
+      }
+      return i.toFixed(2)
+    }
+    var a=+prompt()
+    console.log(sqrt(a))
+  </script>
+
+
+
+
+
+
+
+
+  <!-- ======================================================================================= -->
   <script id="ch0103/01" xtype="none">
     var A = +prompt();
     var B = +prompt();
@@ -755,7 +918,8 @@
   var str='1'
   for(var i=2;i<=n;i++){
     var flag=-1
-    for(var j=2;j<=m;j++){
+    // 对每个灯，只有人编号小于灯编号才能对其操作
+    for(var j=2;j<=m&&j<=i;j++){
       if(i%j===0){
         flag=-flag
       }
@@ -764,6 +928,7 @@
       str+=','+i
     }
   }
+  // 一个灯需要被奇数个人操作才能是亮的，也就是说灯的编号有奇数个因子，只有完全平方数的因数才是奇数个，不过前提是灯数和人数相等
   console.log(str)
   </script>
   <script id="ch0105/32">
@@ -793,12 +958,10 @@
   <script id="ch0105/34">
   var n=+prompt()
   var sum=0
+  var fact=1
   for(var i=1;i<=n;i++){
-    var sumIn=1
-    for(var j=i;j>0;j--){
-      sumIn*=j
-    }
-    sum+=sumIn
+    fact*=i
+    sum+=fact
   }
   console.log(sum)
   </script>
@@ -890,6 +1053,7 @@
       j=(j-j%10)/10
     }
   }
+  // 本题和上题的算法属于硬算，优化后的算法应该要使用之前的结果，避免重复计算
   console.log(counter)
   </script>
   <script id="ch0105/42">
@@ -929,13 +1093,14 @@
     }
   }
   console.log(n/i)
+  // 整数的质因数分解，没有更优化的算法，密码学的基础之一
   </script>
   <script id="ch0105/44">
   var n=+prompt()
   var counter=0
   for(var i=2;;i++){
     var flag=true
-    for(var j=2;j<=i/2;j++){
+    for(var j=2;j<=i/2;j++){//这里可以稍微优化一下，循环条件设置为根号下i即可，把根号i写上面，减少判断循环的计算
       if(i%j===0){
         flag=false
         break
