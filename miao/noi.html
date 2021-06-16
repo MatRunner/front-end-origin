@@ -69,7 +69,53 @@
   </script>
 
   <script id="weekday">
-
+    // 已知1921年1月1日是周六
+    // 思路，可以认为星期是7进制，因此求出参数距离参考值几天，然后转化成7进制即可
+    // 计算一下到现在有多少个闰年
+    function pastDay(year){
+      var difYear=year-1921
+      if(difYear<0){
+        difYear=-difYear
+        numOfLeap=Math.floor((difYear+3)/4)
+        numOfPastDay=difYear*365+numOfLeap
+        day=((6-numOfPastDay).toString(7)-1)%10
+        day=-day
+      }else{
+        var numOfLeap=Math.floor(difYear/4)
+        var numOfPastDay=difYear*365+numOfLeap
+        var day=(numOfPastDay+6).toString(7)%10
+      }
+      return day//返回当年1月1日是周几，0指周日
+    }
+  
+    function weekday(year,month){
+      var day=pastDay(year)
+      switch(month){
+        case 12:if(month!==12){day+=31};
+        case 11:if(month!==11){day+=30};
+        case 10:if(month!==10){day+=31};
+        case 9:if(month!==9){day+=30};
+        case 8:if(month!==8){day+=31};
+        case 7:if(month!==7){day+=31};
+        case 6:if(month!==6){day+=30};
+        case 5:if(month!==5){day+=31};
+        case 4:if(month!==4){day+=30};
+        case 3:if(month!==3){day+=31};
+        case 2:if(month!==2){day+=28};
+        case 1:if(month!==1){day+=31};break;
+        default:return '请输入正确的月份'
+      }
+      // 判断一下改年是否是闰年
+      if(year%100===0?year%400===0:year%4===0){
+        if(month>2){
+          day++
+        }
+      }
+      return day.toString(7)%10
+    }
+    var year=+prompt()
+    var month=+prompt()
+    console.log(weekday(year,month))
 
   </script>
 
