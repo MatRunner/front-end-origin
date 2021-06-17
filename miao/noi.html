@@ -15,11 +15,7 @@
         sum+=(m%10)*(m%10)*(m%10)
         m=(m-m%10)/10
       }
-      if(sum===n){
-        return true
-      }else{
-        return false
-      }
+     return sum===n
     }
     var a=+prompt()
     console.log(isNarc(a))
@@ -32,11 +28,7 @@
         sum+=(m%10)*(m%10)*(m%10)
         m=(m-m%10)/10
       }
-      if(sum===n){
-        return true
-      }else{
-        return false
-      }
+     return sum===n
     }
    function isNarcs(n){
       var str='0'
@@ -57,11 +49,7 @@
         reverse=reverse*10+m%10
         m=(m-m%10)/10
       }
-      if(n===reverse){
-        return true
-      }else{
-        return false
-      }
+      return n===reverse
     }
     var a=+prompt()
     console.log(pali(a))
@@ -105,7 +93,7 @@
         case 1:if(month!==1){day+=31};break;
         default:return '请输入正确的月份'
       }
-      // 判断一下改年是否是闰年
+      // 判断一下该年是否是闰年
       if(year%100===0?year%400===0:year%4===0){
         if(month>2){
           day++
@@ -124,18 +112,17 @@
     function comp(n){
       var sum=1
       if(n<2){return false}
-      var lim=Math.sqrt(n)
-      for(var i=2;i<=lim;i++){
+      var lim=Math.sqrt(n)//注意平方根只能加一次，需要再增加一个判断
+      for(var i=2;i<lim;i++){
         if(n%i===0){
           sum+=i
           sum+=n/i
         }
       }
-      if(sum===n){
-        return true
-      }else{
-        return false
+      if(sum%lim===0){
+        sum+=lim
       }
+     return sum===n
     }
     
     var a=+prompt()
@@ -163,11 +150,7 @@
           sum+=n/i
         }
       }
-      if(sum===n){
-        return true
-      }else{
-        return false
-      }
+      return sum===n
     }
     console.log(comps(1000))
   </script>
@@ -189,6 +172,16 @@
   </script>
 
   <script id="primes">
+    function prime(n){
+      if(n<2){return false}
+      var lim=Math.sqrt(n)
+      for(var i=2;i<=lim;i++){
+        if(n%i===0){
+          return false
+        }
+      }
+      return true
+    }
     function primes(n){
       var str=''
       for(i=1;i<=n;i++){
