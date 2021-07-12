@@ -140,11 +140,38 @@ var matrunner=function(){
 
   function filter(arr,f){
     var ans=[]
-    arr.forEach(x=>{
-      if(f(x)){
-        ans.push(x)
+    if(typeof(f)=='function'){
+      arr.forEach(x=>{
+        if(f(x)){
+          ans.push(x)
+        }
+      })
+    }
+    if(Array.isArray(f)){
+      for(let i=0;i<arr.length;i++){
+        if(arr[i][f[0]]==f[1]){
+          ans.push(arr[i])
+        }
       }
-    })
+    }
+    if(typeof(f)=='object'){
+      for(var key of arr){
+        for(var k in f){
+          if(k in key&&isEqual(f[k],key[k])){
+            ans.push(arr[key])
+          }
+        }
+      }
+    }
+    if(typeof(f)=='string'){
+      for(var key of arr){
+        if(f in key){
+          if(key[f]){
+            ans.push(arr[key])
+          }
+        }
+      }
+    }
     return ans
   }
 
@@ -226,6 +253,14 @@ var matrunner=function(){
       }
       return true
     }
+    if(typeof(f)=='string'){
+      for(var key of obj){
+        if(!key[f]){
+          return false
+        }
+      }
+      return true
+    }
   }
   function isEqual(obj1,obj2){
     if(typeof(obj1)!==typeof(obj2)){
@@ -293,14 +328,18 @@ var matrunner=function(){
       }
       return false
     }
+    if(typeof(f)=='string'){
+      for(var key of obj){
+        if(key[f]){
+          return true
+        }
+      }
+      return false
+    }
   }
 
-  function sortBy(obj,f){
-    var ans=[]
-    if(typeof(f)=='function'){
-      obj.sort((x,y)=>f(x)-f(y))
-    }
-    return obj
+  function sortBy(obj,...f){
+    if()
   }
   return {
     'chunk':chunk,
