@@ -80,6 +80,7 @@ for(var i=220;i<=320;i+=2){
   i++
 }
 // 三实两空
+// 可以用模运算判断是否打点，i依然可以递增1
 for(var i=330;i<=430;i+=6){
   for(var j=0;j<3;j++){
     dot(10,i+j,'green')
@@ -138,8 +139,8 @@ for(var i=0;i<100;i++){
 }
 */
 // 画正弦，想不出来不用Math的方法==========================================================================================
-for(var i=0;i<50;i+=1){
-  dot(20+i,400+50*Math.sin(2*Math.PI*i/50),'#19A9F8')
+for(var i=0;i<100;i+=1){
+  dot(20+i,400+50/Math.PI*Math.sin(Math.PI/50*i),'#19A9F8')
 }
 /*一个折磨自己的方法，曲线积分，实现正弦曲线每个点间距相同
 */
@@ -151,11 +152,18 @@ T=500
 w=2*Math.PI/T
 var alpha=1.91/(Math.PI/2)
 // 设置微分三角形的斜边为dl，一个正弦的线长积分后，分为360份，每份为一个dl
-dl=T*alpha/360
+dl=T*alpha/36
 // 设置正弦曲线的每个点的坐标为(x,y)
 var x=0,y=0
-for(var i=1;i<=360;i++){
+for(var i=1;i<=36;i++){
   dot(500+x,1000+y,'black')
+  dx=dl/Math.sqrt(Math.pow(Math.cos(w*x),2)+1)
+  dy=Math.cos(w*x)*dx
+  x+=dx
+  y+=dy
+}
+for(var i=1;i<=360;i++){
+  dot(800+x/Math.sqrt(2)-y/Math.sqrt(2),1000+x/Math.sqrt(2)+y/Math.sqrt(2),'black')
   dx=dl/Math.sqrt(Math.pow(Math.cos(w*x),2)+1)
   dy=Math.cos(w*x)*dx
   x+=dx
@@ -183,9 +191,10 @@ for(var i=0;i<=255;i++){
 // 这个不知道啥变换
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
-    dot((500+i)*.5-.87*(10+j),(10+j)*.5*j+.87*(500+i),'rgb('+i+',155,'+j+')')
+    dot(500+i*.5-.87*j,10+i*.87+.5*j,'rgb('+i+',155,'+j+')')
   }
 }
+// 旋转
 for(var i=0;i<=255;i++){
   for(var j=0;j<=255;j++){
     dot(500+i/Math.sqrt(2)-j/Math.sqrt(2),600+i/Math.sqrt(2)+j/Math.sqrt(2),'rgb('+i+',155,'+j+')')
