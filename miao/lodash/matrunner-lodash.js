@@ -54,11 +54,69 @@ var matrunner=function(){
     }
     return ans
   }
+
+  function flattenDeep(arr){
+    var ans=[]
+    for(let i=0;i<arr.length;i++){
+      if(Array.isArray(arr[i])){
+        var a=flattenDeep(arr[i])
+        for(let j=0;j<a.length;j++){
+          ans.push(a[j])
+        }
+      }else{
+        ans.push(arr[i])
+      }
+    }
+    return ans
+  }
+
+  function flattenDepth(arr,depth=1){
+    var ans=[]
+    if(depth==0){
+      ans=arr.slice()
+    }
+    for(let i=0;i<arr.length;i++){
+      if(Array.isArray(arr[i])){
+        var a=flattenDepth(arr[i],depth-1)
+        for(let j=0;j<a.length;j++){
+          ans.push(a[j])
+        }
+      }else{
+        ans.push(arr[i])
+      }
+    }
+    return ans
+  }
+
+  function groupBy(arr,f){
+    var ans={}
+    if(typeof(f)=='function'){
+      arr.forEach(x=>{
+        if(f(x) in ans){
+          ans[f(x)].push(x)
+        }else{
+          ans[f(x)]=[x]
+        }
+      })
+    }else{
+      arr.forEach(x=>{
+        if(x[f] in ans){
+          ans[x[f]].push(x)
+        }else{
+          ans[x[f]]=[x]
+        }
+      })
+    }
+    return ans
+  }
+
   return {
     'chunk':chunk,
     'compact':compact,
     'uniq':uniq,
     'uniqBy':uniqBy,
-    
+    'flattenDeep':flattenDeep,
+    'flattenDepth':flattenDepth,
+    'groupBy':groupBy,
   }
 }()
