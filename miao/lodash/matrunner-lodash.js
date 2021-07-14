@@ -338,8 +338,50 @@ var matrunner=function(){
     }
   }
 
-  function sortBy(obj,...f){
-    if()
+  function sortBy(obj,arr){
+    //突然想起谷歌是不稳定的，火狐是稳定的，那还是自己写排序吧
+    //需要一个compare函数
+    function compare(a,b,ary,idx=0){
+      if(typeof(ary[idx])=='function'){
+        if(ary[idx](a)>ary[idx](b)){
+          return 1
+        }else if(ary[idx](a)<ary[idx](b)){
+          return -1
+        }else{
+          if(idx+1<ary.length){
+            return compare(a,b,ary,idx+1)
+          }else{
+            return 0
+          }
+        }
+      }
+      if(typeof(ary[idx])=='string'){
+        if(a[ary[idx]]>b[ary[idx]]){
+          return 1
+        }else if(a[ary[idx]]<b[ary[idx]]){
+          return -1
+        }else{
+          if(idx+1<ary.length){
+            return compare(a,b,ary,idx+1)
+          }else{
+            return 0
+          }
+        }
+      }
+    }
+    //然后自己再写个插入排序
+    for(var i=1;i<obj.length;i++){
+      var val=obj[i]
+      for(var j=i-1;j>=0;j--){
+        if(compare(val,obj[j],arr)<0){
+          obj[j+1]=obj[j]
+        }else{
+          break
+        }
+      }
+      obj[j+1]=val
+    }
+    return obj
   }
   return {
     'chunk':chunk,

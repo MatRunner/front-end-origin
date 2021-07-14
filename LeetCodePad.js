@@ -1,26 +1,63 @@
-function bubbleSort(arr){//冒泡排序
-  for(let j=arr.length-1;j>0;j--){
-    for(let i=0;i<j;i++){
-      if(arr[i]>arr[i+1]){//可以内置一个布尔值判断是否发生了位置变动，如果未发生，则排序已经完成
-        var temp=arr[i+1]
-        arr[i+1]=arr[i]
-        arr[i]=temp
-      }
-    }
+function arrayToTree(arr,rootIdx=0){
+  if(!arr[rootIdx]){
+    return null
+  }
+  var root=createTreeNode(arr[rootIdx])
+  root.left=arrayToTree(arr,rootIdx*2+1)
+  root.right=arrayToTree(arr,rootIdx*2+2)
+  return root
+}
+function createTreeNode(val){
+  return {
+    val:val,
+    left:null,
+    right:null,
+  }
+}
+function treeToArray(root,idx=0,arr=[]){
+  if(root){
+    arr[idx]=root.val
+    treeToArray(root.left,idx*2+1,arr)
+    treeToArray(root.right,idx*2+2,arr) 
   }
   return arr
 }
-function selectSort(arr){//选择排序
-  for(let i=0;i<arr.length-1;i++){
-    var minIdx=i//设置待排序位点，最多排n-1次即可
-    for(let j=i+1;j<arr.length;j++){//在该位点后找到最小值
-      if(arr[j]<arr[minIdx]){//如果在未排序序列中检索到最小值，
-        minIdx=j
-      }
+
+function denseTreeToArray(root){
+  if(!root){return []}
+  var nodes=[root]
+  var ans=[]
+  for(let i=0;i<nodes.length;i++){
+    if(nodes[i]){
+      ans.push(nodes[i].val)
+      nodes.push(nodes[i].left,nodes[i].right)
+    }else{
+      ans.push(null)
     }
-    var temp=arr[minIdx]//则把这个值与待排序位点交换
-    arr[minIdx]=arr[i]
-    arr[i]=temp
   }
-  return arr
+  return ans
+}
+
+function arrayToDenseTree(arr){
+  if(arr.length==0){
+    return null
+  }
+  var root=createTreeNode(arr[0])
+  var nodes=[root]
+  for(let i=1,j=0;i<arr.length&&j<nodes.length;){
+    if(arr[i]){
+      nodes[j].left=createTreeNode(arr[i++])
+      nodes.push(nodes[j].left)
+    }else{
+      nodes[j].left=null
+    }
+    if(arr[i]){
+      nodes[j].right=createTreeNode(arr[i++])
+      nodes.push(nodes[j].right)
+    }else{
+      nodes[j].right=null
+    }
+    j++
+  }
+  return root
 }
