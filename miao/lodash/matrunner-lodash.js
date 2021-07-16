@@ -125,15 +125,40 @@ var matrunner=function(){
   }
 
   function forEach(arr,f){
-    for(var i=0;i<arr.length;i++){
-      f(arr[i])
+    if(Array.isArray(arr)){
+      for(let i=0;i<arr.length;i++){
+        f(arr[i])
+      }
+    }
+    if(typeof(arr)=='object'){
+      for(let key in arr){
+        f(arr[key],key)
+      }
     }
   }
 
   function map(arr,f){
     var ans=[]
-    for(let i=0;i<arr.length;i++){
-      ans.push(f(arr[i]))
+    if(Array.isArray(arr)){
+      if(typeof(f)=='function'){
+        arr.forEach(x=>{
+          ans.push(f(x))
+        })
+      }
+      if(typeof(f)=='string'){
+        for(var key of arr){
+          if(f in key){
+            ans.push(key[f])
+          }
+        }
+      }
+    }
+    if(typeof(arr)=='object'){
+      if(typeof(f)=='function'){
+        for(var key in arr){
+          ans.push(f(arr[key]))
+        }
+      }
     }
     return ans
   }
@@ -154,12 +179,18 @@ var matrunner=function(){
         }
       }
     }
-    if(typeof(f)=='object'){
+    if(typeof(f)=='object'){//取出两个对象中的同名属性进行过滤
       for(var key of arr){
+        var flag=true
         for(var k in f){
-          if(k in key&&isEqual(f[k],key[k])){
-            ans.push(arr[key])
+          if(!(k in key)){
+            flag=false
+          }else if(!isEqual(f[k],key[k])){
+            flag=false
           }
+        }
+        if(flag){
+          ans.push(key)
         }
       }
     }
@@ -167,7 +198,7 @@ var matrunner=function(){
       for(var key of arr){
         if(f in key){
           if(key[f]){
-            ans.push(arr[key])
+            ans.push(key)
           }
         }
       }
@@ -176,13 +207,24 @@ var matrunner=function(){
   }
 
   function reduce(arr,f,initial=arr[0]){
-    var result=initial
-    var idx=1
-    if(arguments.length>2){
-      idx=0
+    if(Array.isArray(arr)){
+      var result=initial
+      var idx=1
+      if(arguments.length>2){
+        idx=0
+      }
+      for(var i=idx;i<arr.length;i++){
+        result=f(result,arr[i])
+      }
     }
-    for(var i=idx;i<arr.length;i++){
-      result=f(result,arr[i])
+    if(typeof(arr)=='object'){
+      result={}
+      if(arguments.length>2){
+        result=initial
+      }
+      for(let key in arr){
+        f(result,arr[key],key)
+      }
     }
     return result
   }
@@ -275,7 +317,7 @@ var matrunner=function(){
         return false
       }else{
         for(let i=0;i<obj1.length;i++){
-          if(obj1[i]!=obj2[i]){
+          if(!isEqual(obj1[i],obj2[i])){
             return false
           }
         }
@@ -418,9 +460,9 @@ var matrunner=function(){
 
   function reduceRight(arr,f,initial=arr[arr.length-1]){
     var result=initial
-    var idx=arr.length-1
+    var idx=arr.length-2
     if(arguments.length>2){
-      idx=arr.length-2
+      idx=arr.length-1
     }
     for(var i=idx;i>=0;i--){
       result=f(result,arr[i])
@@ -439,6 +481,10 @@ var matrunner=function(){
   }
 
   function isNaN(val){
+    //包装类型的判断不了，包装完以后成个对象了，自身的地址等于自身的地址？
+    if(typeof(val)=='object'){
+      val=Number(val)
+    }
     return !(val===val)
   }
 
@@ -493,7 +539,7 @@ var matrunner=function(){
     return res
   }
 
-  
+
   return {
     'chunk':chunk,
     'compact':compact,
