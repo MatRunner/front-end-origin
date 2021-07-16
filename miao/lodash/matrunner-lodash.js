@@ -262,6 +262,7 @@ var matrunner=function(){
       return true
     }
   }
+
   function isEqual(obj1,obj2){
     if(typeof(obj1)!==typeof(obj2)){
       return false
@@ -383,6 +384,116 @@ var matrunner=function(){
     }
     return obj
   }
+
+  function reverse(arr){
+    var i=0,j=arr.length-1
+    for(;i<j;i++,j--){
+      [arr[i],arr[j]]=[arr[j],arr[i]]//解构赋值yyds
+    }
+    return arr
+  }
+  
+  function countBy(arr,f){
+    var obj={}
+    if(typeof(f)=='function'){
+      arr.forEach(x=>{
+        if(f(x) in obj){
+          obj[f(x)]++
+        }else{
+          obj[f(x)]=1
+        }
+      })
+    }
+    if(typeof(f)=='string'){
+      arr.forEach(x=>{
+        if(x[f] in obj){
+          obj[x[f]]++
+        }else{
+          obj[x[f]]=1
+        }
+      })
+    }
+    return obj
+  }
+
+  function reduceRight(arr,f,initial=arr[arr.length-1]){
+    var result=initial
+    var idx=arr.length-1
+    if(arguments.length>2){
+      idx=arr.length-2
+    }
+    for(var i=idx;i>=0;i--){
+      result=f(result,arr[i])
+    }
+    return result
+  }
+
+  function shuffle(arr){
+    for(var i=arr.length-1;i>=0;i--){
+      var randomIdx=Math.floor(Math.random()*(i+1))
+      var randomVal=arr[randomIdx]
+      arr[randomIdx]=arr[i]
+      arr[i]=randomVal
+    }
+    return arr
+  }
+
+  function isNaN(val){
+    return !(val===val)
+  }
+
+  function isNull(val){
+    return Object.getPrototypeOf(Object.prototype)===val
+  }
+
+  function isNil(val){
+    return val===undefined||val===null
+  }
+
+  function isUndefined(val){
+    return val===undefined
+  }
+
+  function toArray(val){
+    var ans=[]
+    if(typeof(val)=='object'){
+      if(!val){return ans}
+      for(let key in val){
+        ans.push(val[key])
+      }
+    }
+    if(typeof(val)=='string'){
+      for(let i=0;i<val.length;i++){
+        ans.push(val[i])
+      }
+    }
+    return ans
+  }
+
+  function sum(arr){
+    var res=0
+    for(let i=0;i<arr.length;i++){
+      res+=arr[i]
+    }
+    return res
+  }
+
+  function sumBy(arr,f){
+    var res=0
+    if(typeof(f)=='function'){
+      arr.forEach(x=>{
+        res+=f(x)
+      })
+    }
+    if(typeof(f)=='string'){
+      arr.forEach(x=>{
+        res+=x[f]
+      })
+    }
+    return res
+  }
+
+  
   return {
     'chunk':chunk,
     'compact':compact,
@@ -404,5 +515,16 @@ var matrunner=function(){
     'isEqual':isEqual,
     'some':some,
     'sortBy':sortBy,
+    'reverse':reverse,
+    'countBy':countBy,
+    'reduceRight':reduceRight,
+    'shuffle':shuffle,
+    'isNaN':isNaN,
+    'isNull':isNull,
+    'isNil':isNil,
+    'isUndefined':isUndefined,
+    'toArray':toArray,
+    'sum':sum,
+    'sumBy':sumBy,
   }
 }()
