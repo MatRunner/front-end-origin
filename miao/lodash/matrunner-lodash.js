@@ -135,6 +135,7 @@ var matrunner=function(){
         f(arr[key],key)
       }
     }
+    return arr
   }
 
   function map(arr,f){
@@ -153,7 +154,7 @@ var matrunner=function(){
         }
       }
     }
-    if(typeof(arr)=='object'){
+    if(typeof(arr)=='object'&&!Array.isArray(arr)){
       if(typeof(f)=='function'){
         for(var key in arr){
           ans.push(f(arr[key]))
@@ -217,7 +218,7 @@ var matrunner=function(){
         result=f(result,arr[i])
       }
     }
-    if(typeof(arr)=='object'){
+    if(typeof(arr)=='object'&&!Array.isArray(arr)){
       result={}
       if(arguments.length>2){
         result=initial
@@ -483,7 +484,10 @@ var matrunner=function(){
   function isNaN(val){
     //包装类型的判断不了，包装完以后成个对象了，自身的地址等于自身的地址？
     if(typeof(val)=='object'){
-      val=Number(val)
+      var ref=new Number(1)
+      if(Object.getPrototypeOf(ref)===Object.getPrototypeOf(val)){
+        val=Number(val)
+      }
     }
     return !(val===val)
   }
