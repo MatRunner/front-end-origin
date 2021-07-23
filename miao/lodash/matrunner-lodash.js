@@ -543,7 +543,259 @@ var matrunner=function(){
     return res
   }
 
+  function difference(arr,ref){
+    var ans=[]
+    for(var i=0;i<arr.length;i++){
+      var flag=true
+      for(var val of ref){
+        if(val==arr[i]){
+          flag=false
+          break
+        }
+      }
+      if(flag){
+       ans.push(arr[i]) 
+      }
+   }
+    return ans
+  }
 
+  function diffenrenceBy(arr,ref,f){
+    var ans=[]
+    if(typeof(f)=='function'){
+      for(var i=0;i<arr.length;i++){
+        var flag=true
+        for(var key of ref){
+          if(f(key)==f(arr[i])){
+            flag=false
+            break
+          }
+        }
+        if(flag){
+          ans.push(arr[i])
+        }
+      }
+    }
+    if(typeof(f)=='string'){
+      for(var i=0;i<arr.length;i++){
+        var flag=true
+        for(var key of ref){
+          if(key[f]==arr[i][f]){
+            flag=false
+            break
+          }
+        }
+        if(flag){
+          ans.push(arr[i])
+        }
+      }
+    }
+    return ans
+  }
+
+  function differenceWith(arr,ref,f){
+    var ans=[]
+    for(var i=0;i<arr.length;i++){
+      var flag=true
+      for(var key of ref){
+        if(f(arr[i],key)){
+          flag=false
+          break
+        }
+      }
+      if(flag){
+        ans.push(arr[i])
+      }
+    }
+    return ans
+  }
+
+  function drop(arr,n=1){
+    var ans=[]
+    if(n>arr.length-1){return ans}
+    for(var i=n;i<arr.length;i++){
+      ans.push(arr[i])
+    }
+    return ans
+  }
+
+  function dropRight(arr,n=1){
+    var ans=[]
+    if(n>arr.length-1){
+      return ans
+    }
+    for(var i=0;i<arr.length-n;i++){
+      ans.push(arr[i])
+    }
+    return ans
+  }
+  function dropWhile(ary,f){
+    var ans
+    if(typeof(f)=='function'){
+      for(let i=0;i<ary.length;i++){
+        if(!f(ary[i])){
+          ans=ary.slice(i)
+          break
+        }
+      }
+    }
+    if(Array.isArray(f)){
+      for(let i=0;i<ary.length;i++){
+        if(!(f[0] in ary[i])){
+          ans=ary.slice(i)
+          break
+        }else if(!isEqual(f[1],ary[i][f[0]])){
+          ans.slice(i)
+          break
+        }
+      }
+    }
+    if(getPrototypeOf(f)===Object.prototype){
+      for(let i=0;i<ary.length;i++){
+        if(!isEqual(f,ary[i])){
+          ans=ary.slice(i)
+          break
+        }
+      }
+    }
+    if(typeof(f)=='string'){
+      for(let i=0;i<ary.length;i++){
+        if(!(f in ary[i])){
+          ans.slice(i)
+          break
+        }else if(!ary[i][f]){
+          ans.slice(i)
+          break
+        }
+      }
+    }
+    return ans
+  }
+  function dropRightWhile(ary,f){
+    var ans
+    if(typeof(f)=='function'){
+      for(let i=ary.length-1;i>=0;i--){
+        if(!f(ary[i])){
+          ans=ary.slice(0,i+1)
+          break
+        }
+      }
+    }
+    if(Array.isArray(f)){
+      for(let i=ary.length-1;i>=0;i--){
+        if(!(f[0] in ary[i])){
+          ans=ary.slice(0,i+1)
+          break
+        }else if(!isEqual(f[1],ary[i][f[0]])){
+          ans.slice(0,i+1)
+          break
+        }
+      }
+    }
+    if(Object.getPrototypeOf(f)===Object.prototype){
+      for(let i=ary.length-1;i>=0;i--){
+        if(!isEqual(f,ary[i])){
+          ans=ary.slice(0,i+1)
+          break
+        }
+      }
+    }
+    if(typeof(f)=='string'){
+      for(let i=ary.length-1;i>=0;i--){
+        if(!(f in ary[i])){
+          ans.slice(0,i+1)
+          break
+        }else if(!ary[i][f]){
+          ans.slice(0,i+1)
+          break
+        }
+      }
+    }
+    return ans
+  }
+  function fill(ary,value,start=0,end=ary.length){
+    for(let i=start;i<end;i++){
+      ary[i]=value
+    }
+    return ary
+  }
+  function findIndex(ary,f,fromIndex=0){
+    if(typeof(f)=='function'){
+      for(let i=fromIndex;i<ary.length;i++){
+       if(f(ary[i])){
+         return i
+       } 
+      }
+      return -1
+    }
+    if(Array.isArray(f)){
+      for(let i=fromIndex;i<ary.length;i++){
+        if(f[0] in ary[i]){
+          if(f[1]==ary[i][f[0]]){
+            return i
+          }
+        }
+      }
+      return -1
+    }
+    if(Object.getPrototypeOf(f)===Object.prototype){
+      for(let i=fromIndex;i<ary.length;i++){
+        if(isEqual(ary[i],f)){
+          return i
+        }
+      }
+      return -1
+    }
+    if(typeof(f)=='string'){
+      for(let i=fromIndex;i<ary.length;i++){
+        if(f in ary[i]){
+          if(ary[i][f]){
+            return i
+          }
+        }
+      }
+      return -1
+    }
+  }
+  function findLastIndex(ary,f,fromIndex=ary.length-1){
+    if(typeof(f)=='function'){
+      for(let i=fromIndex;i>=0;i--){
+       if(f(ary[i])){
+         return i
+       } 
+      }
+      return -1
+    }
+    if(Array.isArray(f)){
+      for(let i=fromIndex;i>=0;i--){
+        if(f[0] in ary[i]){
+          if(f[1]==ary[i][f[0]]){
+            return i
+          }
+        }
+      }
+      return -1
+    }
+    if(Object.getPrototypeOf(f)===Object.prototype){
+      for(let i=fromIndex;i>=0;i--){
+        if(isEqual(ary[i],f)){
+          return i
+        }
+      }
+      return -1
+    }
+    if(typeof(f)=='string'){
+      for(let i=fromIndex;i>=0;i--){
+        if(f in ary[i]){
+          if(ary[i][f]){
+            return i
+          }
+        }
+      }
+      return -1
+    }
+  }
+  
   return {
     'chunk':chunk,
     'compact':compact,
@@ -576,5 +828,15 @@ var matrunner=function(){
     'toArray':toArray,
     'sum':sum,
     'sumBy':sumBy,
+    'difference':difference,
+    'differenceBy':diffenrenceBy,
+    'differenceWith':differenceWith,
+    'drop':drop,
+    'dropRight':dropRight,
+    'dropRightWhile':dropRightWhile,
+    'dropWhile':dropWhile,
+    'fill':fill,
+    'findIndex':findIndex,
+    'findLastIndex':findLastIndex,
   }
 }()
