@@ -580,7 +580,8 @@ var matrunner=function(){
       }
     }
     if(Array.isArray(f)){
-      return difference(arr,compare,f)
+      compare.push(f)
+      return difference(arr,...compare)
     }
     return ans
   }
@@ -621,6 +622,7 @@ var matrunner=function(){
     }
     return ans
   }
+
   function dropWhile(ary,f){
     var ans
     if(typeof(f)=='function'){
@@ -642,7 +644,7 @@ var matrunner=function(){
         }
       }
     }
-    if(getPrototypeOf(f)===Object.prototype){
+    if(Object.getPrototypeOf(f)===Object.prototype){
       for(let i=0;i<ary.length;i++){
         if(!isEqual(f,ary[i])){
           ans=ary.slice(i)
@@ -663,6 +665,7 @@ var matrunner=function(){
     }
     return ans
   }
+
   function dropRightWhile(ary,f){
     var ans
     if(typeof(f)=='function'){
@@ -705,12 +708,14 @@ var matrunner=function(){
     }
     return ans
   }
+
   function fill(ary,value,start=0,end=ary.length){
     for(let i=start;i<end;i++){
       ary[i]=value
     }
     return ary
   }
+
   function findIndex(ary,f,fromIndex=0){
     if(typeof(f)=='function'){
       for(let i=fromIndex;i<ary.length;i++){
@@ -749,6 +754,7 @@ var matrunner=function(){
       return -1
     }
   }
+
   function findLastIndex(ary,f,fromIndex=ary.length-1){
     if(typeof(f)=='function'){
       for(let i=fromIndex;i>=0;i--){
@@ -787,6 +793,7 @@ var matrunner=function(){
       return -1
     }
   }
+
   function fromPairs(ary){
     var obj={}
     ary.forEach(element=>{
@@ -798,9 +805,11 @@ var matrunner=function(){
     })
     return obj
   }
+
   function head(ary){
     return ary.length==0?undefined:ary[0]
   }
+
   function indexOf(ary,value,fromIndex=0){
     for(let i=fromIndex;i<ary.length;i++){
       if(ary[i]===value){
@@ -809,12 +818,134 @@ var matrunner=function(){
     }
     return -1
   }
-  function initial(ary){
-    return ary.slice(ary.length-1)
-  }
-  function intersection(){
 
+  function initial(ary){
+   ary.slice(ary.length-1)
+   return ary
   }
+
+  function intersectionBy(ary,...args){
+    var f=args.pop()
+    var ans=[]
+    var ref=args.reduce((ary1,ary2)=>{return ary1.concat(ary2)},[])
+    if(typeof(f)=='function'){
+      ref=ref.map(x=>f(x))
+      ary.forEach(element=>{
+        if(ref.includes(f(element))){
+          ans.push(element)
+        }
+      })
+    }
+    if(typeof(f)=='string'){
+      ref=ref.map(x=>x[f])
+      ary.forEach(element=>{
+        if(ref.includes(element[f])){
+          ans.push(element)
+        }
+      })
+    }
+    if(Array.isArray(f)){
+      ref.concat(f)
+      ary.forEach(element=>{
+        if(ref.includes(element)){
+          ans.push(element)
+        }
+      })
+    }
+    return ans
+  }
+
+  function intersection(ary,...args){
+    return intersectionBy(ary,...args)
+  }
+
+  function intersectionWith(ary,...args){
+    var ref=args.reduce((ary1,ary2)=>{
+      return ary1.concat(ary2)
+    },[])
+    var ans=[]
+    ary.forEach(element=>{
+      ref.forEach(compare=>{
+        if(isEqual(element,compare)){
+          ans.push(element)
+        }
+      })
+    })
+    return ans
+  }
+  function join(ary,mark){
+    return ary.reduce((a,b)=>{
+      return a+mark+b
+    })
+  }
+
+  function last(ary){
+    return ary.length==0?undefined:ary[ary.length-1]
+  }
+
+  function lastIndexOf(ary,value,fromIndex=ary.length-1){
+    for(let i=fromIndex;i>=0;i--){
+      if(ary[i]===value){
+        return i
+      }
+    }
+  }
+
+  function nth(ary,n){
+    if(n<0){
+      var pos=ary.length+n
+    }else{
+      pos=n
+    }
+    return ary[pos]
+  }
+
+  function pull(ary,...args){
+    for(let i=0;i<ary.length;){
+      if(args.includes(ary[i])){
+        ary.splice(i,1)
+      }else{
+        i++
+      }
+    }
+    return ary
+  }
+
+  function pullAll(ary,ref){
+    return pull(ary,...ref)
+  }
+
+  function pullAllBy(ary,ref,f){
+    for(let i=0;i<ary.length;){
+      if(ref.map(x=>x[f]).includes(ary[i][f])){
+        ary.splice(i,1)
+      }else{
+        i++
+      }
+    }
+    return ary
+  }
+
+  function pullAllWith(ary,ref,f){
+    for(let i=0;i<ary.length;){
+      var flag=false
+      for(let j=0;j<ref.length;j++){
+        if(f(ary[i],ref[j])){
+          flag=true
+          break
+        }
+      }
+      if(flag){
+        ary.splice(i,1)
+      }else{
+        i++
+      }
+    }
+    return ary
+  }
+
+
+
 
   return {
     'chunk':chunk,
@@ -863,5 +994,15 @@ var matrunner=function(){
     'indexOf':indexOf,
     'initial':initial,
     'intersection':intersection,
+    'intersectionBy':intersectionBy,
+    'intersectionWith':intersectionWith,
+    'join':join,
+    'last':last,
+    'lastIndexOf':lastIndexOf,
+    'nth':nth,
+    'pull':pull,
+    'pullAll':pullAll,
+    'pullAllBy':pullAllBy,
+    'pullAllWith':pullAllWith,
   }
 }()
