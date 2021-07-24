@@ -543,52 +543,44 @@ var matrunner=function(){
     return res
   }
 
-  function difference(arr,ref){
+  function difference(arr,...compare){
     var ans=[]
+    var ref=[]
+    ref=compare.reduce((ary1,ary2)=>{
+      return ary1.concat(ary2)
+    },[])
     for(var i=0;i<arr.length;i++){
-      var flag=true
-      for(var val of ref){
-        if(val==arr[i]){
-          flag=false
-          break
-        }
-      }
-      if(flag){
-       ans.push(arr[i]) 
+      if(!ref.includes(arr[i])){
+        ans.push(arr[i])
       }
    }
     return ans
   }
 
-  function diffenrenceBy(arr,ref,f){
+  function diffenrenceBy(arr,...compare){
     var ans=[]
+    var f=compare.pop()
+    var ref=compare.reduce((ary1,ary2)=>{
+      return ary1.concat(ary2)
+    },[])
     if(typeof(f)=='function'){
-      for(var i=0;i<arr.length;i++){
-        var flag=true
-        for(var key of ref){
-          if(f(key)==f(arr[i])){
-            flag=false
-            break
-          }
-        }
-        if(flag){
+      ref=ref.map(x=>f(x))
+      for(let i=0;i<arr.length;i++){
+        if(!ref.includes(f(arr[i]))){
           ans.push(arr[i])
         }
       }
     }
     if(typeof(f)=='string'){
+      ref=ref.map(x=>x[f])
       for(var i=0;i<arr.length;i++){
-        var flag=true
-        for(var key of ref){
-          if(key[f]==arr[i][f]){
-            flag=false
-            break
-          }
-        }
-        if(flag){
+        if(!ref.includes(arr[i][f])){
           ans.push(arr[i])
         }
       }
+    }
+    if(Array.isArray(f)){
+      return difference(arr,compare,f)
     }
     return ans
   }
@@ -645,7 +637,7 @@ var matrunner=function(){
           ans=ary.slice(i)
           break
         }else if(!isEqual(f[1],ary[i][f[0]])){
-          ans.slice(i)
+          ans=ary.slice(i)
           break
         }
       }
@@ -661,10 +653,10 @@ var matrunner=function(){
     if(typeof(f)=='string'){
       for(let i=0;i<ary.length;i++){
         if(!(f in ary[i])){
-          ans.slice(i)
+          ans=ary.slice(i)
           break
         }else if(!ary[i][f]){
-          ans.slice(i)
+          ans=ary.slice(i)
           break
         }
       }
@@ -687,7 +679,7 @@ var matrunner=function(){
           ans=ary.slice(0,i+1)
           break
         }else if(!isEqual(f[1],ary[i][f[0]])){
-          ans.slice(0,i+1)
+          ans=ary.slice(0,i+1)
           break
         }
       }
@@ -703,10 +695,10 @@ var matrunner=function(){
     if(typeof(f)=='string'){
       for(let i=ary.length-1;i>=0;i--){
         if(!(f in ary[i])){
-          ans.slice(0,i+1)
+          ans=ary.slice(0,i+1)
           break
         }else if(!ary[i][f]){
-          ans.slice(0,i+1)
+          ans=ary.slice(0,i+1)
           break
         }
       }
@@ -795,7 +787,35 @@ var matrunner=function(){
       return -1
     }
   }
-  
+  function fromPairs(ary){
+    var obj={}
+    ary.forEach(element=>{
+      if(element[0] in obj){
+        obj[element[0]]=element[1]
+      }else{
+        obj[element[0]]=element[1]
+      }
+    })
+    return obj
+  }
+  function head(ary){
+    return ary.length==0?undefined:ary[0]
+  }
+  function indexOf(ary,value,fromIndex=0){
+    for(let i=fromIndex;i<ary.length;i++){
+      if(ary[i]===value){
+        return i
+      }
+    }
+    return -1
+  }
+  function initial(ary){
+    return ary.slice(ary.length-1)
+  }
+  function intersection(){
+
+  }
+
   return {
     'chunk':chunk,
     'compact':compact,
@@ -838,5 +858,10 @@ var matrunner=function(){
     'fill':fill,
     'findIndex':findIndex,
     'findLastIndex':findLastIndex,
+    'fromPairs':fromPairs,
+    'head':head,
+    'indexOf':indexOf,
+    'initial':initial,
+    'intersection':intersection,
   }
 }()
