@@ -856,9 +856,7 @@ var matrunner=function(){
   }
 
   function intersection(ary,...args){
-    var ref=args.reduce((a,b)=>{
-      a.concat(b)
-    },[])
+    var ref=args.reduce((a,b)=>a.concat(b),[])
     var ans=[]
     ary.forEach(element=>{
       if(ref.includes(element)){
@@ -959,7 +957,7 @@ var matrunner=function(){
     var ans=[]
     for(let i=0;i<ary.length;i++){
       if(Array.isArray(ary[i])){
-        aryp[i].forEach(x=>{
+        ary[i].forEach(x=>{
           ans.push(x)
         })
       }else{
@@ -989,7 +987,12 @@ var matrunner=function(){
   }
 
   function sortedIndexBy(ary,value,f){
-    return sortedIndex(ary.map(x=>x[f]),value[f])
+    if(typeof(f)=='function'){
+      return sortedIndex(ary.map(x=>f(x)),f(value))
+    }
+    if(typeof(f)=='string'){
+      return sortedIndex(ary.map(x=>x[f]),value[f])
+    }
   }
 
   function sortedIndexOf(ary,value){
