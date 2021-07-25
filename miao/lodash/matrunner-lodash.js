@@ -820,7 +820,7 @@ var matrunner=function(){
   }
 
   function initial(ary){
-   ary.slice(ary.length-1)
+   ary.pop()
    return ary
   }
 
@@ -856,7 +856,16 @@ var matrunner=function(){
   }
 
   function intersection(ary,...args){
-    return intersectionBy(ary,...args)
+    var ref=args.reduce((a,b)=>{
+      a.concat(b)
+    },[])
+    var ans=[]
+    ary.forEach(element=>{
+      if(ref.includes(element)){
+        ans.push(element)
+      }
+    })
+    return ans
   }
 
   function intersectionWith(ary,...args){
@@ -874,6 +883,7 @@ var matrunner=function(){
     return ans
   }
   function join(ary,mark){
+    mark=''+mark
     return ary.reduce((a,b)=>{
       return a+mark+b
     })
@@ -889,6 +899,7 @@ var matrunner=function(){
         return i
       }
     }
+    return -1
   }
 
   function nth(ary,n){
@@ -944,14 +955,129 @@ var matrunner=function(){
     return ary
   }
 
+  function flatten(ary){
+    var ans=[]
+    for(let i=0;i<ary.length;i++){
+      if(Array.isArray(ary[i])){
+        aryp[i].forEach(x=>{
+          ans.push(x)
+        })
+      }else{
+        ans.push(ary[i])
+      }
+    }
+    return ans
+  }
 
+  function sortedIndex(ary,value){
+    var left=0,right=ary.length-1
+    if(value>=ary[right]){
+      return right+1
+    }
+    if(value<ary[left]){
+      return 0
+    }
+    while(left<right){
+      var mid=left+(right-left>>1)
+      if(ary[mid]>=value){
+        right=mid
+      }else{
+        left=mid+1
+      }
+    }
+    return left
+  }
 
+  function sortedIndexBy(ary,value,f){
+    return sortedIndex(ary.map(x=>x[f]),value[f])
+  }
+
+  function sortedIndexOf(ary,value){
+    var left=0,right=ary.length-1
+    while(left<right){
+      var mid=left+(right-left>>1)
+      if(ary[mid]<value){
+        left=mid+1
+      }else{
+        right=mid
+      }
+    }
+    if(ary[left]===value){
+      return left
+    }else{
+      return -1
+    }
+  }
+
+  function sortedLastIndex(ary,value){
+    var left=0,right=ary.length-1
+    if(value>=ary[right]){
+      return right+1
+    }
+    if(value<ary[left]){
+      return 0
+    }
+    while(left<right){
+      var mid=left+(right-left>>1)
+      if(ary[mid]>value){
+        right=mid
+      }else{
+        left=mid+1
+      }
+    }
+    return left
+  }
+
+  function sortedLastIndexBy(ary,value,f){
+    return sortedLastIndex(ary.map(x=>x[f]),value[f])
+  }
+
+  function sortedLastIndexOf(ary,value){
+    var left=0,right=ary.length-1
+    while(left<=right){
+      var mid=left+(right-left>>1)
+      if(ary[mid]<=value){
+        left=mid+1
+      }else{
+        right=mid-1
+      }
+    }
+    if(ary[right]===value){
+      return right
+    }else{
+      return -1
+    }
+  }
+
+  function sortedUniq(ary){
+    var ans=[]
+    if(ary.length==0){return []}
+    ans.push(ary[0])
+    for(let i=1;i<ary.length;i++){
+      if(ary[i]>ary[i-1]){
+        ans.push(ary[i])
+      }
+    }
+    return ans
+  }
+
+  function sortedUniqBy(ary,f){
+    if(ary.length==0){return []}
+    var ans=[ary[0]]
+    for(let i=0;i<ary.length;i++){
+      if(f(ary[i])>f(ary[i-1])){
+        ans.push(ary[i])
+      }
+    }
+    return ans
+  }
 
   return {
     'chunk':chunk,
     'compact':compact,
     'uniq':uniq,
     'uniqBy':uniqBy,
+    'flatten':flatten,
     'flattenDeep':flattenDeep,
     'flattenDepth':flattenDepth,
     'groupBy':groupBy,
@@ -1004,5 +1130,13 @@ var matrunner=function(){
     'pullAll':pullAll,
     'pullAllBy':pullAllBy,
     'pullAllWith':pullAllWith,
+    'sortedIndex':sortedIndex,
+    'sortedIndexBy':sortedIndexBy,
+    'sortedIndexOf':sortedIndexOf,
+    'sortedLastIndex':sortedLastIndex,
+    'sortedLastIndexBy':sortedLastIndexBy,
+    'sortedLastIndexOf':sortedLastIndexOf,
+    'sortedUniq':sortedUniq,
+    'sortedUniqBy':sortedUniqBy,
   }
 }()
