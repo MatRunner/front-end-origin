@@ -1,4 +1,50 @@
 var matrunner=function(){
+  //=========================================================================================================================
+  //工具类函数，先造点轮子
+  function iteratee(arg){
+    if(typeof(arg)=='function'){
+      return arg
+    }
+    if(typeof(arg)=='string'){
+      return function(element){
+        return element[arg]
+      }
+    }
+    if(Array.isArray(arg)){
+      return function(element){
+
+      }
+    }
+  }
+
+  function matches(obj){
+    return function(src){
+      for(var key in obj){
+        if(!(key in obj)){
+          return false
+        }else{
+          if(!isEqual(obj[key],src[key])){
+            return false
+          }
+        }
+      }
+      return true
+    }
+  }
+  function matchesProperty(ary){
+    return function(obj){
+      if(!(ary[0] in obj)){
+        return false
+      }else{
+        if(!isEqual(ary[1],obj[ary[0]])){
+          return false
+        }else{
+          return true
+        }
+      }
+    }
+  }
+  //=========================================================================================================================
   
   function chunk(arr,n){
     var ans=[]
@@ -138,29 +184,35 @@ var matrunner=function(){
     return arr
   }
 
-  function map(arr,f){
+  function map(ary,f){
     var ans=[]
-    if(Array.isArray(arr)){
-      if(typeof(f)=='function'){
-        arr.forEach(x=>{
-          ans.push(f(x))
-        })
-      }
-      if(typeof(f)=='string'){
-        for(var key of arr){
-          if(f in key){
-            ans.push(key[f])
+    if(typeof(f)=='string'){
+      var str=f.split('.')
+      if(str.length>1){
+        ary.forEach(x=>{
+          var t=x
+          for(var i=0;i<str.length;i++){
+            t=t[str[i]]
           }
-        }
+          ans.push(t)
+        })
+        return ans
+      }else{
+        f=iteratee(f)
       }
     }
-    if(typeof(arr)=='object'&&!Array.isArray(arr)){
-      if(typeof(f)=='function'){
-        for(var key in arr){
-          ans.push(f(arr[key]))
-        }
-      }
+    if(Array.isArray(f)){
+
     }
+    if(Object.getPrototypeOf(ary)===Object.prototype){
+      for(var key in ary){
+        ans.push(f(ary[key]))
+      }
+      return ans
+    }
+    ary.forEach(x=>{
+      ans.push(f(x))
+    })
     return ans
   }
 
@@ -1075,6 +1127,90 @@ var matrunner=function(){
     return ans
   }
 
+  function tail(ary){
+    return ary.slice(1)
+  }
+
+  function take(ary,n=1){
+    return ary.slice(0,n+1)
+  }
+
+  function takeRight(ary,n=1){
+    return ary.slice(ary.length-n)
+  }
+
+  function takeWhile(ary,f){
+    for(let i=0;i<ary.length;i++){
+      if(f(ary[i])){
+        return ary.slice(0,i)
+      }
+    }
+  }
+
+  function takeRightWhile(ary,f){
+    for(let i=ary.length-1;i>=0;i--){
+      if(f(ary[i])){
+        return ary.slice(i)
+      }
+    }
+  }
+
+  function union(...ary){
+    for(let i=1;i<ary.length;i++){
+      for(let j=0;j<ary[i].length;j++){
+        if(!ary[0].includes(ary[i][j])){
+          ary[0].push(ary[i][j])
+        }
+      }
+    }
+    return ary[0]
+  }
+
+  function unionBy(...ary){
+    var f=ary.pop()
+    if(typeof(f)=='function'){
+      var ref=ary[0].map(x=>f(x))
+      for(let i=1;i<ary.length;i++){
+        for(let j=0;j<ary[i].length;j++){
+          if(!ref.includes(f(ary[i][j]))){
+            ary[0].push(ary[i][j])
+          }
+        }
+      }
+      return ary[0]
+    }
+    if(typeof(f)=='string'){
+      var ref=ary[0].map(x=>x[f])
+      for(let i=1;i<ary.length;i++){
+        for(let j=0;j<ary[i].length;j++){
+          if(!ref.includes(ary[i][j][f])){
+            ary[0].push(ary[i][j])
+          }
+        }
+      }
+      return ary[0]
+    }
+  }
+
+  function unionWith(...ary){
+    var f=ary.pop()
+    for(let i=1;i<ary.length;i++){
+      for(let j=0;j<ary[i].length;j++){
+        var flag=true
+        for(let k=0;k<ary[0].length;k++){
+          if(f(ary[0][k],ary[i][j])){
+            flag=false
+            break
+          }
+        }
+        if(flag){ary[0].push(ary[i][j])}
+      }
+    }
+    return ary[0]
+  }
+  
+  function uniqWith()
+
   return {
     'chunk':chunk,
     'compact':compact,
@@ -1141,5 +1277,22 @@ var matrunner=function(){
     'sortedLastIndexOf':sortedLastIndexOf,
     'sortedUniq':sortedUniq,
     'sortedUniqBy':sortedUniqBy,
+    'tail':tail,
+    'take':take,
+    'takeRight':takeRight,
+    'takeRightWhile':takeRightWhile,
+    'takeWhile':takeWhile,
+    'union':union,
+    'unionBy':unionBy,
+    'unionWith':unionWith,
+    'uniqWith':uniqWith,
+    'unzipWith':unzipWith,
+    'without':without,
+    'xor':xor,
+    'xorBy':xorBy,
+    'xorWith':xorWith,
+    'zipObject':zipObject,
+    'zipObjectDeep':zipObjectDeep,
+    'zipWith':zipWith,
   }
 }()
