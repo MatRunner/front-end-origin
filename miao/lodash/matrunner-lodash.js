@@ -1209,7 +1209,6 @@ var matrunner=function(){
     return ary[0]
   }
   
-  function uniqWith()
 
   return {
     'chunk':chunk,
