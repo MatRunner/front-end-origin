@@ -11,8 +11,25 @@ var matrunner=function(){
       }
     }
     if(Array.isArray(arg)){
-      return function(element){
-
+      return function(obj){
+        if(!(arg[0] in obj)){
+          return false
+        }else{
+          if(!isEqual(arg[1],obj[arg[0]])){
+            return false
+          }else{
+            return true
+          }
+        }
+      }
+    }
+    if(Object.getPrototypeOf(arg)===Object.prototype){
+      return function(obj){
+        if(isEqual(obj,arg)){
+          return true
+        }else{
+          return false
+        }
       }
     }
   }
@@ -210,9 +227,9 @@ var matrunner=function(){
       }
       return ans
     }
-    ary.forEach(x=>{
-      ans.push(f(x))
-    })
+    for(let i=0;i<ary.length;i++){
+      ans.push(f(ary[i],i,ary))
+    }
     return ans
   }
 
@@ -1132,25 +1149,35 @@ var matrunner=function(){
   }
 
   function take(ary,n=1){
-    return ary.slice(0,n+1)
+    var ans=[]
+    for(let i=0;i<ary.length&&i<n;i++){
+      ans.push(ary[i])
+    }
+    return ans
   }
 
   function takeRight(ary,n=1){
-    return ary.slice(ary.length-n)
+    var ans=[]
+    for(let i=ary.length-1;i>=0&&i>=ary.length-n;i--){
+      ans.unshift(ary[i])
+    }
+    return ans
   }
 
   function takeWhile(ary,f){
+    var f=iteratee(f)
     for(let i=0;i<ary.length;i++){
-      if(f(ary[i])){
-        return ary.slice(0,i)
+      if(!f(ary[i])){
+        return take(ary,i)
       }
     }
   }
 
   function takeRightWhile(ary,f){
+    var f=iteratee(f)
     for(let i=ary.length-1;i>=0;i--){
-      if(f(ary[i])){
-        return ary.slice(i)
+      if(!f(ary[i])){
+        return takeRight(ary,ary.length-i-1)
       }
     }
   }
