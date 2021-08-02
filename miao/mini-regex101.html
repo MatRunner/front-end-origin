@@ -11,7 +11,7 @@
     display: block;
     width: 300px;
   }
-  #input {
+  input#input {
     box-sizing: border-box;
     border: 2px double black;
     width: 300px;
@@ -41,6 +41,9 @@
     background-color:transparent;
     caret-color: goldenrod;
     font-size: 24px;
+    overflow-y: scroll;
+    display: block;
+    margin:20px 0;
   }
   #displayarea {
     box-sizing: border-box;
@@ -49,12 +52,15 @@
     height: 300px;
     font-family: monospace;
     position: relative;
-    top:-301px;
     padding: 2px;
     white-space: pre-wrap;
     font-size: 24px;
     word-wrap: break-word;
     word-break: normal;
+    overflow-y: scroll;
+    display: block;
+    margin: 20px 0;
+    top: -320px;
   }
   #testarea::placeholder {
     font-style: italic;
@@ -109,20 +115,31 @@
     }
     var str=testarea.value
     var write=str.replace(re,'<em>$&</em>')
+    write+='<br>'
     displayarea.innerHTML=write
+    displayarea.scrollTop=testarea.scrollTop
+    // scroll()
   }
-  match()
+function scroll(){
+  console.log(testarea.scrollTop)
+  displayarea.scrollTop=testarea.scrollTop
+}
+ 
 </script>
 <body>
   <label for="">
-    <input type="checkbox" name="i" id="insensitive">
-    <input type="checkbox" name="g" id="global">
-    <input type="checkbox" name="m" id="multiline">
+    <input type="checkbox" name="i" id="insensitive" onclick="match()">
+    <input type="checkbox" name="g" id="global" onclick="match()">
+    <input type="checkbox" name="m" id="multiline" onclick="match()">
     <em>请选择匹配模式：</em><br>
-    <label class='check' for="insensitive" onclick="match()">insensitive</label><label class='check' for="global" onclick="match()">global</label><label class='check' for="multiline" onclick="match()">multiline</label>
+    <label class='check' for="insensitive">insensitive</label><label class='check' for="global" >global</label><label class='check' for="multiline">multiline</label>
     <input type="text" id='input' placeholder="请输入正则表达式：" oninput="match()">
   </label>
-  <textarea name="" id="testarea" cols="30" rows="10" oninput="match()" placeholder="请输入需要匹配的文本"></textarea>
-  <div id=displayarea></div>
+  <textarea onscroll="scroll()" id="testarea" cols="30" rows="10" oninput="match()" placeholder="请输入需要匹配的文本"></textarea>
+  <pre id=displayarea></pre>
+  <script>
+     match()
+     scroll()
+  </script>
 </body>
 </html>
