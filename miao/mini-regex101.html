@@ -157,14 +157,15 @@
             overflow-y: scroll;
             display: block;
             margin: 20px 0;
-            top: -320px;
+            top: -318px;
+            left:2px;
             background-color: white;
             color:transparent;
             >em{
               background-color: rgb(213,235,255);
               font-family:Consolas;
               font-style:normal;
-              border:1px dotted #3436F5;
+              outline:1px dotted rgb(159,207,255);
             }
             >em:nth-of-type(even){
               background-color: rgb(159,207,255);
@@ -283,9 +284,14 @@
             }
             matchInformation += '</table>'
           }
-        } else {
+        } else {//小心匹配零宽位置时死循环
           var count = 1
+          var preIndex = re.lastIndex
           while (ary = re.exec(str)) {
+            if (preIndex == re.lastIndex) {
+              re.lastIndex++
+              preIndex = re.lastIndex
+            }
             matchInformation += `
             <tr>
               <td>Match ${count}</td>
@@ -334,6 +340,7 @@
           write += '<br>'
           preNode.innerHTML = write
           matchInf()
+          subs()
         } else {
           preNode.innerHTML = testarea.value
         }
@@ -365,7 +372,7 @@
         var re = new RegExp(node.value, flags)
         var str = testarea.value
         var subsValue = subskeywords.value
-        var write = str.replaceAll(re, subsValue)
+        var write = str.replace(re, subsValue)
         write += '<br>'
         preNode.innerHTML = write
         subsarea.scrollTop = testarea.scrollTop
