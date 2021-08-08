@@ -1488,6 +1488,7 @@ var matrunner = function () {
           return +num
         }
       }
+      return +num
     }
     parseArray() {
       //pos指向[
