@@ -10,26 +10,18 @@
 
 <body>
   <div>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero molestiae obcaecati, repudiandae voluptatem
-      nesciunt quis earum quod expedita id sit labore soluta nostrum ducimus suscipit autem alias. Iusto, vel veritatis.
-    </p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo corporis, itaque obcaecati quos ullam eum
-      reprehenderit aliquam cum ea repellat inventore fugit neque iste blanditiis velit voluptas, autem tenetur ratione?
-    </p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet repellendus aliquid quo placeat maiores ipsam
-      ratione reiciendis? Quidem totam hic deserunt dicta accusamus, praesentium, suscipit explicabo tempore, iure
-      blanditiis itaque!</p>
   </div>
   <script>
     var div = document.querySelector('div')
     var clickTime = null
     var dblclickTime = null
-    div.addEventListener('click', f1)
-    div.addEventListener('dblclick', f2)
+    document.addEventListener('click', f1)
+    document.addEventListener('dblclick', f2)
     function f1(e) {
       clickTime = Date.now()
       console.log('click')
       if (clickTime - dblclickTime < 500) {
+        div.appendChild(document.createTextNode('triple click! '))
         console.log('triple click!')
       }
     }
