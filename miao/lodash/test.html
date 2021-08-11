@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,17 @@
   <title>Document</title>
   <script src="matrunner-lodash.js"></script>
 </head>
+
 <body>
-  
+  <button>here</button>
+  <script>
+    var btn = document.querySelector('button')
+    btn.addEventListener('mousedown', function () {
+      if (event.which == 1) {
+        console.log('left button')
+      }
+    })
+  </script>
 </body>
+
 </html>

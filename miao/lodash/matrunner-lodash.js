@@ -235,9 +235,9 @@ var matrunner = function () {
         f = iteratee(f)
       }
     }
-    if (Array.isArray(f)) {
+    // if (Array.isArray(f)) {
 
-    }
+    // }
     if (Object.getPrototypeOf(ary) === Object.prototype) {
       for (var key in ary) {
         ans.push(f(ary[key]))

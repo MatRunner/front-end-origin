@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drag</title>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  div {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+
+  }
+</style>
+
+<body>
+  <section>
+    <button type="">create a block</button>
+    <input type="color" id='selectColor'>
+  </section>
+</body>
+<script>
+  var btn = document.querySelector('button')
+  var target//记录鼠标点中的元素
+  btn.addEventListener('click', createABlock)
+  function createABlock(e) {
+    var color = document.getElementById('selectColor').value
+    var block = document.createElement('div')
+    block.setAttribute('style', `background-color:${color};top:50px;left:50px;`)
+    document.body.appendChild(block)
+  }
+  document.addEventListener('mousedown', dragIt)
+  document.addEventListener('mouseup', release)
+  var mouseX, mouseY
+  function dragIt(e) {
+    target = e.target
+    if (target.tagName == 'DIV') {
+      target.addEventListener('mousemove', moveIt)
+    }
+  }
+  function release(e) {
+    target.removeEventListener('mousemove', moveIt)
+  }
+  function moveIt(e) {
+    var difX, difY
+    if (mouseX == undefined) {
+      mouseX = e.x
+    } else {
+      difX = e.x - mouseX
+      mouseX = e.x
+    }
+    if (mouseY == undefined) {
+      mouseY = e.y
+    } else {
+      difY = e.y - mouseY
+      mouseY = e.y
+    }
+    target.style.top = parseFloat(target.style.top) + difY + 'px'
+    target.style.left = parseFloat(target.style.left) + difX + 'px'
+  }
+</script>
+
+</html>

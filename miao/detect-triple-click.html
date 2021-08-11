@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>detect-triple-click</title>
+</head>
+
+<body>
+  <div>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero molestiae obcaecati, repudiandae voluptatem
+      nesciunt quis earum quod expedita id sit labore soluta nostrum ducimus suscipit autem alias. Iusto, vel veritatis.
+    </p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo corporis, itaque obcaecati quos ullam eum
+      reprehenderit aliquam cum ea repellat inventore fugit neque iste blanditiis velit voluptas, autem tenetur ratione?
+    </p>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet repellendus aliquid quo placeat maiores ipsam
+      ratione reiciendis? Quidem totam hic deserunt dicta accusamus, praesentium, suscipit explicabo tempore, iure
+      blanditiis itaque!</p>
+  </div>
+  <script>
+    var div = document.querySelector('div')
+    var clickTime = null
+    var dblclickTime = null
+    div.addEventListener('click', f1)
+    div.addEventListener('dblclick', f2)
+    function f1(e) {
+      clickTime = Date.now()
+      console.log('click')
+      if (clickTime - dblclickTime < 500) {
+        console.log('triple click!')
+      }
+    }
+    function f2(e) {
+      console.log('dblclick')
+      dblclickTime = Date.now()
+    }
+  </script>
+</body>
+
+</html>

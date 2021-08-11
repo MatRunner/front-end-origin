@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moving planeA</title>
+  <!-- 
+    移动逻辑：
+    1. 在全局设置监听器得到移动方向
+    2. 因为持续按键会快速持续触发keydown，合理的方式是使用requestAnimationFrame展示动画
+    3. 
+   -->
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    div.planeA {
+      background-image: url(../homework/plane.jpg);
+      background-size: 150px 160px;
+      background-repeat: no-repeat;
+      width: 150px;
+      height: 150px;
+      position: absolute;
+    }
+
+    div.planeB {
+      background-image: url(../homework/plane2.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 150px;
+      height: 90px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="planeA" style="top: 50px; left: 50px;"></div>
+  <div class="planeB" style="top: 450px; left: 450px;"></div>
+  <script>
+    'use strict'
+    var planeA = document.querySelector('div.planeA')
+    var planeB = document.querySelector('div.planeB')
+    // ================================================
+    var speedX = 0, speedY = 0
+    var BspeedX = 0, BspeedY = 0
+    var wPress = false, upPress = false
+    var aPress = false, downPress = false
+    var sPress = false, leftPress = false
+    var dPress = false, rightPress = false
+    document.addEventListener('keydown', speed)
+    document.addEventListener('keyup', release)
+    function speed(e) {
+      if (e.key == 'w') {
+        speedY = -1
+        wPress = true
+      }
+      if (e.key == 's') {
+        speedY = 1
+        sPress = true
+      }
+      if (e.key == 'a') {
+        speedX = -1
+        aPress = true
+      }
+      if (e.key == 'd') {
+        speedX = 1
+        dPress = true
+      }
+      if (e.key == 'ArrowUp') {
+        BspeedY = -1
+        upPress = true
+      }
+      if (e.key == 'ArrowDown') {
+        BspeedY = 1
+        downPress = true
+      }
+      if (e.key == 'ArrowLeft') {
+        BspeedX = -1
+        leftPress = true
+      }
+      if (e.key == 'ArrowRight') {
+        BspeedX = 1
+        rightPress = true
+      }
+    }
+    function release(e) {
+      if (e.key == 'w') {
+        wPress = false
+        if (sPress) {
+          speedY = 1
+        } else {
+          speedY = 0
+        }
+      }
+      if (e.key == 's') {
+        sPress = false
+        if (wPress) {
+          speedY = -1
+        } else {
+          speedY = 0
+        }
+      }
+      if (e.key == 'a') {
+        aPress = false
+        if (dPress) {
+          speedX = 1
+        } else {
+          speedX = 0
+        }
+      }
+      if (e.key == 'd') {
+        dPress = false
+        if (aPress) {
+          speedX = -1
+        } else {
+          speedX = 0
+        }
+      }
+      if (e.key == 'ArrowUp') {
+        upPress = false
+        if (downPress) {
+          BspeedY = 1
+        } else {
+          BspeedY = 0
+        }
+      }
+      if (e.key == 'ArrowDown') {
+        downPress = false
+        if (upPress) {
+          BspeedY = -1
+        } else {
+          BspeedY = 0
+        }
+      }
+      if (e.key == 'ArrowLeft') {
+        leftPress = false
+        if (rightPress) {
+          BspeedX = 1
+        } else {
+          BspeedX = 0
+        }
+      }
+      if (e.key == 'ArrowRight') {
+        rightPress = false
+        if (leftPress) {
+          BspeedX = -1
+        } else {
+          BspeedX = 0
+        }
+      }
+    }
+
+    // ==============================================================
+    var lastTime = 0
+    function move(time) {
+      if (lastTime !== time) {
+        var diftime = time - lastTime
+        lastTime = time
+      }
+      if (speedX > 0) {
+        planeA.style.transform = 'rotateY(180deg)'
+      } else if (speedX < 0) {
+        planeA.style.transform = 'rotateY(0deg)'
+      }
+      if (speedY > 0) {
+        planeA.style.transform = 'rotate(-90deg)'
+      } else if (speedY < 0) {
+        planeA.style.transform = 'rotate(90deg)'
+      }
+      if (BspeedY > 0) {
+        planeB.style.transform = 'rotate(90deg)'
+      } else if (BspeedY < 0) {
+        planeB.style.transform = 'rotate(-90deg)'
+      }
+      if (BspeedX > 0) {
+        planeB.style.transform = ''
+      } else if (BspeedX < 0) {
+        planeB.style.transform = 'rotateY(180deg)'
+      }
+      planeA.style.top = parseFloat(planeA.style.top) + speedY * diftime * 0.5 + 'px'
+      planeA.style.left = parseFloat(planeA.style.left) + speedX * diftime * 0.5 + 'px'
+      planeB.style.top = parseFloat(planeB.style.top) + BspeedY * diftime * 0.5 + 'px'
+      planeB.style.left = parseFloat(planeB.style.left) + BspeedX * diftime * 0.5 + 'px'
+
+
+      var safeDistanceX = Math.abs(planeA.offsetLeft - planeB.offsetLeft)
+      var safeDistanceY = Math.abs(planeA.offsetTop - planeB.offsetTop)
+      if (safeDistanceX < 150 && safeDistanceY < 150) {
+        alert('aircraft accident!')
+      } else {
+        requestAnimationFrame(move)
+      }
+
+    }
+    requestAnimationFrame(move)
+  </script>
+</body>
+
+</html>

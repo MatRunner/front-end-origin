@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  function swap(a, b) {
+    //1.可以使用中间量思想，先建立一个空节点占位，然后再进行交换
+    //交换两个节点
+    if (a == b) {
+      return 'same node!'
+    }
+    if (a.contains(b) || b.contains(a)) {
+      return 'cannot swap!'
+    }
+    var nodeCopyA = a.cloneNode(true)
+    var nodeCopyB = b.cloneNode(true)
+    a.parentNode.replaceChild(nodeCopyB, a)
+    b.parentNode.replaceChild(nodeCopyA, b)
+  }
+  function getElementByTagName(node, string, ary = []) {
+    var name = string.toUpperCase()
+    if (node.tagName == name) {
+      ary.push(node)
+    }
+    for (var key of node.children) {
+      getElementByTagName(key, string, ary)
+    }
+    return ary
+  }
+</script>
+
+<body>
+
+</body>
+
+</html>
