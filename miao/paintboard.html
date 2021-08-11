@@ -6,10 +6,102 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>paintboard</title>
+  <style>
+    svg.paintboard {
+      border: 1px solid black;
+      display: block;
+    }
+
+    svg.paintboard:focus {
+      box-shadow: 0px 0px 3px lightskyblue;
+    }
+
+    div.buttons {
+      position: absolute;
+      left: 550px;
+      top: 50px;
+      display: flex;
+      flex-flow: column wrap;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="paintboard"></div>
+  <svg class="paintboard" width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+    <!-- <polyline points='0,0 8,0' fill="none" stroke="red" stroke-width="10" /> -->
+  </svg>
+  <div class="buttons">
+    <input type="color" id='setColor'><span>select color</span>
+    <input type="range" id='setWidth' min='1' max='10'><span>set width of line</span>
+
+  </div>
 </body>
+<script>
+  /* 先整理一下思路：
+    1. 鼠标按下，判断是否在画图区域，是的话创建一个初始点
+    2. 然后把move事件添加到全局，开始画线
+    3. 鼠标up后把move事件解绑
+
+    
+  */
+  var svg = document.querySelector('svg')
+
+  document.addEventListener('mousedown', startDraw)
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.key == 'z') {
+      var svg = document.querySelector('svg')
+      svg.removeChild(svg.lastElementChild)
+    }
+  })
+  function startDraw(e) {
+    var color = document.getElementById('setColor').value
+    var lineWidth = document.getElementById('setWidth').value
+    if (inArea()) {
+      var polyline = document.createElementNS("http://www.w3.org/2000/svg", 'polyline')
+      var pos = getPos()
+      polyline.setAttribute('points', `${pos.x},${pos.y} `)//设置初始位置
+      polyline.setAttribute('fill', 'none')
+      polyline.setAttribute('stroke', `${color}`)
+      polyline.setAttribute('stroke-width', `${lineWidth}`)
+      document.addEventListener('mousemove', drawLine)
+      svg.appendChild(polyline)
+      function drawLine(e) {
+        var pos = getPos()
+        var path = polyline.getAttribute('points')
+        path += `${pos.x},${pos.y} `
+        polyline.setAttribute('points', path)
+      }
+    }
+    document.addEventListener('mouseup', function () {
+      document.removeEventListener('mousemove', drawLine)
+    })
+  }
+  function inArea() {//判断初始点是否在画图区域内的函数
+    var x = window.event.clientX
+    var y = window.event.clientY
+    var svgpos = svg.getBoundingClientRect()
+    if (x >= svgpos.x && x <= svgpos.x + svgpos.width && y >= svgpos.y && y <= svgpos.y + svgpos.height) {
+      return true
+    } else {
+      return false
+    }
+  }
+  function getPos() {//获取鼠标相对于画板的位置
+    var x = window.event.clientX
+    var y = window.event.clientY
+    var svgpos = svg.getBoundingClientRect()
+    return {
+      'x': x - svgpos.x,
+      'y': y - svgpos.y,
+    }
+  }
+
+  var lineWidth = document.getElementById('setWidth')
+  var content = lineWidth.nextSibling
+  lineWidth.addEventListener('input', function (e) {
+    console.log(e)
+    content.textContent = 'set width of line ' + lineWidth.value + ' px'
+  })
+</script>
 
 </html>
