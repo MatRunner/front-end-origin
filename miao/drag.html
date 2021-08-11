@@ -25,49 +25,65 @@
 
 <body>
   <section>
-    <button type="">create a block</button>
+    <button class="create">create a block</button>
+    <button class="delete">delete a block</button>
     <input type="color" id='selectColor'>
   </section>
 </body>
 <script>
-  var btn = document.querySelector('button')
-  var target//记录鼠标点中的元素
+  //关于层叠的问题，还是用数组解决吧。。。
+  //好像数组实现不了，上Map
+  var maxIndex = 0
+  var deleteBlock = document.querySelector('button.delete')
+  deleteBlock.addEventListener('click', function () {
+    window.addEventListener('click', deleteABlock)
+  })
+  function deleteABlock(e) {
+    var target = e.target
+    if (target.tagName == 'DIV') {
+      document.body.removeChild(target)
+      window.removeEventListener('click', deleteABlock)
+    }
+  }
+  var btn = document.querySelector('button.create')
   btn.addEventListener('click', createABlock)
   function createABlock(e) {
     var color = document.getElementById('selectColor').value
     var block = document.createElement('div')
-    block.setAttribute('style', `background-color:${color};top:50px;left:50px;`)
+    block.setAttribute('style', `background-color:${color};top:50px;left:50px;z-index:${++maxIndex};`)
     document.body.appendChild(block)
   }
-  document.addEventListener('mousedown', dragIt)
-  document.addEventListener('mouseup', release)
-  var mouseX, mouseY
+  window.addEventListener('mousedown', dragIt)
+
   function dragIt(e) {
     target = e.target
     if (target.tagName == 'DIV') {
-      target.addEventListener('mousemove', moveIt)
+      // debugger
+      target.style.zIndex = parseInt(target.style.zIndex) + maxIndex
+      maxIndex = parseInt(target.style.zIndex)
+      var posX = e.clientX//获取光标位置
+      var posY = e.clientY
+      window.addEventListener('mousemove', moveIt)//还不能把监听加在target上。。。
     }
-  }
-  function release(e) {
-    target.removeEventListener('mousemove', moveIt)
-  }
-  function moveIt(e) {
-    var difX, difY
-    if (mouseX == undefined) {
-      mouseX = e.x
-    } else {
-      difX = e.x - mouseX
-      mouseX = e.x
+    function moveIt(e) {
+      var xdis = e.clientX - posX
+      var ydis = e.clientY - posY
+      posX = e.clientX
+      posY = e.clientY
+      var newX = parseFloat(target.style.left) + xdis
+      var newY = parseFloat(target.style.top) + ydis
+      if (newX < 0) { newX = 0 }
+      if (newX > innerWidth - target.offsetWidth) { newX = innerWidth - target.offsetWidth }
+      if (newY < 0) { newY = 0 }
+      if (newY > innerHeight - target.offsetHeight) { newY = innerHeight - target.offsetHeight }
+      target.style.left = newX + 'px'
+      target.style.top = newY + 'px'
     }
-    if (mouseY == undefined) {
-      mouseY = e.y
-    } else {
-      difY = e.y - mouseY
-      mouseY = e.y
-    }
-    target.style.top = parseFloat(target.style.top) + difY + 'px'
-    target.style.left = parseFloat(target.style.left) + difX + 'px'
+    window.addEventListener('mouseup', function () {
+      window.removeEventListener('mousemove', moveIt)
+    })
   }
+
 </script>
 
 </html>
