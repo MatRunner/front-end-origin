@@ -27,13 +27,12 @@
 </head>
 
 <body>
-  <svg class="paintboard" width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-    <!-- <polyline points='0,0 8,0' fill="none" stroke="red" stroke-width="10" /> -->
+  <svg version='1.1' class="paintboard" width="500px" height="500px" xmlns="http://www.w3.org/2000/svg">
   </svg>
   <div class="buttons">
     <input type="color" id='setColor'><span>select color</span>
     <input type="range" id='setWidth' min='1' max='10'><span>set width of line</span>
-
+    <button id='download'>download</button>
   </div>
 </body>
 <script>
@@ -101,6 +100,16 @@
   lineWidth.addEventListener('input', function (e) {
     console.log(e)
     content.textContent = 'set width of line ' + lineWidth.value + ' px'
+  })
+  var save = document.getElementById('download')
+  save.addEventListener('click', function () {
+    var source = document.querySelector('svg.paintboard').outerHTML
+    var blob = new Blob([source], { type: 'image/svg+xml' })
+    var url = URL.createObjectURL(blob)
+    var anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = 'tempSvg'
+    anchor.click()//模拟当前元素被点击
   })
 </script>
 
