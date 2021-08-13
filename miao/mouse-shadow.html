@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mouse-shadow</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    div {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      background-color: lightblue;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+</body>
+<script>
+  /*
+  咋做？
+  1. 肯定是绑move事件
+  2. 好像幻影的个数是一定的
+  3. 每个幻影间隔不同的时间移动到鼠标位置，关键还不是径直移动到鼠标位置，还是沿着轨迹移动过去的
+  */
+
+  window.addEventListener('mousemove', function (e) {
+    var div = document.createElement('div')
+    div.style.top = e.clientY - div.clientHeight / 2 + 'px'
+    div.style.left = e.clientX - div.clientWidth / 2 + 'px'
+    var count = document.body.children.length
+    if (count > 7) {
+      document.body.removeChild(document.body.firstElementChild)
+    }
+    document.body.appendChild(div)
+    setTimeout(function () {
+      document.body.removeChild(div)
+    }, 200)
+  })
+  // 哈哈，一个失败的例子
+
+</script>
+
+</html>
