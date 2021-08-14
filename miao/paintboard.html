@@ -44,6 +44,7 @@
     
   */
   var svg = document.querySelector('svg')
+  var isSave = true
 
   document.addEventListener('mousedown', startDraw)
   document.addEventListener('keydown', function (e) {
@@ -56,6 +57,7 @@
     var color = document.getElementById('setColor').value
     var lineWidth = document.getElementById('setWidth').value
     if (inArea()) {
+      isSave = false
       var polyline = document.createElementNS("http://www.w3.org/2000/svg", 'polyline')
       var pos = getPos()
       polyline.setAttribute('points', `${pos.x},${pos.y} `)//设置初始位置
@@ -110,6 +112,13 @@
     anchor.href = url
     anchor.download = 'tempSvg'
     anchor.click()//模拟当前元素被点击
+    isSave = true
+  })
+  window.addEventListener('beforeunload', (e) => {
+    if (!isSave) {
+      e.preventDefault()
+      e.returnValue = ''
+    }
   })
 </script>
 
