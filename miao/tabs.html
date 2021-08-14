@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tabs</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    section {
+      border: 1px solid;
+      width: 500px;
+      height: 300px;
+    }
+
+    div.buttonArea {
+      border: 1px solid;
+      width: 100%;
+      height: 30px;
+    }
+
+    div.textArea {
+      border: 1px solid;
+      width: 100%;
+      height: calc(100% - 30px);
+      position: relative;
+    }
+
+    div.textArea div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="function">
+    <button class="delete">delete the text</button>
+    <button class="add">add text</button>
+  </div> -->
+  <section>
+    <div class="buttonArea"></div>
+    <div class="textArea">
+      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat perspiciatis ducimus quos quasi, odit
+        doloremque fuga? Consequuntur tenetur necessitatibus voluptatibus assumenda aperiam adipisci vero voluptatem,
+        quasi quaerat enim velit natus.</div>
+      <div>Sed delectus quo asperiores saepe aperiam reprehenderit, voluptates architecto quod nemo ipsam ex dolor eius
+        placeat perferendis eos hic vel eligendi? Nulla dicta unde cumque veniam aliquam minus, cupiditate tempore.
+      </div>
+      <div>Expedita harum suscipit perferendis, fugit, fuga, distinctio sunt rerum dolores laudantium nam voluptas ex!
+        Amet consequatur debitis fugit nemo, impedit ea quibusdam sed temporibus animi! Ipsum minima voluptatum dolor
+        id?</div>
+    </div>
+  </section>
+</body>
+<script>
+  // var btnDele = document.querySelector('button.delete')
+  // var btnAdd = document.querySelector('button.add')
+  var btnArea = document.querySelector('div.buttonArea')
+  var textArea = document.querySelector('div.textArea')
+  var divs = document.querySelectorAll('div.textArea div')
+  for (let i = 0; i < divs.length; i++) {
+    let btn = document.createElement('button')
+    btn.textContent = i + 1
+    btn.addEventListener('click', () => {
+      divs.forEach(x => {
+        x.style.display = 'none'
+      })
+      divs[i].style.display = 'block'
+    })
+    btnArea.appendChild(btn)
+  }
+  btnArea.firstElementChild.click()
+</script>
+
+</html>
