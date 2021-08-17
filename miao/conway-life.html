@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>conway-life</title>
+  <style type="text/less">
+    section.func{
+      input{
+        width: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="func">
+    <input type="text" id='rowInput'>行
+    <input type="text" id='colInput'>列
+    <button id='generateBoard'>开始游戏</button>
+  </section>
+  <section class="board"></section>
+  <section class="gameBtn" style="display: none;">
+    <button id='stepOne'>Step One</button>
+    <button id='stepAuto'>Step Auto</button>
+    <button id='stepStop'>Stop</button>
+  </section>
+
+
+
+
+
+
+  <script>
+    //必需：当前cell的状态；周边cell的状态
+    //用什么数据结构来表示细胞的排布？二维数组<=>table
+    class ConwayGame {
+      static createBoard(row, col) {
+        let gameBoardMap = new Array(Number(row))
+        for (let i = 0; i < gameBoardMap.length; i++) {
+          gameBoardMap[i] = new Array(Number(col)).fill(0)
+        }
+        return gameBoardMap
+      }
+      constructor(row, col) {
+        this.row = row
+        this.col = col
+        this.gameBoard = document.createElement('table')
+        for (let i = 0; i < this.row; i++) {
+          let boardRow = document.createElement('tr')
+          for (let j = 0; j < this.col; j++) {
+            let td = document.createElement('td')
+            let cell = document.createElement('input')
+            cell.setAttribute('type', 'checkbox')
+            cell.classList.add('cell')
+            td.appendChild(cell)
+            boardRow.appendChild(td)
+          }
+          this.gameBoard.appendChild(boardRow)
+        }
+        this.gameBoardMap = ConwayGame.createBoard(this.row, this.col)
+      }
+      getCellNeighbor(cell) {
+        let neighbors = []
+        let cellInRow = cell.parentNode.parentNode//获得所在行的tr标签
+        let ary2 = Array.from(cellInRow.parentNode.children)//获得table的tr数组
+        let rowIdx = ary2.indexOf(cellInRow)//获得cell所在行数
+        let ary = Array.from(cellInRow.children)//获得tr的td数组
+        let colIdx = ary.indexOf(cell.parentNode)//获得cell所在行的列数
+        if (rowIdx - 1 >= 0) {
+          if (colIdx - 1 >= 0) {
+            neighbors.push(this.gameBoardMap[rowIdx - 1][colIdx - 1])
+          }
+          neighbors.push(this.gameBoardMap[rowIdx - 1][colIdx])
+          if (colIdx + 1 < ary.length) {
+            neighbors.push(this.gameBoardMap[rowIdx - 1][colIdx + 1])
+          }
+        }
+        if (colIdx - 1 >= 0) {
+          neighbors.push(this.gameBoardMap[rowIdx][colIdx - 1])
+        }
+        if (colIdx + 1 < ary.length) {
+          neighbors.push(this.gameBoardMap[rowIdx][colIdx + 1])
+        }
+        if (rowIdx + 1 < ary2.length) {
+          if (colIdx - 1 >= 0) {
+            neighbors.push(this.gameBoardMap[rowIdx + 1][colIdx - 1])
+          }
+          neighbors.push(this.gameBoardMap[rowIdx + 1][colIdx])
+          if (colIdx + 1 < ary.length) {
+            neighbors.push(this.gameBoardMap[rowIdx + 1][colIdx + 1])
+          }
+        }
+        return neighbors//将邻居数组返回
+      }
+      getGameBoardMap() {
+        let trs = document.querySelectorAll('tr')
+        for (let i = 0; i < trs.length; i++) {
+          for (let j = 0; j < trs[i].children.length; j++) {
+            if (trs[i].children[j].firstElementChild.checked) {
+              this.gameBoardMap[i][j] = 1
+            } else {
+              this.gameBoardMap[i][j] = 0
+            }
+          }
+        }
+      }
+      compute() {
+        let cells = document.querySelectorAll('input.cell')
+        cells.forEach(cell => {
+          let state = cell.checked
+          let neighbors = this.getCellNeighbor(cell)
+          let liveCellInNeighbors = neighbors.reduce((a, b) => a + b)
+          if (state) {
+            if (liveCellInNeighbors < 2 || liveCellInNeighbors > 3) {
+              cell.checked = false
+            }
+          } else {
+            if (liveCellInNeighbors == 3) {
+              cell.checked = true
+            }
+          }
+        })
+        //计算完本轮需要更新map
+        this.getGameBoardMap()
+      }
+    }
+    //=============================================================
+    let startGameBtn = document.getElementById('generateBoard')
+    let board = document.querySelector('section.board')
+    let gameBtn = document.querySelector('section.gameBtn')
+    let stepOne = document.getElementById('stepOne')
+    let stepAuto = document.getElementById('stepAuto')
+    let stepStop = document.getElementById('stepStop')
+    startGameBtn.addEventListener('click', function () {
+      board.innerHTML = ''
+      let row = rowInput.value
+      let col = colInput.value
+      let gameBoard = new ConwayGame(row, col)
+      board.appendChild(gameBoard.gameBoard)
+      gameBtn.style.display = 'block'
+      stepOne.addEventListener('click', function () {
+        gameBoard.getGameBoardMap()
+        gameBoard.compute()
+      })
+      let id
+      stepAuto.addEventListener('click', function () {
+        gameBoard.getGameBoardMap()
+        id = setInterval(function () {
+          gameBoard.compute()
+        }, 600)
+      })
+      stepStop.addEventListener('click', function () {
+        clearTimeout(id)
+      })
+    })
+  </script>
+</body>
+<script src="less.min.js"></script>
+
+</html>
