@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notebook</title>
+  <style type="text/less">
+    body,html{
+      margin:0;
+      width: 100%;
+      height: 100%;
+    }
+    *{
+      box-sizing: border-box;
+    }
+    header{
+      height: 200px;
+      background-color: rgba(255,255,255,0.5);
+    }
+    aside{
+      width: 200px;
+      position: absolute;
+      top:10%;
+      height: 80%;
+    }
+    main{
+      height: calc(100% - 200px);
+        textarea{
+          position: absolute;
+          width: 150px;
+          height: 250px;
+          display: block;
+        }
+    }
+  </style>
+</head>
+
+<body
+  style="background-image: url(https://images.pexels.com/photos/1420004/pexels-photo-1420004.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);background-repeat: no-repeat;background-size: cover;">
+  <header>
+    <section class="search">
+      <input type="text">
+      <button>search</button>
+    </section>
+  </header>
+  <aside>
+    <section class="funcSelect">
+      <button id='addNote'>add</button>
+      <button id='deleteNote'>delete</button>
+      <input type="color">
+    </section>
+  </aside>
+  <main>
+    <div class="note">
+      <!-- <textarea name="" id="" cols="30" rows="10" class="note"></textarea> -->
+    </div>
+  </main>
+
+
+
+  <script>
+    /*
+    storage里面记录什么？文字，位置，大小，颜色
+    右击菜单选择颜色
+    */
+    let maxIndex = 0
+    let btnAddNote = document.getElementById('addNote')
+    let btnDeleteNote = document.getElementById('deleteNote')
+    let notes = document.querySelectorAll('textarea.note')
+    let divOfNotes = document.querySelector('div.note')
+    btnDeleteNote.addEventListener('click', function () {
+      window.addEventListener('mousedown', function deleteANote(e) {
+        if (e.target.tagName == 'TEXTAREA') {
+          let note = e.target
+          let storageData = getLocalStorageNotes()
+          delete storageData[note.getAttribute('id')]
+          modifiedDateToLocalStorage(storageData)
+          note.parentNode.removeChild(note)
+          window.removeEventListener('mousedown', deleteANote)
+        }
+      })
+    })
+    btnAddNote.addEventListener('click', function () {
+      let storageData = getLocalStorageNotes()
+      let note = document.createElement('textarea')
+      note.classList.add('note')
+      note.setAttribute('id', 'note' + Date.now())
+      note.setAttribute('style', `background-color:rgba(165,240,243,0.5);top:50px;left:50px;z-index:${++maxIndex};`)
+      divOfNotes.appendChild(note)
+      let noteObj = createNoteObj(note)
+      storageData[noteObj.id] = noteObj
+      modifiedDateToLocalStorage(storageData)
+    })
+    let target = window
+    let scheduled = false//节流控制变量
+    window.addEventListener('click', function (e) {
+      target.removeEventListener('input', throttleRecord)
+      if (e.target.tagName == 'TEXTAREA') {
+        target = e.target
+        target.addEventListener('input', throttleRecord)
+      }
+    })
+    function throttleRecord(e) {
+      if (!scheduled) {
+        scheduled = true
+        setTimeout(() => {
+          scheduled = false
+          let localStorageNotes = getLocalStorageNotes()
+          let note = e.target
+          localStorageNotes[note.getAttribute('id')].value = note.value
+          modifiedDateToLocalStorage(localStorageNotes)
+        }, 500)
+      }
+    }
+
+    function createNoteObj(note) {
+      return {
+        'id': note.getAttribute('id'),
+        'width': note.offsetWidth,
+        'height': note.offsetHeight,
+        'top': note.offsetTop,
+        'left': note.offsetLeft,
+        'bgc': note.style.backgroundColor,
+        'value': note.value,
+        'zIdx': note.style.zIndex,
+      }
+    }
+    function getLocalStorageNotes() {//读取数据函数
+      return localStorage.getItem('myNotes') ? JSON.parse(localStorage.getItem('myNotes')) : {}
+    }
+    function localStorageNotesWriteToWindow() {//写入数据函数
+      let localStorageNotes = getLocalStorageNotes()
+      let divOfNotes = document.querySelector('div.note')
+      for (let key in localStorageNotes) {
+        //key名为textarea的id名
+        let note = document.createElement('textarea')
+        note.classList.add('note')//还原一个类名，目前没啥意义，可能css会用到吧
+        note.setAttribute('id', key)
+        note.setAttribute('style', `background-color:${localStorageNotes[key].bgc};top:${localStorageNotes[key].top}px;left:${localStorageNotes[key].left}px;z-index:${localStorageNotes[key].zIdx};id:${localStorageNotes[key].id};width:${localStorageNotes[key].width}px;height:${localStorageNotes[key].height}px`)
+        note.value = localStorageNotes[key].value
+        divOfNotes.appendChild(note)
+      }
+    }
+    function modifiedDateToLocalStorage(modifiedData) {//存回数据函数
+      localStorage.setItem('myNotes', JSON.stringify(modifiedData))
+    }
+    //========================================================================================================================
+    //拖拽与层叠的处理，注意也要实时更新拖拽块的位置和zIndex
+    //存在textarea本身的缩放功能和拖拽功能的冲突，理想的解决方案是在textarea外部套个壳，壳控制缩放，点击textarea控制移动。但是懒得搞了，判断一下点击范围得了
+    window.addEventListener('mousedown', dragIt)
+    function canDragIt(e) {//已经点击在textarea区域，判断是否能拖拽
+      let target = e.target
+      let posX = e.clientX
+      let posY = e.clientY
+      if (posY > target.offsetTop + target.offsetHeight * 0.8 && posX > target.offsetLeft + target.offsetWidth * 0.8) {
+        return false
+      } else {
+        return true
+      }
+    }
+    function dragIt(e) {
+      target = e.target
+      if (target.tagName == 'TEXTAREA') {
+        target.style.zIndex = maxIndex++
+        var posX = e.clientX
+        var posY = e.clientY
+        //切分出右下角，因为右下角来控制拖拽的
+        if (canDragIt(e)) {
+          window.addEventListener('mousemove', moveIt)
+        }
+      }
+      function moveIt(e) {
+        if (!(e.clientX < 0 || e.clientX > window.innerWidth || e.clientY < 0 || e.clientY > window.innerHeight)) {
+          var xdis = e.clientX - posX
+          var ydis = e.clientY - posY
+          posX = e.clientX
+          posY = e.clientY
+          var newX = parseFloat(target.style.left) + xdis//使用绝对位置计算目前的位置
+          var newY = parseFloat(target.style.top) + ydis
+          if (newX < 0) { newX = 0 }
+          if (newX > innerWidth - target.offsetWidth) { newX = innerWidth - target.offsetWidth }
+          if (newY < 0) { newY = 0 }
+          if (newY > innerHeight - target.offsetHeight) { newY = innerHeight - target.offsetHeight }
+          target.style.left = newX + 'px'
+          target.style.top = newY + 'px'
+        }
+      }
+      window.addEventListener('mouseup', function (e) {//鼠标弹起时存储数据，中间动来动去的就不存了
+        if (e.target.tagName == 'TEXTAREA') {
+          let notes = getLocalStorageNotes()
+          let target = e.target
+          notes[target.getAttribute('id')].left = target.offsetLeft
+          notes[target.getAttribute('id')].top = target.offsetTop
+          notes[target.getAttribute('id')].zIdx = target.style.zIndex
+          notes[target.getAttribute('id')].width = target.offsetWidth
+          notes[target.getAttribute('id')].height = target.offsetHeight
+          modifiedDateToLocalStorage(notes)
+          window.removeEventListener('mousemove', moveIt)
+        }
+      })
+    }
+
+    //==============================================================================
+    //页面同步
+    window.addEventListener('storage', function () {
+      divOfNotes.innerHTML = ''
+      localStorageNotesWriteToWindow()
+    })
+    //=============================================================================
+
+
+
+
+
+    //===============================================================================
+    localStorageNotesWriteToWindow()
+
+  </script>
+</body>
+<script src="less.min.js"></script>
+
+</html>
