@@ -36,6 +36,7 @@
   <script>
     //必需：当前cell的状态；周边cell的状态
     //用什么数据结构来表示细胞的排布？二维数组<=>table
+    //缺点：耦合性太强，把对dom节点和数组的操作放在了一个类里，不能把程序迁移，正确的做法是只把对数组的操作封装在一个类里
     class ConwayGame {
       static createBoard(row, col) {
         let gameBoardMap = new Array(Number(row))
