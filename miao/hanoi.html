@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hanoi game</title>
+  <style type="text/less">
+    html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  *{
+    box-sizing: border-box;
+  }
+    main{
+      width: 800px;
+      height: 500px;
+      border:1px solid red;
+      position: absolute;
+      margin: auto;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      display: flex;
+      flex-direction: column;
+      >section.gameRecord{
+        width: 100%;
+        height: 50px;
+        display:flex;
+        >div{
+          width: 50%;
+          height: 100%;
+          >span{
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            line-height:30px;
+            font:bold 30px monospace;
+            white-space: nowrap;
+          }
+        }
+      }
+      >section.display{
+        position: relative;
+        border:2px solid black;
+        width: 700px;
+        height: 350px;
+        align-self:center;
+        display:flex;
+        justify-content:space-between;
+        >div{
+          height: 100%;
+          width: 33.3%;
+          border:1px solid blue;
+          display: flex;
+          flex-flow: column-reverse;
+          position: relative;
+          >div{
+            width: 50px;
+            height: 50px;
+            border:1px solid black;
+            align-self:center;
+            position: relative;
+          }
+        }
+        >div:first-child{
+          display: none;
+          border:5px double blue;
+          background-color: rgb(245,245,245);
+          z-index: 10;
+          position: absolute;
+          left: 50%;
+          top:50%;
+          width: 280px;
+          height: 180px;
+          transform: translate(-50%,-50%);
+          text-align: center;
+          >span{
+            display: block;
+            font:bold 28px monospace;
+            text-align:center;
+            margin-top:30px;
+          }
+          >button{
+            font:bold 20px monospace;
+            height: 30px;
+            line-height: 30px;
+            margin: 50px 8px 0 8px;
+          }
+        }
+      }
+      >section.funcBtn{
+        align-self: center;
+        display: flex;
+        height: 100px;
+        width: 100%;
+        justify-content: space-around;
+        select{
+          width: 100px;
+          height: 30px;
+          align-self:center;
+          option{
+            width: 100px;
+          }
+        }
+        button{
+          align-self:center;
+          font-family: monospace;
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 30px;
+          height: 30px;
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="gameboard">
+    <section class="gameRecord">
+      <div>
+        <span id='score'>score: 计分功能没做</span>
+      </div>
+      <div>
+        <span id='useTime'>time: </span>
+      </div>
+    </section>
+    <section class="display">
+      <div id='gameSuggest'>
+        <span>Congratulation!</span>
+        <button id='nextLevel'>next level</button>
+        <button id='gameCancel'>cancel</button>
+      </div>
+      <div id="bucket1"></div>
+      <div id="bucket2"></div>
+      <div id="bucket3"></div>
+    </section>
+    <section class="funcBtn">
+      <select name="levelChoose" id="">
+        <option value="0" hidden selected>choose level</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+      <button id='startGame'>Start</button>
+      <button id='autoProcess'>Auto</button>
+      <button id='autoPause'>Pause</button>
+    </section>
+  </main>
+  <script>
+    let colorList = {
+      1: '#EBB21B',
+      2: '#F52507',
+      3: '#7B12DE',
+      4: '#07B2F5',
+      5: '#0AEB07',
+      6: '#F7D477',
+      7: '#E08377',
+    }
+
+    /*
+    需要：一个游戏界面，块的拖动，放置。
+    计分器
+    计时器
+    */
+
+    //操作事件。块的拖动，游戏是否结束的判断。
+    let startGame = document.getElementById('startGame')
+    let autoProcess = document.getElementById('autoProcess')
+    let autoPause = document.getElementById('autoPause')
+    //===========================================================================================================
+    //写一下自动
+    let autoId//auto内的计时器
+    let node = null
+    let isPause = true
+    autoPause.addEventListener('click', function (e) {
+      if (isPause) {
+        autoPause.textContent = 'Continue'
+        clearInterval(autoId)
+        isPause = false
+      } else {
+        isPause = true
+        autoPause.textContent = 'Pause'
+        let bkt1 = document.getElementById('bucket1')
+        let bkt2 = document.getElementById('bucket2')
+        let bkt3 = document.getElementById('bucket3')
+        let bktary = [0, bkt1, bkt2, bkt3]//加个零是为了索引对齐编号
+        autoId = setInterval(() => {
+          if (node) {
+            let step = node.step
+            bktary[step[1]].appendChild(bktary[step[0]].lastElementChild)
+            node = node.next
+          } else {
+            clearInterval(autoId)
+          }
+        }, 800)
+      }
+    })
+    autoProcess.addEventListener('click', function (e) {
+      let level = document.querySelector('select').value
+      if (level > 0) {
+        clearInterval(autoId)
+        clearInterval(timeId)
+        initGame(level)
+        window.removeEventListener('mousedown', mouseD)
+        let processList = recordProcess(level)
+        node = processList
+        let bkt1 = document.getElementById('bucket1')
+        let bkt2 = document.getElementById('bucket2')
+        let bkt3 = document.getElementById('bucket3')
+        let bktary = [0, bkt1, bkt2, bkt3]//加个零是为了索引对齐编号
+        autoId = setInterval(() => {
+          if (node.step) {
+            let step = node.step
+            bktary[step[1]].appendChild(bktary[step[0]].lastElementChild)
+            node = node.next
+          } else {
+            clearInterval(autoId)
+          }
+        }, 800)
+
+      }
+    })
+
+
+
+
+
+    //===========================================================================================================
+    let btnNextLevel = document.getElementById('nextLevel')
+    let btnCancel = document.getElementById('gameCancel')
+    btnNextLevel.addEventListener('click', function (e) {
+      let select = document.querySelector('select')
+      let level = select.value
+      if (level < 7) {
+        level++
+        select.value = level
+        startGame.click()
+      } else if (level == 7) {
+        alert('太强了，你通关了！')
+      }
+    })
+    btnCancel.addEventListener('click', function (e) {
+      let gs = document.getElementById('gameSuggest')
+      gs.style.display = 'none'
+      clearInterval(timeId)
+    })
+    let timeId
+    startGame.addEventListener('click', function (e) {
+      let level = document.querySelector('select').value
+      if (level > 0) {
+        clearInterval(timeId)
+        let usetime = document.getElementById('useTime')
+        let startTime = 1
+        timeId = setInterval(() => {
+          usetime.textContent = 'time: ' + startTime
+          startTime++
+        }, 1000)
+        initGame(level)
+        let gs = document.getElementById('gameSuggest')
+        gs.style.display = 'none'
+        window.addEventListener('mousedown', mouseD)
+      }
+    })
+    var mouseD
+    window.addEventListener('mousedown', mouseD = function (e) {
+      if (e.target.parentNode.lastElementChild == e.target && e.target.getAttribute('blockLength')) {
+        let mouseX = e.clientX
+        let mouseY = e.clientY
+        let block = e.target
+        window.addEventListener('mousemove', drag)
+        window.addEventListener('mouseup', up)
+        function up(e) {
+          window.removeEventListener('mousemove', drag)
+          window.removeEventListener('mouseup', up)
+          let bucket1 = document.getElementById('bucket1')
+          let bucket2 = document.getElementById('bucket2')
+          let bucket3 = document.getElementById('bucket3')
+          let gameBoard = document.querySelector('main')
+          if (e.clientX > gameBoard.offsetLeft + 50 && e.clientX < gameBoard.offsetLeft + 282) {
+            if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') <= bucket1.lastElementChild.getAttribute('blockLength')) {
+              bucket1.appendChild(block)
+            }
+          } else if (e.clientX >= gameBoard.offsetLeft + 282 && e.clientX < gameBoard.offsetLeft + 514) {
+            if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') <= bucket2.lastElementChild.getAttribute('blockLength')) {
+              bucket2.appendChild(block)
+            }
+          } else if (e.clientX >= gameBoard.offsetLeft + 514 && e.clientX < gameBoard.offsetLeft + 746) {
+            if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') <= bucket3.lastElementChild.getAttribute('blockLength')) {
+              bucket3.appendChild(block)
+              //将游戏结束的判断加在这里面
+              let blocks = document.querySelectorAll('div[blockLength]')
+              if (blocks.length == bucket3.children.length) {
+                let gs = document.getElementById('gameSuggest')
+                gs.style.display = 'block'
+                window.removeEventListener('mousedown', mouseD)
+              }
+            }
+          }
+          block.style.left = '0px'
+          block.style.top = '0px'
+          //我吐了，我决定写三种情况来做判断
+          //而且要限制放置规则
+          // 而且根据测试，判断鼠标位置来放置元素比用元素来判断位置要流畅
+          //下段为根据块位置判断放置位置的，实测操作快了以后会有不流畅
+          // if (bkt == bucket1) {
+          //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
+          //     //右移了一个区域
+          //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
+          //       bucket2.appendChild(block)
+          //     }
+          //   } else if (block.offsetLeft > 2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 3 * bkt.offsetWidth) {
+          //     //右移了二个区域
+          //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
+          //       bucket3.appendChild(block)
+          //     }
+          //   }
+          // }
+          // if (bkt == bucket2) {
+          //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
+          //     //右移了一个区域
+          //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
+          //       bucket3.appendChild(block)
+          //     }
+          //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
+          //     //左移了一个区域
+          //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
+          //       bucket1.appendChild(block)
+          //     }
+          //   }
+          // }
+          // if (bkt == bucket3) {
+          //   if (block.offsetLeft > -2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < - bkt.offsetWidth) {
+          //     //左移了二个区域
+          //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
+          //       bucket1.appendChild(block)
+          //     }
+          //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
+          //     //左移了一个区域
+          //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
+          //       bucket2.appendChild(block)
+          //     }
+          //   }
+          // }
+        }
+        function drag(e) {
+          block.style.left = e.clientX - mouseX + 'px'
+          block.style.top = e.clientY - mouseY + 'px'
+        }
+      }
+    })
+    //都绑在了一个down事件里，快速拖动会有点bug，不知道原因是啥
+    //求出不同等级的汉诺塔的操作步骤,步骤应该以什么形式与操作相映射？每个步骤应该以什么形式存储？链表
+    function NodeList(step, next) {
+      this.step = step === undefined ? null : step
+      this.next = next === undefined ? null : step
+    }
+    function recordProcess(level) {
+      let record = new NodeList()
+      let node = record
+      function gameProcess(level, from = 1, temp = 2, to = 3) {
+        if (level == 1) {
+          node.step = [from, to]
+          node.next = new NodeList()
+          node = node.next
+          return
+        } else {
+          gameProcess(level - 1, from, to, temp)
+          gameProcess(1, from, temp, to)
+          gameProcess(level - 1, temp, from, to)
+        }
+      }
+      gameProcess(level)
+      return record
+    }
+
+
+    //初始化游戏函数，就是把block画好,对页面回流一次
+    function initGame(level) {
+      let bkt1 = document.getElementById('bucket1')
+      let bkt2 = document.getElementById('bucket2')
+      let bkt3 = document.getElementById('bucket3')
+      bkt1.innerHTML = ''
+      bkt2.innerHTML = ''
+      bkt3.innerHTML = ''
+      bucket1.innerHTML = ''
+      for (let i = level; i > 0; i--) {
+        let block = document.createElement('div')
+        block.setAttribute('blockLength', i)
+        block.style.width = `${i * 25 + 10}px`
+        block.style.height = 40 + 'px'
+        block.style.backgroundColor = colorList[i]
+        bucket1.appendChild(block)
+      }
+    }
+
+  </script>
+</body>
+<script src="less.min.js"></script>
+
+</html>
