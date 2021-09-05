@@ -16,6 +16,7 @@
       box-sizing: border-box;
     }
     div.noteMenu{
+      cursor: pointer;
       display: none;
       position: absolute;
       width: 100px;
@@ -34,6 +35,7 @@
       }
     }
     div.colorMenu{
+      cursor: pointer;
       display: none;
       position: absolute;
       width: 80px;
@@ -67,13 +69,13 @@
         form{
           width: 700px;
           input[type='text']{
-            height: 50px;
+            height: 40px;
             width: 500px;
             padding:10px 20px;
             font:30px sans-serif;
           }
           input[type='submit']{
-            height: 50px;
+            height: 40px;
             width: 100px;
             font: 30px sans-serif;
           }
@@ -102,18 +104,18 @@
 <body>
   <div class="explanation">
     <ul>
-      <li>使用右键添加和删除note</li>
+      <li>点击右键添加和删除note</li>
       <li>由于文字的影响，事件行为有bug，正确的做法是不要把事件绑定在可以编辑文字的地方</li>
     </ul>
   </div>
   <div class="colorMenu">
     <div id='deleteNote'>delete</div>
-    <div colorkind='rgba(232,126,81,0.9)'>color:1</div>
-    <div colorkind='rgba(242,85,121,0.9)'>color:2</div>
-    <div colorkind='rgba(185,88,219,0.9)'>color:3</div>
-    <div colorkind='rgba(92,85,242,0.9)'>color:4</div>
-    <div colorkind='rgba(68,171,235,0.9)'>color:5</div>
-    <div colorkind='rgba(55,216,245,0.9)'>color:6</div>
+    <div colorkind='rgb(232,126,81)'>color:1</div>
+    <div colorkind='rgb(242,85,121)'>color:2</div>
+    <div colorkind='rgb(185,88,219)'>color:3</div>
+    <div colorkind='rgb(92,85,242)'>color:4</div>
+    <div colorkind='rgb(68,171,235)'>color:5</div>
+    <div colorkind='rgb(55,216,245)'>color:6</div>
   </div>
   <div class="noteMenu">
     <div id='addNote'>add a note</div>
@@ -162,13 +164,13 @@
     let btnDeleteNote = document.getElementById('deleteNote')
     let notes = document.querySelectorAll('textarea.note')
     let divOfNotes = document.querySelector('div.note')
-    btnAddNote.addEventListener('click', function () {
+    btnAddNote.addEventListener('click', function (e) {
 
       let storageData = getLocalStorageNotes()
       let note = document.createElement('textarea')
       note.classList.add('note')
       note.setAttribute('id', 'note' + Date.now())
-      note.setAttribute('style', `background-color:rgba(165,240,243,0.9);top:50px;left:250px;z-index:${++maxIndex};`)
+      note.setAttribute('style', `background-color:rgb(165,240,243);top:${e.clientY}px;left:${e.clientX}px;z-index:${++maxIndex};`)
       divOfNotes.appendChild(note)
       let noteObj = createNoteObj(note)
       storageData[noteObj.id] = noteObj
