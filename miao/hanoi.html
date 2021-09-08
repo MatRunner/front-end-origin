@@ -14,11 +14,13 @@
   }
   *{
     box-sizing: border-box;
+    user-select: none;
   }
     main{
+      box-shadow: 0 0 15px -5px;
       width: 800px;
       height: 500px;
-      border:1px solid red;
+      border:1px solid lightblue;
       position: absolute;
       margin: auto;
       top:0;
@@ -67,7 +69,7 @@
             position: relative;
           }
         }
-        >div:first-child{
+        >div#gameSuggest{
           display: none;
           border:5px double blue;
           background-color: rgb(245,245,245);
@@ -117,6 +119,11 @@
         }
       }
     }
+    svg{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -124,13 +131,18 @@
   <main class="gameboard">
     <section class="gameRecord">
       <div>
-        <span id='score'>score: 计分功能没做</span>
+        <span id='step'>step: 0</span>
       </div>
       <div>
         <span id='useTime'>time: </span>
       </div>
     </section>
     <section class="display">
+      <svg version='1.1' class="paintboard" width="500px" height="500px" xmlns="http://www.w3.org/2000/svg">
+        <rect x='112' y='50' width='8' height='300' style="fill:black" />
+        <rect x='343' y='50' width='8' height='300' style="fill:black" />
+        <rect x='574' y='50' width='8' height='300' style="fill:black" />
+      </svg>
       <div id='gameSuggest'>
         <span>Congratulation!</span>
         <button id='nextLevel'>next level</button>
@@ -167,7 +179,7 @@
 
     /*
     需要：一个游戏界面，块的拖动，放置。
-    计分器
+    计步器
     计时器
     */
 
@@ -236,6 +248,8 @@
     //===========================================================================================================
     let btnNextLevel = document.getElementById('nextLevel')
     let btnCancel = document.getElementById('gameCancel')
+    let step = document.getElementById('step')
+    let stepCount = 0
     btnNextLevel.addEventListener('click', function (e) {
       let select = document.querySelector('select')
       let level = select.value
@@ -271,89 +285,107 @@
     })
     var mouseD
     window.addEventListener('mousedown', mouseD = function (e) {
-      if (e.target.parentNode.lastElementChild == e.target && e.target.getAttribute('blockLength')) {
-        let mouseX = e.clientX
-        let mouseY = e.clientY
-        let block = e.target
-        window.addEventListener('mousemove', drag)
-        window.addEventListener('mouseup', up)
-        function up(e) {
-          window.removeEventListener('mousemove', drag)
-          window.removeEventListener('mouseup', up)
-          let bucket1 = document.getElementById('bucket1')
-          let bucket2 = document.getElementById('bucket2')
-          let bucket3 = document.getElementById('bucket3')
-          let gameBoard = document.querySelector('main')
-          if (e.clientX > gameBoard.offsetLeft + 50 && e.clientX < gameBoard.offsetLeft + 282) {
-            if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') <= bucket1.lastElementChild.getAttribute('blockLength')) {
-              bucket1.appendChild(block)
-            }
-          } else if (e.clientX >= gameBoard.offsetLeft + 282 && e.clientX < gameBoard.offsetLeft + 514) {
-            if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') <= bucket2.lastElementChild.getAttribute('blockLength')) {
-              bucket2.appendChild(block)
-            }
-          } else if (e.clientX >= gameBoard.offsetLeft + 514 && e.clientX < gameBoard.offsetLeft + 746) {
-            if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') <= bucket3.lastElementChild.getAttribute('blockLength')) {
-              bucket3.appendChild(block)
-              //将游戏结束的判断加在这里面
-              let blocks = document.querySelectorAll('div[blockLength]')
-              if (blocks.length == bucket3.children.length) {
-                let gs = document.getElementById('gameSuggest')
-                gs.style.display = 'block'
-                window.removeEventListener('mousedown', mouseD)
+      if (e.buttons == 1) {
+
+
+        if (e.target.parentNode.lastElementChild == e.target && e.target.getAttribute('blockLength')) {
+          let mouseX = e.clientX
+          let mouseY = e.clientY
+          let block = e.target
+          window.addEventListener('mousemove', drag)
+          window.addEventListener('mouseup', up)
+          function up(e) {
+            window.removeEventListener('mousemove', drag)
+            window.removeEventListener('mouseup', up)
+            let bucket1 = document.getElementById('bucket1')
+            let bucket2 = document.getElementById('bucket2')
+            let bucket3 = document.getElementById('bucket3')
+            let gameBoard = document.querySelector('main')
+            if (e.clientX > gameBoard.offsetLeft + 50 && e.clientX < gameBoard.offsetLeft + 282) {
+              if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') <= bucket1.lastElementChild.getAttribute('blockLength')) {
+                bucket1.appendChild(block)
+
+                stepCount++
+                step.textContent = `step: ${stepCount}`
+
+              }
+            } else if (e.clientX >= gameBoard.offsetLeft + 282 && e.clientX < gameBoard.offsetLeft + 514) {
+              if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') <= bucket2.lastElementChild.getAttribute('blockLength')) {
+                bucket2.appendChild(block)
+
+                stepCount++
+                step.textContent = `step: ${stepCount}`
+                //写入步数，其实这么写不太好，感觉是移动功能和计步功能耦合在一起了
+              }
+            } else if (e.clientX >= gameBoard.offsetLeft + 514 && e.clientX < gameBoard.offsetLeft + 746) {
+              if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') <= bucket3.lastElementChild.getAttribute('blockLength')) {
+                bucket3.appendChild(block)
+
+                stepCount++
+                step.textContent = `step: ${stepCount}`
+
+                //将游戏结束的判断加在这里面
+                let blocks = document.querySelectorAll('div[blockLength]')
+                if (blocks.length == bucket3.children.length) {
+                  let gs = document.getElementById('gameSuggest')
+                  gs.style.display = 'block'
+                  window.removeEventListener('mousedown', mouseD)
+                }
               }
             }
+            block.style.left = '0px'
+            block.style.top = '0px'
+            //我吐了，我决定写三种情况来做判断
+            //而且要限制放置规则
+            // 而且根据测试，判断鼠标位置来放置元素比用元素来判断位置要流畅
+            //下段为根据块位置判断放置位置的，实测操作快了以后会有不流畅
+            // if (bkt == bucket1) {
+            //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
+            //     //右移了一个区域
+            //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
+            //       bucket2.appendChild(block)
+            //     }
+            //   } else if (block.offsetLeft > 2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 3 * bkt.offsetWidth) {
+            //     //右移了二个区域
+            //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
+            //       bucket3.appendChild(block)
+            //     }
+            //   }
+            // }
+            // if (bkt == bucket2) {
+            //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
+            //     //右移了一个区域
+            //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
+            //       bucket3.appendChild(block)
+            //     }
+            //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
+            //     //左移了一个区域
+            //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
+            //       bucket1.appendChild(block)
+            //     }
+            //   }
+            // }
+            // if (bkt == bucket3) {
+            //   if (block.offsetLeft > -2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < - bkt.offsetWidth) {
+            //     //左移了二个区域
+            //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
+            //       bucket1.appendChild(block)
+            //     }
+            //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
+            //     //左移了一个区域
+            //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
+            //       bucket2.appendChild(block)
+            //     }
+            //   }
+            // }
           }
-          block.style.left = '0px'
-          block.style.top = '0px'
-          //我吐了，我决定写三种情况来做判断
-          //而且要限制放置规则
-          // 而且根据测试，判断鼠标位置来放置元素比用元素来判断位置要流畅
-          //下段为根据块位置判断放置位置的，实测操作快了以后会有不流畅
-          // if (bkt == bucket1) {
-          //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
-          //     //右移了一个区域
-          //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
-          //       bucket2.appendChild(block)
-          //     }
-          //   } else if (block.offsetLeft > 2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 3 * bkt.offsetWidth) {
-          //     //右移了二个区域
-          //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
-          //       bucket3.appendChild(block)
-          //     }
-          //   }
-          // }
-          // if (bkt == bucket2) {
-          //   if (block.offsetLeft > bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 2 * bkt.offsetWidth) {
-          //     //右移了一个区域
-          //     if (bucket3.lastElementChild === null || +block.getAttribute('blockLength') < +bucket3.lastElementChild.getAttribute('blockLength')) {
-          //       bucket3.appendChild(block)
-          //     }
-          //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
-          //     //左移了一个区域
-          //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
-          //       bucket1.appendChild(block)
-          //     }
-          //   }
-          // }
-          // if (bkt == bucket3) {
-          //   if (block.offsetLeft > -2 * bkt.offsetWidth && block.offsetLeft + block.offsetWidth < - bkt.offsetWidth) {
-          //     //左移了二个区域
-          //     if (bucket1.lastElementChild === null || +block.getAttribute('blockLength') < +bucket1.lastElementChild.getAttribute('blockLength')) {
-          //       bucket1.appendChild(block)
-          //     }
-          //   } else if (block.offsetLeft > -bkt.offsetWidth && block.offsetLeft + block.offsetWidth < 0) {
-          //     //左移了一个区域
-          //     if (bucket2.lastElementChild === null || +block.getAttribute('blockLength') < +bucket2.lastElementChild.getAttribute('blockLength')) {
-          //       bucket2.appendChild(block)
-          //     }
-          //   }
-          // }
+          function drag(e) {
+            block.style.left = e.clientX - mouseX + 'px'
+            block.style.top = e.clientY - mouseY + 'px'
+          }
         }
-        function drag(e) {
-          block.style.left = e.clientX - mouseX + 'px'
-          block.style.top = e.clientY - mouseY + 'px'
-        }
+
+
       }
     })
     //都绑在了一个down事件里，快速拖动会有点bug，不知道原因是啥
@@ -399,6 +431,9 @@
         block.style.backgroundColor = colorList[i]
         bucket1.appendChild(block)
       }
+      stepCount = 0
+      step.textContent = `step: ${stepCount}`
+
     }
 
   </script>
