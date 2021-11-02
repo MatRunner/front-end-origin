@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do</title>
+  <link rel="stylesheet" href="./todo/todo.less" type="text/less">
+</head>
+
+<body>
+  <!-- 
+    除去大标题，和下面的说明，功能集中在中间的部分
+    中间可以分为3部分
+    1. 输入栏，前面有一个全选按键
+    2. list部分，这部分的结构是相同的，有前面的勾选按键，中间的内容部分，最后的删除按键
+    3. 底部的信息栏，有三个模式选择按键
+   -->
+  <main>
+    <section>
+      <h1>todos</h1>
+    </section>
+    <section class="container">
+      <div class="input">
+        <input type="checkbox" id='selectAll'>
+        <label for="selectAll"></label>
+        <input type="text" placeholder="What needs to be done?" id='inputList'>
+      </div>
+      <div class="todolists"></div>
+      <div class="infoBottom">
+        <span>0 items left</span>
+        <div class="pattern">
+          <input type="radio" name='select-pattern' value="All" checked id='All'>
+          <input type="radio" name='select-pattern' value="Active" id='Active'>
+          <input type="radio" name='select-pattern' value="Completed" id='Completed'>
+          <label for="All">All</label>
+          <label for='Active'>Active</label>
+          <label for='Completed'>Completed</label>
+        </div>
+        <span id='Clear-completed'>Clear completed</span>
+      </div>
+    </section>
+  </main>
+
+</body>
+<script src="./todo/todo.js"></script>
+<script src="less.min.js"></script>
+
+</html>

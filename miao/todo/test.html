@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <section class="container">
+    <div>
+      <input type="checkbox" :checked="todos.every(it=>it.done)" @click="todoCheck()">
+      <input type="text" @keyup.enter="addTodo">
+    </div>
+    <div>
+      <ul>
+        <li v-for="(todo,idx) of todos" class="todo.done?'treated':'untreated' ">
+          <input type="checkbox" :checked="todo.done" @click="todo.done=!todo.done">
+          <input type="text" :style="todo.focus?'display:inline;':'display:none;'" :order="idx" @blur="todo.focus=false"
+            @keyup="saveTodo($event,idx)">
+          <span @dblclick="todo.focus=true;editTodo(idx)"
+            :style="todo.focus?'display:none;':'display:inline;'">{{todo.text}}</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <input type="radio" name='model' value="All">All
+      <input type="radio" name='model' value="Completed">Completer
+      <input type="radio" name='model' value="Left">Left
+    </div>
+    <ul id="v-for-object" class="demo">
+      <li v-for="(val,key,idx) in object">
+        {{ idx }}
+      </li>
+    </ul>
+    <textarea name="" id="" cols="30" rows="10">{{content}}</textarea>
+    <zu-jian></zu-jian>
+  </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  Vue.component('zu-jian', {
+    template: `
+    <p>hahahah</p>
+    <p>lololol</p>
+    <p>wawawaw</p>
+    `,
+  })
+  let vue = new Vue({
+    el: '.container',
+    data: {
+      object: {
+        title: 'How to do lists in Vue',
+        author: 'Jane Doe',
+        publishedAt: '2016-04-10'
+      },
+      todos: [
+        {
+          text: 'hahaha',
+          done: false,
+          focus: false,
+        },
+        {
+          text: 'hahahalololo',
+          done: false,
+          focus: false,
+        },
+      ],
+      models: ['All', 'Completed', 'Left'],
+      content: 'xxxxxxx',
+    },
+    methods: {
+      editTodo: function (idx) {
+        // this.todos[idx].focus = true
+        let input = document.querySelector(`li>input[order="${idx}"`)
+        // console.log(input)
+        input.value = this.todos[idx].text
+        setTimeout(() => {
+          input.focus()
+        })
+      },
+      saveTodo: function (e, idx) {
+        if (e.key == 'Enter') {
+          this.todos[idx].text = e.target.value
+          this.todos[idx].focus = false
+        }
+      },
+      todoCheck: function () {
+        if (this.todos.find(it => !it.done)) {
+          this.todos.map(it => it.done = true)
+        } else {
+          this.todos.map(it => it.done = false)
+        }
+      },
+      addTodo: function (e) {
+        this.todos.push({
+          text: e.target.value,
+          done: false,
+          focus: false,
+        })
+        e.target.value = ''
+      }
+    },
+  })
+</script>
+
+</html>

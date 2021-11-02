@@ -1,0 +1,20 @@
+extends temp.pug 
+block content 
+  form(action='/login' method='POST')
+    div(class="form-floating mb-3")
+      input(type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name='E-mail')
+      label(for="floatingInput") 登录邮箱
+    div(class="form-floating")
+      input(type="password" class="form-control" id="floatingPassword" placeholder="Password" name='password')
+      label(for="floatingPassword") 密码
+    br
+    input(type="text" name='captcha')
+    img(src="/captcha", alt="验证码加载失败")
+    br
+    button(type='submit') 登录
+    |
+    |
+    a(href='/register') 注册
+    |
+    |
+    a(href='/password-replace') 找回密码

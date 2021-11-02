@@ -1,0 +1,168 @@
+堆，Heap，又叫优先队列，Priority Queue，是一种数据结构
+  区别于堆内存与栈内存的“堆”，此堆非彼堆
+    堆内存的“堆”含义为杂乱无章，意指数据在堆内存区域是随机分布的。
+    数据构结构这个“堆”指一系列数据像麦子，稻谷那样堆起来，此“堆”意指有高低顺序的
+      即堆是一种有序的数据结构
+
+堆是一颗完全二叉树，所以更合适直接用数组来存储，即下标在n的结点的两个子结点在2n+1和2n+2位置
+堆中任何一个结点的值都比其两个子结点要大（最大堆）或小（最小堆）
+堆是一个只关注堆中最值的数据结构，最大堆关注最大值，最小堆关注最小值
+
+
+<script>
+  class PriorityQueue {
+    constructor(inits = [], predicate = it => it) {
+      this.elements = []
+      this.predicate = predicate
+      if (inits.length) {
+        this.elements.push(...inits)// = inits.slice();
+        this.heapify()
+      }
+    }
+
+    heapify() {
+      for (var i = 0; i < this.elements.length; i++) {
+        this.heapUp(i)
+      }
+      // for (var i = (this.elements.length - 1) >> 1; i >= 0; i--) {
+      //   this.heapDown(i)
+      // }
+    }
+
+    _swap(i, j) {
+      var t = this.elements[i]
+      this.elements[i] = this.elements[j]
+      this.elements[j] = t
+    }
+    // 从idx位置开始向上调整
+    heapUp(idx) {
+      while (idx > 0) {
+        var pIdx = (idx - 1) >> 1
+        if (this.predicate(this.elements[idx]) > this.predicate(this.elements[pIdx])) {
+          this._swap(idx, pIdx)
+          idx = pIdx
+        } else {
+          return
+        }
+      }
+    }
+    heapUp2(idx) {
+      if (idx > 0) {
+        var pIdx = (idx - 1) >> 1
+        if (this.elements[idx] > this.elements[pIdx]) {
+          this._swap(idx, pIdx)
+          this.heapUp2(pIdx)
+        } else {
+          return
+        }
+      }
+    }
+    // 从idx位置开始向下调整
+    heapDown(idx) {
+      var l = this.elements.length
+
+      while (idx < l) {
+        var maxIdx = idx
+        var lIdx = maxIdx * 2 + 1
+        var rIdx = maxIdx * 2 + 2
+
+        if (lIdx < l && this.predicate(this.elements[lIdx]) > this.predicate(this.elements[maxIdx])) {
+          maxIdx = lIdx
+        }
+        if (rIdx < l && this.predicate(this.elements[rIdx]) > this.predicate(this.elements[maxIdx])) {
+          maxIdx = rIdx
+        }
+
+        if (maxIdx !== idx) {
+          this._swap(maxIdx, idx)
+          idx = maxIdx
+        } else {
+          return
+        }
+      }
+    }
+    // 往堆里增加一个元素
+    push(val) {
+      this.elements.push(val)
+      this.heapUp(this.elements.length - 1)
+      return this
+    }
+    // 将堆顶元素删除并返回
+    pop() {
+      var result = this.elements[0]
+      this.elements[0] = this.elements.pop()
+      this.heapDown(0)
+      return result
+    }
+    // 查看堆顶元素，不删除它
+    peek() {
+      return this.elements[0]
+    }
+  }
+
+  function heapSort(ary) {
+    var pq = new PriorityQueue()
+    for (var i = 0; i < ary.length; i++) {
+      pq.push(ary[i])
+    }
+    for (var i = ary.length - 1; i >= 0; i--) {
+      ary[i] = pq.pop()
+    }
+    return ary
+  }
+
+  function heapify(ary) {
+    for (var i = (ary.length - 1) >> 1; i >= 0; i--) {
+      heapDown(ary, i)
+    }
+  }
+  function heapDown(ary, idx, end = ary.length) {
+    var l = end
+
+    while (idx < l) {
+      var maxIdx = idx
+      var lIdx = maxIdx * 2 + 1
+      var rIdx = maxIdx * 2 + 2
+
+      if (lIdx < l && ary[lIdx] > ary[maxIdx]) {
+        maxIdx = lIdx
+      }
+      if (rIdx < l && ary[rIdx] > ary[maxIdx]) {
+        maxIdx = rIdx
+      }
+
+      if (maxIdx !== idx) {
+        swap(ary, maxIdx, idx)
+        idx = maxIdx
+      } else {
+        return
+      }
+    }
+  }
+
+  function swap(ary, i, j) {
+    var t = ary[i]
+    ary[i] = ary[j]
+    ary[j] = t
+  }
+
+  function heapSort2(ary) {
+    heapify(ary)
+    for (var i = ary.length - 1; i > 0; i--) {
+      swap(ary, 0, i)
+      heapDown(ary, 0, i) // 从根元素开始调整，只调整i以内的元素，不包含i
+    }
+    return ary
+  }
+
+  function isSorted(array) {
+    for (var i = 0; i < array.length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  // pq = new PriorityQueue(item => item.身高)
+</script>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  
+
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+class Todo extends React.Component{
+  state={
+    count:0,
+    lists:[{
+      text:'1231',
+      done:false,
+    },{
+      text:'asdf',
+      done:false,
+    },{
+      text:'1fdsg',
+      done:false,
+    },],
+    model:'all',
+  }
+  isAllDone=()=>{
+    return this.state.lists.every(it=>it.done)
+  }
+  showLists=()=>{
+    if(this.state.model=='all'){
+      return this.state.lists
+    }
+    if(this.state.model=='completed'){
+      return this.state.lists.filter(it=>it.done)
+    }
+    if(this.state.model=='left'){
+      return this.state.lists.filter(it=>!it.done)
+    }
+  }
+  toggle=(it)=>{
+    this.setState({
+      lists:this.state.lists.map(list=>{
+        if(list==it){
+          return {
+            ...it,
+            done:!it.done,
+          }
+        }else{
+          return list
+        }
+      })
+    })
+  }
+  changeModel=(model)=>{
+    this.setState({
+      model:model,
+    })
+  }
+  
+  render(){
+    return(
+      <div>
+        <div><input type="checkbox" checked={this.isAllDone()} onClick={this.changeAll}/><input type="text"/></div>
+        <div>
+          <ul>{this.showLists().map(it=>{
+            return (
+              <li><input type="checkbox" checked={it.done} onClick={()=>{this.toggle(it)}}/>{it.text}</li>
+            )
+          })}</ul>
+          </div>
+          <div>
+            <label><input type="radio" name='model' onClick={()=>{this.changeModel('all')}} defaultChecked={true}/>All</label>
+            <label><input type="radio" name='model' onClick={()=>{this.changeModel('completed')}}/>Completed</label>
+            <label><input type="radio" name='model' onClick={()=>{this.changeModel('left')}}/>Left</label>
+            </div>
+      </div>
+    )
+  }
+}
+
+class Display extends React.Component{
+  state={
+    temperature:0,
+    model:'c',
+  }
+  changeT=(e)=>{
+    this.setState({
+      temperature:e.val,
+      model:e.model,
+    })
+  }
+  onTemperatureChange=(temperature,model)=>{
+      this.setState({
+        temperature,
+        model,
+      })
+  }
+  render(){
+    return(
+      <div>
+        <Temperature model='c' temperature={this.state.model=='c'?this.state.temperature:(this.state.temperature-32)/1.8} onTemperatureChange={this.onTemperatureChange}></Temperature>  
+        <Temperature model='f' temperature={this.state.model=='f'?this.state.temperature:this.state.temperature*1.8+32} onTemperatureChange={this.onTemperatureChange}></Temperature>  
+      </div>
+    )
+  }
+}
+class Temperature extends React.Component{
+  onChange=(e)=>{
+    this.props.onTemperatureChange(e.target.value,this.props.model)
+  }
+  render(){
+    return (
+      <div>
+        <input type="text" value={this.props.temperature} onChange={this.onChange}/><span>{this.props.model}</span>  
+      </div>
+    )
+  }
+}
+
+
+class Test extends React.Component{
+  reff=React.createRef()
+  onClick=()=>{
+    console.log(this.reff)
+  }
+  render(){
+    return(
+      <div>
+        <input type="text" ref={this.reff}/>
+        <div ref={this.reff}>asdfgadg</div>
+        <button onClick={this.onClick}>button</button>
+        <Test2 arg={2} f={it=><span>{it*2}</span>}></Test2>
+      </div>
+    )
+  }
+}
+function Test2({arg,f}){
+  return(
+    <div>
+      {f(arg)}
+    </div>
+  )
+}
+class Test3 extends React.Component{
+  state={
+    a:[1,2,3],
+    b:[4,5,6],
+  }
+  btn=()=>{
+    console.log(this.state)
+  }
+  btn2=()=>{
+    this.setState({
+      a:[3,2,1]
+    })
+  }
+  render(){
+    return(
+      <div>
+        <button onClick={this.btn}>Click1</button>
+        <button onClick={this.btn2}>Click2</button>
+      </div>
+    )
+  }
+}
+ReactDOM.render(
+  <Test3></Test3>,
+  document.getElementById('root')
+)
+
+
+
+function useMousePos(){
+  let [pos,setPos]=useState([0,0])
+  useEffect(()=>{
+    window.addEventListener('mousemove',pos)
+    return ()=>{window.removeEventListener('mousemove',pos)}
+  })
+  function pos(e){
+    setPos(pos=>{
+      return [e.clientX,e.clientY]
+    })
+  }
+  return pos
+}
+function useInput(initVal){
+  let {value,onChange}=initVal
+  let [state,setState]=useState(value)
+  return {
+    value,
+    onChange:(e)=>{
+      setState(e.target.value)
+    }
+  }
+}
+</script>
+
+</body>
+</html>

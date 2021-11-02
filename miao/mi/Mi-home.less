@@ -1,0 +1,1044 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin:0;
+  font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  color:#333;
+}
+html,body,div.container,header,section.head2{
+  width:100%;
+}
+// 重置一下所以a标签的样式
+a{
+  text-decoration: none;
+  color: inherit;
+}
+ul{
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+// 导航栏第一行------------------------------------------------------------------------------------------------
+header section.head {
+  background-color: rgb(51,51,51);
+  height: 40px;
+  min-width: 1226px;
+
+  div.head1{
+    width: 1226px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    >div.right{
+      display: flex;
+      align-items: center;
+    }
+    >div{
+      a{
+        font-size: 12px;
+        color:rgb(176,176,176);
+        line-height: 40px;
+        margin:auto 5px;
+        position: relative;
+
+
+        &.cart span.cart-menu{
+          display: flex;
+          justify-content: center;
+          width: 316px;
+          height: 0px;
+          position: absolute;
+          box-shadow: 0 2px 10px #aaa;
+          background-color: #fff;
+          right: 0;
+          top:40px;
+          z-index: 16;
+          transition: height .5s;
+          overflow: hidden;
+
+          span{
+            display: block;
+            position: absolute;
+            top:30px;
+            width: max-content;
+          }
+        }
+
+        &:hover{
+          color: white;
+        }
+
+        &.app-download{
+          display: inline-block;
+          margin:0 5px;
+          &:hover{
+            div.app-img{
+              height: 148px;
+            }
+            &::after{
+              display: block;
+            }
+          }
+        }
+        &.app-download::after{
+          content:" ";
+          position: absolute;
+          height: 14px;
+          width:14px;
+          box-sizing: border-box;
+          border-width: 7px;
+          border-color:transparent transparent white;
+          border-style: solid;
+          left: calc(50% - 7px);
+          bottom:0;
+          display: none;
+        }
+      }
+      
+      a.cart{
+        display: inline-block;
+        background-color: rgb(66,66,66);
+        margin: 0;
+        margin-left:30px;
+        height: 40px;
+        span.iconfont{
+          position: relative;
+          display: flex;
+          color:rgb(176,176,176);
+          width: 120px;
+          justify-content: center;
+          z-index: 7;
+          &::before{
+            font-size: 20px;
+            margin-right:10px;
+          }
+        }
+        &:hover{
+          span.iconfont{
+            color:rgb(255,103,0);
+            background-color: #fff;
+          }
+          span.cart-menu{
+            height: 100px;
+          }
+        }
+      }
+      span{
+        color:rgb(66,66,66);
+      }
+      div.app-img{
+        width: 124px;
+        height: 0px;
+        position: absolute;
+        box-shadow: 0 2px 5px #aaa;
+        left:-39px;
+        background-color: #fff;
+        transition: height .6s;
+        overflow: hidden;
+        z-index: 16;
+
+        img{
+          position:absolute;
+          left: 0;
+          right:0;
+          height: 90px;
+          width: 90px;
+          margin: 18px auto 12px;
+        }
+        span{
+          position: absolute;
+          top:100px;
+          margin:auto;
+          width: max-content;
+          left:0;
+          right:0;
+        }
+      }
+    }
+  }
+}
+
+
+
+// 以下是导航栏第二行-----------------------------------------------------------------
+header section.head2{
+  height: 100px;
+  min-width: 1226px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+    >div.center{
+      width: 1226px;
+      display: flex;
+      height: 100px;
+      align-items: center;
+      // logo布局及动画
+      >a.mi-logo{
+        display: inline-block;
+        height: 56px;
+        width:56px;
+        margin-right: 135px;
+
+        >img{
+          width: 50px;
+          object-fit: contain;
+          &:active{
+            transform: scale(0.9);
+          }
+        }
+      }
+
+      // ul的菜单列表
+      >ul.outer{
+        list-style: none;
+        display: flex;
+        font-size:16px;
+        margin: 16px 0 0 0;
+        width: max-content;
+
+
+        >li{
+          box-sizing: border-box;
+          height: 88px;
+          >a{
+            display: block;
+            padding: 26px 10px 38px;
+          }
+          >a:hover{
+            color:rgb(255,103,0);
+          }
+          // 内层的ul行为
+          >ul.inner{
+            list-style: none;
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            width: 100%;
+            min-width: 1226px;
+            box-shadow: 0 1px 3px -1px #aaa;
+            height: 0px;
+            left:0;
+            overflow: hidden;
+            background-color: #fff;
+            z-index: 10;
+            transition: height .6s .2s, z-index 0.8s;
+
+            >li{
+              width: 1226px;
+              height: 100px;
+              >ul.img-container{
+                display: flex;
+                background-color: #fff;
+
+                li{
+                  padding: 35px 12px 0px;
+                  text-align: center;
+                  font-size: 12px;
+                  position: relative;
+                  // 需要用伪元素把分隔线做一下,且最后一个没有分割线
+                  &::after{
+                    content:" ";
+                    position: absolute;
+                    border:1px solid #ddd;
+                    height: 100px;
+                    right: 0;
+                    top: 30px;
+                  }
+                  &:last-child::after{
+                    display: none;
+                  }
+
+                  img{
+                    height: 110px;
+                    object-fit: contain;
+                  }
+                  div.title{
+                    margin-top: 10px;
+                  }
+                  p.price{
+                    color:rgb(255,103,0);
+                  }
+                }
+              }
+            }
+          }
+        }
+        // 抽屉效果动画
+           &:hover > li> ul.inner{
+              height: 230px;
+                     }
+
+            >li:hover > ul.inner{
+              z-index: 18;
+              transition: height .6s .2s, z-index 0s;
+            }
+      }
+      // 后续两个不在列表的元素
+      ul.outer ~ a{
+
+        &:hover{
+          color:rgb(255,103,0);
+        }
+            display: block;
+            padding: 26px 10px 38px;
+            margin-top: 11px;
+            &:last-of-type{
+              flex-grow: 1;
+            }
+            
+      }
+
+      // 以下是搜索框样式
+      form{
+        display: flex;
+        &:hover input[type="text"], &:hover input[type="submit"]{
+          border-color: #aaa;
+        }
+        input[type="text"]{
+          width: 223px;
+          height: 48px;
+          padding: 0px 10px;
+          border:1px solid #eee;
+          transition: .3s;
+          border-right:none;
+     
+          &:focus + input[type="submit"],&:focus{
+            outline: none;
+            border-color:rgb(255,103,0);
+          }
+        }
+        input[type="submit"]{
+          cursor: pointer;
+          width:52px;
+          height: 48px;
+          box-sizing: border-box;
+          font-family: miFont;
+          color:#666;
+          font-size: 24px;
+          background-color: #fff;
+          border:1px solid #eee;
+          transition: .3s;
+
+          &:hover{
+            background-color: rgb(255,103,0);
+            color:white;
+            border-color:rgb(255,103,0);
+          }
+
+        }
+      }
+    }
+}
+
+// 以下部分为main的第一部分，三个板块，背景轮播图，列式布局菜单，和底部的几张图----------------------------------------------------------
+main.main-first-before{
+  display: flex;
+  justify-content: center;
+}
+main.main-first{
+  display: flex;
+  width: 1226px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom:16px;
+
+// 背景轮播图样式
+// 轮播图是渐变出现的，但是又可以被点击，这得把透明和z-index结合起来做动画吧！
+// 具体行为：checked的元素不透明度变为1，且z-index提高
+// 切换按钮的样式也要自己改
+  div.background-slider{
+    width: 1226px;
+    height: 460px;
+    position: relative;
+
+    // 切换动画
+    input:nth-of-type(1):checked ~ ul>li:nth-of-type(1),
+    input:nth-of-type(2):checked ~ ul>li:nth-of-type(2),
+    input:nth-of-type(3):checked ~ ul>li:nth-of-type(3),
+    input:nth-of-type(4):checked ~ ul>li:nth-of-type(4){
+      opacity: 1;
+      z-index: 4;
+    }
+    // 切换按钮的动画的一部分
+    input:nth-of-type(1):checked ~ label:nth-of-type(1),
+    input:nth-of-type(2):checked ~ label:nth-of-type(2),
+    input:nth-of-type(3):checked ~ label:nth-of-type(3),
+    input:nth-of-type(4):checked ~ label:nth-of-type(4){
+      background-color: #eee;
+    }
+    >label[name="shift"]{
+      display: block;
+      box-sizing: border-box;
+      height: 12px;
+      width: 12px;
+      background-color: #aaa;
+      border-radius: 10px;
+      border: 3px solid #ddd;
+      position: absolute;
+      bottom:20px;
+      cursor: pointer;
+      z-index: 8;
+      &:hover{
+        background-color: #eee;
+      }
+      &:nth-of-type(1){
+        right:100px;
+      }
+      &:nth-of-type(2){
+        right:80px;
+      }
+      &:nth-of-type(3){
+        right:60px;
+      }
+      &:nth-of-type(4){
+        right:40px;
+      }
+    }
+
+
+    input{
+      display: none;
+    }
+
+    ul{
+      margin: 0;
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      li{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s, z-index 1s;
+        img{
+          object-fit: contain;
+          width: 100%;
+        }
+
+        // li里面的左右切图按钮
+        label{
+          display: flex;
+          justify-content: center;
+          box-sizing: border-box;
+          width: 41px;
+          height: 69px;
+          position: absolute;
+          font-family: miFont;
+          font-size: 39px;
+          padding-top: 12px;
+          color:rgb(176,176,176);
+          cursor: pointer;
+          background-color: none;
+          &:hover{
+            background-color: rgba(51,51,51,0.5);
+            color:white;
+          }
+          
+          &[name=right]{
+            right: 0;
+            top:calc(50% - 35px);
+            border-radius: 3px 0 0 3px;
+          }
+          &[name=left]{
+            left:234px;
+            top:calc(50% - 35px);
+            border-radius:0 3px 3px 0;
+          }
+        }
+      }
+    }
+  }
+// 左侧的菜单样式
+div.option-left{
+  width:1226px;
+  height: 0px;
+  margin-top:-460px;
+  position: relative;
+  z-index: 8;
+  display: flex;
+  
+  // outer写菜单内容的样式
+  >ul.outer{
+    background-color: rgba(120,120,120,0.5);
+    height: 460px;
+    display: flex;
+    flex-flow: column wrap;
+    margin:0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    >li{
+      height: 42px;
+      width: 234px;
+      padding-left: 30px;
+      color:white;
+      font-size: 14px;
+      line-height: 42px;
+      a{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      a::after{
+        position: absolute;
+        right: 0;
+        font-family: miFont;
+        content:"\e623";
+        font-weight: small;
+        margin-right:20px;
+        color:#eee;
+      }
+
+      &:hover{
+        background-color: rgb(255,103,0);
+      }
+
+      &:hover>ul.inner{
+        display: flex;
+      }
+
+      // inner的ul中是弹出菜单内容的样式，里面每一个li都放了图
+      ul.inner{
+        padding: 0;
+        margin: 0;
+        display: none;
+        position: absolute;
+        top:0;
+        left:234px;
+        height: 460px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgb(176,176,176);
+        >li{
+          width: 265px;
+          height: 460px;
+          position: relative;
+          >ul{
+            width: 265px;
+            height: 460px;
+            display: flex;
+            flex-flow: column wrap;
+            >li{
+              display: flex;
+              align-items: center;
+              width:265px;
+              height: 76px;
+              padding: 18px 20px;
+              &:hover>span{
+                color:rgb(255,103,0);
+              }
+    
+              span{
+                color: rgb(51,51,51);
+                transition: color .3s;
+              }
+              img{
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
+                margin-right: 12px;
+              }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// 下面是底部的一行图片
+div.main-bottom{
+  width: 1226px;
+  display: flex;
+  margin-top: 14px;
+
+  div.left{
+    width: 234px;
+    height: 170px;
+    flex-grow: 1;
+    >ul{
+      display: flex;
+      flex-wrap: wrap;
+      margin:0 14px 0 0;
+      height: 170px;
+      background-color: rgb(95,87,80);
+      >li{
+        width: 76px;
+        height: 82px;
+        display: flex;
+        justify-content: center;
+        color:#ddd;
+        font-size: 12px;
+        position: relative;
+        align-items: flex-end;
+        cursor: pointer;
+
+        &:hover > span{
+          color:#fff;
+        }
+
+        &::before{
+          content:" ";
+          display: block;
+          border:.5px solid rgb(105,97,90);
+          height: 60px;
+          position: absolute;
+          left:2px;
+          top:10px;
+        }
+        &::after{
+          content:" ";
+          display: block;
+          border:.5px solid rgb(105,97,90);
+          width:60px;
+          position: absolute;
+          top:2px;
+          left:10px;
+        }
+
+        >span{
+          width: max-content;
+          margin-bottom:20px;
+          transition: color .3s;
+          &::before{
+            width:max-content;
+            position: absolute;
+            top:10px;
+            left:0;
+            right:0;
+            margin:auto;
+            font-size:25px;
+          }
+
+        }
+      }
+    }
+  }
+  div.right{
+    height: 170px;
+    width: 978px;
+    display: flex;
+    justify-content: space-between;
+    
+    img{
+      height: 100%;
+      object-fit: contain;
+    }
+
+  }
+}
+}
+// 下面是第二部分，包括秒杀及以后的图--------------------------------------------------------------------------------
+main.main-second-before{
+  min-width:1226px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(245,245,245);
+}
+main.main-second{
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1226px;
+
+  section.first{
+    width: 1226px;
+    >h2.title{
+      font-size: 22px;
+      font-weight: 200;
+      font-family: Microsoft YaHei Light;
+    }
+    >h2+div{
+      display: flex;
+      width:1226px;
+
+      >div.left{
+        width: 234px;
+        height: 340px;
+        background-color: rgb(241,237,237);
+        border-top:1px solid rgb(229,57,53);
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        padding-top: 39px;
+        margin-right:14px;
+        
+        div:first-child{
+          font-size: 21px;
+          color:rgb(229,57,52);
+          position: relative;
+          line-height: 39.5px;
+          &::before{
+            position: absolute;
+            font-size: 100px;
+            top:70px;
+            left:-10px;
+          }
+        }
+
+        div:nth-child(2){
+          font-size: 15px;
+          color:#666;
+          margin-top: 110px;
+        }
+        div:last-child{
+          font-size:24px;
+          line-height: 46px;
+          display: flex;
+          margin-top:20px;
+          span{
+            text-align: center;
+            display: inline-block;
+            height:46px;
+            width:46px;
+            background-color: rgb(96,87,81);
+            margin:0 5px;
+            
+            font-weight: 400;
+            color:#eee;
+          }
+        }
+      }
+      >div.right{
+        width:978px;
+        height: 340px;
+        position: relative;
+        input[name="sliding-contral"]{
+          display: none;
+        }
+        // input的控制行为
+        input:nth-of-type(1):checked~ul>li:first-child{
+          margin-left:0;
+        }
+        input:nth-of-type(2):checked~ul>li:first-child{
+          margin-left:-978px;
+        }
+        input:nth-of-type(3):checked~ul>li:first-child{
+          margin-left:-1467px;
+        }
+
+        input:nth-of-type(1):checked~label:nth-of-type(1),input:nth-of-type(1):checked~label:nth-of-type(1)+div,
+        input:nth-of-type(2):checked~label:nth-of-type(2),
+        input:nth-of-type(2):checked~label:nth-of-type(3),
+        input:nth-of-type(3):checked~label:nth-of-type(4),input:nth-of-type(3):checked~label:nth-of-type(4)+div{
+          display: flex;
+        }
+        label{
+          justify-content: center;
+          color: #666;
+          display: none;
+          position: absolute;
+          right:0;
+          top:-30px;
+          width: 36px;
+          height: 24px;
+          padding: 3px 5px;
+          border:1px solid #aaa;
+          transition: color .3s;
+          &:nth-of-type(2),&:nth-of-type(4){
+            right:36px;
+          }
+          &:hover{
+            color:rgb(255,103,0);
+          }
+          &:nth-of-type(2),&:nth-of-type(4){
+            border-right:none;
+          }
+        }
+        label+div{
+          justify-content: center;
+          display: none;
+          color:#aaa;
+          position: absolute;
+          right:0;
+          top:-30px;
+          width: 36px;
+          height: 24px;
+          padding: 3px 5px;
+          border:1px solid #aaa;
+          &.after-sliding-contral-first{
+            right:36px;
+            border-right:none;
+          }
+        }
+        >ul{
+          display: flex;
+          height: 100%;
+          width:978px;
+          overflow: hidden;
+          >li{
+            display: flex;
+            align-items: center;
+            flex-flow:column;
+            width: 234px;
+            height: 340px;
+            background-color: #fff;
+            margin-right:14px;
+            padding-top: 39px;
+            flex-shrink: 0;
+            &:first-child{
+              transition: margin .5s;
+            }
+
+            >img{
+              width:150px;
+              object-fit: contain;
+            }
+            >div.title{
+              margin-top: 10px;
+              text-align: center;
+              font-size:14px;
+              p{
+                color:#aaa;
+              }
+            }
+            >p.price{
+              span:first-child{
+                color:rgb(255,103,0);
+              }
+              span:last-child{
+                color:#aaa;
+                text-decoration: line-through;
+              }
+            }
+          }
+        }
+      }
+    }
+    // 最下面一栏的图片
+    div.img{
+      margin: 22px 0;
+
+      img{
+        width:1226px;
+        height: 120px;
+      }
+    } 
+  }
+  // 手机部分
+  section.second{
+    width: 1226px;
+    h2.title{
+      font-size: 22px;
+      font-weight: 200;
+      font-family: Microsoft YaHei Light;
+      >span{
+        display: flex;
+        justify-content: center;
+        float: right;
+        line-height: 16px;
+        font-size: 16px;
+        color:rgb(66,66,66);
+        transition: .3s;
+        cursor: pointer;
+        &:hover{
+          color:rgb(255,103,0);
+          >span{
+            background-color: rgb(255,103,0);
+          }
+        }
+        >span{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 18px;
+          height: 20px;
+          line-height: 16px;
+          background-color: rgb(176,176,176);
+          border-radius: 20px;
+          margin-left:8px;
+          padding: 4px;
+          transition: .3s;
+          &::before{
+            color:#eee;
+          }
+        }
+      }
+    }
+    
+    div.container{
+
+
+      >div.left{
+        width: 234px;
+        height: 614px;
+        float:left;
+        cursor: pointer;
+        transition: .3s;
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        img{
+          width: 234px;
+          object-fit: contain;
+        }
+      }
+      >div.left~div{
+        width: 234px;
+        height: 300px;
+        padding: 20px 0;
+        margin:0 0 14px 14px;
+        float:left;
+        background-color: #fff;
+        display: flex;
+        flex-flow:column;
+        align-items: center;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        img{
+          width: 160px;
+          height: 160px;
+          object-fit: contain;
+        }
+        div.title{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 21px;
+        }
+        p.detail{
+          font-family: Microsoft YaHei,sans-serif;
+          font-size: 12px;
+          line-height: 18px;
+          color:rgb(176,176,176);
+
+        }
+        div.price{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 21px;
+          color: rgb(255,103,0);
+        }
+      }
+    }
+    img{
+      width: 1226px;
+      object-fit: contain;
+    }
+  }
+}
+
+// 家电
+section.third{
+  margin-top:10px;
+  width: 1226px;
+  div.menu{
+    float: right;
+    padding: 20px 0 0 0;
+    label{
+      margin:0 0 0 30px;
+      cursor: pointer;
+      transition: .3s;
+      padding-bottom: 5px;
+    }
+  }
+  h2.title{
+    font-size: 22px;
+      font-weight: 200;
+      font-family: Microsoft YaHei Light;
+  }
+  input{
+    display: none;
+  }
+  input:nth-of-type(1):checked~div.container>section:nth-of-type(1),
+  input:nth-of-type(2):checked~div.container>section:nth-of-type(2){
+    display: block;
+  }
+  input:nth-of-type(1):checked~div.menu>label:nth-of-type(1),
+  input:nth-of-type(2):checked~div.menu>label:nth-of-type(2){
+    color:rgb(255,103,0);
+  
+    border-bottom:1px solid rgb(255,103,0);
+  }
+  div.container{
+    display: flex;
+    div.left{
+      width:234px;
+      div{
+        width: 234px;
+        height: 300px;
+        margin-bottom: 14px;
+        transition: .3s;
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        
+        img{
+          width: 234px;
+          height: 300px;
+        }
+      }
+    }
+    section.container-in{
+      width: 992px;
+      display: none;
+      >div{
+        float: left;
+        width: 234px;
+        height: 300px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        margin:0 0 14px 14px;
+        transition: .3s;
+        &:hover{
+          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          translate:0 -2px;
+        }
+        >img{
+          width: 160px;
+          height: 160px;
+        }
+        >div.title{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 14px;
+        }
+        >p.detail{
+          font-family: Microsoft YaHei,sans-serif;
+          font-size: 12px;
+          line-height: 12px;
+          color:rgb(176,176,176);
+        }
+        >div.price{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          line-height: 18px;
+          color: rgb(255,103,0);
+          >span{
+            color:#aaa;
+                text-decoration: line-through;
+          }
+        }
+        &.small{
+          display: block;
+          width: 234px;
+          height: 143px;
+          padding: 40px 20px 40px 30px;
+          img{
+            width: 80px;
+            height: 80px;
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  >img{
+    width: 1226px;
+    height: 120px;
+  }
+}
