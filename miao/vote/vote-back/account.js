@@ -55,7 +55,7 @@ app.post('/register',(req,res,next)=>{
   if(!infoReg.test(info.username)){
     res.status(400).json({
       code:-1,
-      message:'invalid username'
+      message:'invalid username',
     })
   }else if(info.password.length==0){
     res.status(400).json({
@@ -63,6 +63,14 @@ app.post('/register',(req,res,next)=>{
       message:'password must not be empty'
     })
   }else{
+    let checkdb=db.prepare('SELECT * FROM users WHERE username=?').get(info.username)
+    if(checkdb){
+      res.json({
+        code:-2,
+        message:'user has existed!'
+      })
+      return
+    }
     let addCommand=db.prepare('insert into users (username,password,email,avatar) values (?,?,?,?)')
     let result=addCommand.run(info.username,md5(info.password),info.email,info.avatar)
     console.log(result)
@@ -76,6 +84,7 @@ app.post('/register',(req,res,next)=>{
 //登录
 app.post('/login',(req,res,next)=>{
   let info=req.body
+  console.log(info)
   if(info.captcha!==req.session.captcha){
     res.json({
       code:-2,
@@ -93,9 +102,20 @@ app.post('/login',(req,res,next)=>{
       result:user.username,
     })
   }else{
-    res.status(400).json({
+    res.json({
       code:-1,
       message:'account incorrect'
+    })
+  }
+})
+app.get('/getuser',(req,res,next)=>{
+  if(req.isLogin){
+    res.json({
+      code:0,
+      result:{
+        isLogin:req.isLogin,
+        loginUser:req.loginUser,
+      }
     })
   }
 })
@@ -105,6 +125,7 @@ app.get('/logout',(req,res,next)=>{
     code:0,
     result:{},
   })
+  return
 })
 app.get('/captcha',(req,res,next)=>{
   let captcha = svgCaptcha.create();

@@ -1,6 +1,5 @@
 import { useInput } from "./hooks"
 import axios from "axios"
-import { useHistory } from "react-router"
 import { useState } from "react"
 
 export default function Login(){
@@ -8,7 +7,6 @@ export default function Login(){
   let password=useInput()
   let captcha=useInput()
   let [src,setSrc]=useState('/account/captcha')
-  let history=useHistory()
   let update=function(){
     setSrc('/account/captcha?date'+Date.now())
   }

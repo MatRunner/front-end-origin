@@ -6,18 +6,17 @@ const app=express.Router()
 const db = require('./db')
 
 
-
-app.post('/create-vote',(req,res,next)=>{
-  
-  //登录判断
+app.use((req,res,next)=>{
   if(!req.isLogin){
     res.json({
-      code:-1,
+      code:-3,
       message:'user needs to log in'
     })
     return
   }
-
+  next()
+})
+app.post('/create-vote',(req,res,next)=>{
 
   let info=req.body//获得投票的主体信息
   let stmt=db.prepare('INSERT INTO votes(title,extraInfo,deadline,anonymous,multiple,createBy) VALUES(?,?,?,?,?,?)')
@@ -133,6 +132,34 @@ app.post('/view/:id',(req,res,next)=>{
     voteWsMap[id].forEach(ws=>{
       console.log('发送')
       ws.send(JSON.stringify(res))
+    })
+  }
+})
+
+app.get('/myvotes',(req,res,next)=>{
+  let votes=db.prepare('SELECT * FROM votes WHERE createBy=?').all(req.loginUser)
+  res.json({
+    code:0,
+    result:votes,
+  })
+  return
+})
+app.delete('/delete/:id',(req,res,next)=>{
+  let id=req.params.id
+  try{
+    db.prepare('DELETE FROM votes WHERE id=?').run(id)
+    db.prepare('DELETE FROM options WHERE belongTo=?').run(id)
+    db.prepare('DELETE FROM voteOptions WHERE voteId=?').run(id)
+    res.json({
+      code:0,
+      result:'delete vote which id is'+id,
+    })
+    return
+  }catch(e){
+    console.log('删除投票出错：',e)
+    res.json({
+      code:-1,
+      message:'delete error',
     })
   }
 })

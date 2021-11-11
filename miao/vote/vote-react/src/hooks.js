@@ -13,8 +13,8 @@ export function useInput(init=''){
 
 export function useBooleanChecked(init=false){
   let [check,setCheck]=useState(init)
-  let onChange=useCallback(function(e){
-    setCheck(e.target.checked)
+  let onChange=useCallback(function(val){
+    setCheck(val)
   })
   return{
     checked:check,

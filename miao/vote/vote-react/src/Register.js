@@ -1,7 +1,6 @@
 import React from 'react';
 import { useInput } from './hooks';
 import axios from 'axios';
-import { useHistory } from 'react-router';
 
 export default function Register(){
   let username=useInput()
