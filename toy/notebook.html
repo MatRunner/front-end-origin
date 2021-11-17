@@ -104,8 +104,9 @@
 <body>
   <div class="explanation">
     <ul>
-      <li>点击右键添加和删除note</li>
-      <li>由于文字的影响，事件行为有bug，正确的做法是不要把事件绑定在可以编辑文字的地方</li>
+      <li>在搜索框下方点击右键添加一个note</li>
+      <li>在一个note上点击右键删除或更改底色</li>
+      <li>左键点按一个note可拖动</li>
     </ul>
   </div>
   <div class="colorMenu">
@@ -139,16 +140,16 @@
   <script>
     //随机选择一张背景
     let bgIObj = {
-      'bgi0': 'https://img.lanrentuku.com/img/allimg/2003/15835605445211.jpg',
-      'bgi1': 'https://img.lanrentuku.com/img/allimg/2003/15835609914448.jpg',
-      'bgi2': 'https://img.lanrentuku.com/img/allimg/2005/15903105066138.jpg',
-      'bgi3': 'https://img.lanrentuku.com/img/allimg/2003/15835494886349.jpg',
-      'bgi4': 'https://img.lanrentuku.com/img/allimg/2003/15835486669153.jpg',
-      'bgi5': 'https://img.lanrentuku.com/img/allimg/2002/15829869738967.jpg',
-      'bgi6': 'https://img.lanrentuku.com/img/allimg/2002/15829835984853.jpg',
-      'bgi7': 'https://img.lanrentuku.com/img/allimg/2002/15829674002591.jpg',
-      'bgi8': 'https://img.lanrentuku.com/img/allimg/2002/1582964032271.jpg',
-      'bgi9': 'https://img.lanrentuku.com/img/allimg/2005/15899806832196.jpg',
+      'bgi0': './img/cat1.jpg',
+      'bgi1': './img/cat2.jpg',
+      'bgi2': './img/cat3.jpg',
+      'bgi3': './img/cat4.jpg',
+      'bgi4': './img/cat5.png',
+      'bgi5': './img/cat6.jpg',
+      'bgi6': './img/cat7.jpg',
+      'bgi7': './img/cat8.jpg',
+      'bgi8': './img/cat9.jpg',
+      'bgi9': './img/cat10.jpg',
     }
 
     let randomImg = Math.floor(Math.random() * 10)
