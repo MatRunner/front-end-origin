@@ -1,0 +1,16 @@
+.create-vote-layout{
+  min-height: 100vh !important;
+}
+.create-vote-layout-in .ant-row{
+  margin: 5px 0;
+  padding: 5px 5px 15px;
+}
+.create-vote-layout-in{
+  background-color: #fff;
+}
+.vote-date{
+  border: none;
+}
+.vote-date{
+  outline: none;
+}
